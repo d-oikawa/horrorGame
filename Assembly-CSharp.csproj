@@ -64,6 +64,7 @@
     <Compile Include="Assets\playerMove.cs" />
     <Compile Include="Assets\ItemBase.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\enemy\enemy_move.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
