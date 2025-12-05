@@ -88,7 +88,7 @@ public class enemy_move : MonoBehaviour
                     localAngle.y += 5.0f;
                     //正面の角度を更新
                     this.transform.localEulerAngles = localAngle;
-                    Debug.Log("aaa");
+                    Debug.Log("方向転換");
                     //レイの正面を更新
                     direction = transform.forward;
                 }
