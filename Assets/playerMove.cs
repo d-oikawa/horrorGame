@@ -36,7 +36,7 @@ public class NewEmptyCSharpScript:MonoBehaviour
         {
             movement = transform.rotation*movement*runSpeed;
         }
-        else if(Input.GetKey(KeyCode.Tab))
+        else if(Input.GetKey(KeyCode.LeftControl))  
         {
             movement = transform.rotation * movement * slowwalkSpeed;
         }
