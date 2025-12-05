@@ -42,14 +42,14 @@ public class enemy_move : MonoBehaviour
             if (hit.collider.CompareTag("Wall"))
             {
                 //Vector3 angle = transform.localEulerAngles;
-                localAngle.y += 90.0f;
+                localAngle.y += 5.0f;
                 this.transform.localEulerAngles = localAngle;
                 Debug.Log("aaa");
                 direction = transform.forward;
             }
         }
     }
-
+    
     /*
     private void OnTriggerEnter(Collider other)
     {
