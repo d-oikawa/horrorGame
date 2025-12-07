@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wall
+  - Spline_A
+  - Spline_B
+  - enemy
+  - Spline_C
+  - Spline_D
+  - Spline_E
+  - Spline_F
+  - Spline_G
+  - Spline_H
+  - Spline_I
+  - Spline_J
   layers:
   - Default
   - TransparentFX

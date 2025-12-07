@@ -23,76 +23,61 @@ public class enemy_move : MonoBehaviour
     public float rayDistance;
 
     [SerializeField]
-    SplineAnimate splineAnimate;
+    spline_system splineAnimate;
 
     //音のなる方向に
-    private bool searchw;
+    //private bool searchw;
+
+    //enemy_move.cs
+    spline_system spline_System;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //角度を初期化
-        localAngle = this.transform.localEulerAngles;
+        //localAngle = this.transform.localEulerAngles;
+
+        spline_System = GetComponent<spline_system>();
 
         //フラグ初期化
-        searchw = false;
+        //searchw = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //エネミーの中心位置からレイを飛ばす
+        origin = transform.position;
+
+        //レイの向きをエネミーが向いている向きに
+        direction = transform.forward;
+
+
+        //レイを描画(デバッグ)
+        Debug.DrawRay(origin, direction * rayDistance, Color.red);
+
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (!searchw)
+            if (!spline_System.spline_flg)
             {
-                searchw = true;
+                spline_System.spline_flg = true;
             }
             else
             {
-                searchw = false;
+                spline_System.spline_flg = false;
             }
         }
 
         //通常時
-        if (!searchw)
+        if (spline_System.spline_flg)
         {
-            splineAnimate.Play();
+            return;
         }
         //音を聞いたら
         else
         {
-
-            splineAnimate.Pause();
-
-
-            //エネミーの中心位置からレイを飛ばす
-            origin = transform.position;
-
-            //レイの向きをエネミーが向いている向きに
-            direction = transform.forward;
-
-            //エネミーの移動
-            this.transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
-            //レイを描画(デバッグ)
-            Debug.DrawRay(origin, direction * rayDistance, Color.red);
-
-            //レイがコリジョンに当たったとき
-            if (Physics.Raycast(origin, direction, out RaycastHit hit, rayDistance))
-            {
-                //レイが壁のコリジョンに当たったとき
-                if (hit.collider.CompareTag("Wall"))
-                {
-                    //Vector3 angle = transform.localEulerAngles;
-                    //回転
-                    localAngle.y += 5.0f;
-                    //正面の角度を更新
-                    this.transform.localEulerAngles = localAngle;
-                    Debug.Log("方向転換");
-                    //レイの正面を更新
-                    direction = transform.forward;
-                }
-            }
+            normal_move();           
         }
 
         /*
@@ -104,5 +89,26 @@ public class enemy_move : MonoBehaviour
             this.transform.Translate(Vector3.right * -0.5f);
         }
         */
+    }
+    void normal_move()
+    {
+        //エネミーの移動
+        this.transform.Translate(Vector3.forward * Time.deltaTime * speed);
+
+
+        //レイがコリジョンに当たったとき
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, rayDistance))
+        {
+            //レイが壁のコリジョンに当たったとき
+            if (hit.collider.CompareTag("Wall"))
+            {
+                //Vector3 angle = transform.localEulerAngles;
+                //回転
+                this.transform.Rotate(0f, 5f, 0f);
+                Debug.Log("方向転換");
+                //レイの正面を更新
+                direction = transform.forward;
+            }
+        }
     }
 }
