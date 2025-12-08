@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 
-public class NewEmptyCSharpScript:MonoBehaviour
+public class PlayerMove:MonoBehaviour
 {
-    /*ItemBase item;
-    GameObject itemobj = GameObject.FindGameObjectWithTag("Testitem");
-    item = itemobj.GetComponet<ItemBase>();*/
+   public GameObject Itemobj;
+    public ItemBase itembase;
+    
+
+
 
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
@@ -23,11 +26,12 @@ public class NewEmptyCSharpScript:MonoBehaviour
     public Transform cam;
     private float xRotation;
 
-    public Camera PlayerCamera;
+    public Camera Camera;
 
     void Start()
     {
-      
+        Itemobj = GameObject.FindGameObjectWithTag("Testitem");
+        itembase = Itemobj.GetComponent<ItemBase>();
     }
 
     void Update()
@@ -63,15 +67,16 @@ public class NewEmptyCSharpScript:MonoBehaviour
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         //レイを使っての選択
-        Ray ray = PlayerCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
             {
                 //Fを押したら
-                if(Input.GetKey(KeyCode.F))
+                if(Input.GetKey(KeyCode.E))
                 {
+                    itembase.GetItem();
                     Debug.Log("ゲット！！");
                 }
               
