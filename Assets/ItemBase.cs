@@ -39,8 +39,14 @@ public class ItemBase : MonoBehaviour
 	// アイテムがアクティブかどうかの情報を設定
 	public void SetActive(bool _IsActive) { m_IsActive = _IsActive; }
 
-	// プレイヤーがアイテムをとった時の処理
-	public virtual void GetItem()
+	// プレイヤーがアイテムを持っているか
+	public bool IsPlayerHaveItem = false;
+
+	// プレイヤーがアイテムを持っているかを設定
+	public void SetPlayerHaveItem(bool _IsPlayerHaveItem) { IsPlayerHaveItem = _IsPlayerHaveItem; }
+
+    // プレイヤーがアイテムをとった時の処理
+    public virtual void GetItem()
 	{
 		// アイテムがアクティブであれば処理
 		if(m_IsActive)
@@ -56,4 +62,17 @@ public class ItemBase : MonoBehaviour
 			m_IsActive = false;
 		}
 	}
+
+	// プレイヤーがアイテムを投擲したときの処理
+	public virtual void ThrowItem(Vector3 _Position)
+	{
+		// アイテムを投擲した時のサウンドを鳴らす
+		// まだない 12/3
+		// アイテムの位置を設定
+		m_Position = _Position;
+		// アイテムを表示
+		m_IsVisible = true;
+		// アイテムをアクティブにする
+		m_IsActive = true;
+    }
 }
