@@ -1,6 +1,4 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class enemy_move : MonoBehaviour
 {
@@ -23,13 +21,16 @@ public class enemy_move : MonoBehaviour
     public float rayDistance;
 
     [SerializeField]
-    spline_system splineAnimate;
+    public spline_system splineAnimate;
 
     //音のなる方向に
     //private bool searchw;
 
     //enemy_move.cs
-    spline_system spline_System;
+    public spline_system spline_System;
+
+    //次のスプラインに移動する際の最初の座標
+    private Vector3 start_move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +58,7 @@ public class enemy_move : MonoBehaviour
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
 
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (!spline_System.spline_flg)
@@ -69,6 +71,13 @@ public class enemy_move : MonoBehaviour
             }
         }
 
+        /*
+        if (spline_System.spline_nextmove)
+        {
+            nextSplineMove();
+        }
+        */
+
         //通常時
         if (spline_System.spline_flg)
         {
@@ -80,15 +89,7 @@ public class enemy_move : MonoBehaviour
             normal_move();           
         }
 
-        /*
-        private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("aaa");
-            localAngle.y = 90.0f;
-            this.transform.localEulerAngles = localAngle;
-            this.transform.Translate(Vector3.right * -0.5f);
-        }
-        */
+       
     }
     void normal_move()
     {
@@ -104,11 +105,17 @@ public class enemy_move : MonoBehaviour
             {
                 //Vector3 angle = transform.localEulerAngles;
                 //回転
-                this.transform.Rotate(0f, 5f, 0f);
+                this.transform.Rotate(0f, 10f, 0f);
                 Debug.Log("方向転換");
                 //レイの正面を更新
                 direction = transform.forward;
             }
         }
+    }
+
+    void nextSplineMove()
+    {
+        //現在の座標を保存
+        start_move = this.transform.position;
     }
 }

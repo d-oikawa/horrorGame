@@ -23,6 +23,9 @@ public class spline_system : MonoBehaviour
     //アタッチされているスプラインのタグ
     public string spline_tag;
 
+    //次のスプライトに移るまでの動き
+    public bool spline_nextmove;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
