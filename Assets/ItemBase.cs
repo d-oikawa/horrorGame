@@ -15,10 +15,8 @@ public class ItemBase : MonoBehaviour
 		m_IsVisible = true;
 
 		// アイテムがアクティブかの設定
-		m_IsActive = false;
+		m_IsActive = true;
 
-		// アイテムのタグの設定 
-	
 	}
 
 	// Update is called once per frame
@@ -28,9 +26,6 @@ public class ItemBase : MonoBehaviour
 	}
 	// アイテムの座標情報
 	public Vector3 m_Position = new Vector3(0f, 0f, 0f);
-
-	// アイテムのタグ
-	public string m_ItemTag = "None";
 
 	// アイテムがアクティブかどうか
 	public bool m_IsActive = false;
@@ -55,6 +50,8 @@ public class ItemBase : MonoBehaviour
 
 			// アイテムを非表示
 			m_IsVisible = false;
+
+			Debug.Log("hange");
 			// 非アクティブにする
 			m_IsActive = false;
 		}

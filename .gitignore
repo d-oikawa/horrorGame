@@ -1,6 +1,7 @@
 Library/
 Logs/
 Temp/
+Debug/
 *.log
 *.vs
 *.sln
