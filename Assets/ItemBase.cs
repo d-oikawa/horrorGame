@@ -29,9 +29,6 @@ public class ItemBase : MonoBehaviour
 	// アイテムの座標情報
 	public Vector3 m_Position = new Vector3(0f, 0f, 0f);
 
-	// アイテムのタグ
-	public string m_ItemTag = "None";
-
 	// アイテムがアクティブかどうか
 	public bool m_IsActive = false;
 
