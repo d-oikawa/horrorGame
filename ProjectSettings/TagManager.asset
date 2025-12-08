@@ -16,6 +16,9 @@ TagManager:
   - Spline_H
   - Spline_I
   - Spline_J
+  - PlayerCamera
+  - Item
+  - Testitem
   layers:
   - Default
   - TransparentFX
