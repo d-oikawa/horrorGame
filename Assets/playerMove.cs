@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class PlayerMove:MonoBehaviour
 {
+    //アイテムベースの変数
    public GameObject Itemobj;
     public ItemBase itembase;
     
-
-
-
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
 
@@ -27,6 +25,7 @@ public class PlayerMove:MonoBehaviour
     private float xRotation;
 
     public Camera Camera;
+
 
     void Start()
     {
@@ -73,19 +72,27 @@ public class PlayerMove:MonoBehaviour
         {
             if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
             {
-                //Fを押したら
-                if(Input.GetKey(KeyCode.E))
+                //Eを押したら
+                if (Input.GetKey(KeyCode.E))
                 {
-                    itembase.GetItem();
-                    Debug.Log("ゲット！！");
+                    //アイテムを持っているか否かでアイテムの取得・投擲を分岐
+                    //switch ()
+                    //{
+                    //    case 0:
+                    //        {
+                    //            //アイテムの取得
+                    //            itembase.GetItem();
+                    //            Debug.Log("ゲット！！");
+                    //        }
+                    //        break;
+                    //    case 1:
+                    //        {
+                    //            //アイテムを投げる
+                    //        }
+                    //        break;
+                    //}
                 }
-              
             }
         }
-
-        //アイテムを投げる
-
-
-
     }
 }
