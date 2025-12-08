@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class NewEmptyCSharpScript:MonoBehaviour
 {
+    /*ItemBase item;
+    GameObject itemobj = GameObject.FindGameObjectWithTag("Testitem");
+    item = itemobj.GetComponet<ItemBase>();*/
+
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
 
@@ -63,7 +69,12 @@ public class NewEmptyCSharpScript:MonoBehaviour
         {
             if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
             {
-                Debug.Log("ゲット！！");
+                //Fを押したら
+                if(Input.GetKey(KeyCode.F))
+                {
+                    Debug.Log("ゲット！！");
+                }
+              
             }
         }
 
