@@ -123,8 +123,6 @@ public class ItemBase : MonoBehaviour
 	{
 		// アイテムを投擲した時のサウンドを鳴らす
 		// まだない 12/3
-		// アイテムの位置を設定
-		m_Position = _Position;
 		// アイテムを表示
 		m_IsVisible = true;
 		// アイテムをアクティブにする
