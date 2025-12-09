@@ -56,7 +56,8 @@ public class spline_system : MonoBehaviour
                 spline_choice();
             }
         }
-        Debug.Log(splines_Percentage);
+        //割合表示のデバッグ         
+        //Debug.Log(splines_Percentage);
     }
 
     //スプイランに沿って移動する処理

@@ -30,10 +30,11 @@ public class enemy_move : MonoBehaviour
     public spline_system spline_System;
 
     //player_chase.cs
-    //public player_chase player_Chase;
+    public player_chase player_Chase;
 
-    //次のスプラインに移動する際の最初の座標
-    private Vector3 start_move;
+    //音源へに移動する際の最初の座標
+    [SerializeField]
+    public Vector3 start_pos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +44,9 @@ public class enemy_move : MonoBehaviour
 
         spline_System = GetComponent<spline_system>();
 
-        //player_Chase = GetComponent<player_chase>();
+        player_Chase = GetComponent<player_chase>();
+
+        player_Chase.chase_flg = false;
 
         //フラグ初期化
         //searchw = false;
@@ -63,20 +66,44 @@ public class enemy_move : MonoBehaviour
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
 
-
+        //デバッグFキー入力
         if (Input.GetKeyDown(KeyCode.F))
         {
+            //スプライン上を移動していないとき
             if (!spline_System.spline_flg)
-            {
+            {               
+                //spline上を移動するよう
                 spline_System.spline_flg = true;
-                //player_Chase.chase_flg = true;
+                //追跡をやめる
+                player_Chase.chase_flg = false;
             }
+            //移動しているとき
             else
             {
+                //移動前のポジションを保存ff
+                start_pos = transform.position;
+                //スプライン上の移動をやめる
                 spline_System.spline_flg = false;
-                //player_Chase.chase_flg = false;
+                //追跡を開始
+                player_Chase.chase_flg = true;
+            }
+            Debug.Log(player_Chase.chase_flg);
+        }
+
+        /*
+        //スプラインに沿って移動しておらず、音源を追ってもいない場合 
+        if(!spline_System.spline_flg && !player_Chase.chase_flg)
+        {
+            Debug.Log("元の場所に移動中");
+            //もとの位置に移動
+            this.transform.position = Vector3.MoveTowards(transform.position, start_pos, speed * Time.deltaTime);
+            if(this.transform.position == start_pos)
+            {
+                spline_System.spline_flg = true;
             }
         }
+        */
+
 
         /*
         if (spline_System.spline_nextmove)
