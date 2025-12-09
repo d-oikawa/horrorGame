@@ -29,6 +29,12 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
+       
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked; //マウスカーソルを中央に固定して非表示
+
+
+        //アイテムのスクリプトを使う処理
         Itemobj = GameObject.FindGameObjectWithTag("Testitem");
         itembase = Itemobj.GetComponent<ItemBase>();
     }
@@ -42,15 +48,15 @@ public class PlayerMove:MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical) * Time.deltaTime;
 
         //歩き・走り・ゆっくり歩き
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))    //走り
         {
             movement = transform.rotation * movement * runSpeed;
         }
-        else if (Input.GetKey(KeyCode.LeftControl))
+        else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
         {
             movement = transform.rotation * movement * slowwalkSpeed;
         }
-        else
+        else　//歩き
         {
             movement = transform.rotation * movement * walkSpeed;
         }
@@ -64,17 +70,23 @@ public class PlayerMove:MonoBehaviour
         //振り向き制限
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+       
 
         //レイを使っての選択
         Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,3.0f))
         {
             if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
             {
                 //Eを押したら
                 if (Input.GetKey(KeyCode.E))
                 {
+
+                    //アイテムの取得
+                               itembase.GetItem();
+                               Debug.Log("ゲット！！");
+
                     //アイテムを持っているか否かでアイテムの取得・投擲を分岐
                     //switch ()
                     //{
@@ -96,3 +108,4 @@ public class PlayerMove:MonoBehaviour
         }
     }
 }
+
