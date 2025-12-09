@@ -83,26 +83,27 @@ public class PlayerMove:MonoBehaviour
                 if (Input.GetKey(KeyCode.E))
                 {
 
-                    //アイテムの取得
-                               itembase.GetItem();
-                               Debug.Log("ゲット！！");
 
                     //アイテムを持っているか否かでアイテムの取得・投擲を分岐
-                    //switch ()
-                    //{
-                    //    case 0:
-                    //        {
-                    //            //アイテムの取得
-                    //            itembase.GetItem();
-                    //            Debug.Log("ゲット！！");
-                    //        }
-                    //        break;
-                    //    case 1:
-                    //        {
-                    //            //アイテムを投げる
-                    //        }
-                    //        break;
-                    //}
+                    switch (itembase.GetIsPlayerHaveItem())
+                    {
+                        case false:
+                            {
+                                //アイテムの取得
+                                itembase.GetItem();
+                                itembase.SetPlayerHaveItem(true);
+                                Debug.Log("ゲット！！");
+                            }
+                            break;
+                        case true:
+                            {
+                                //アイテムを投げる
+                                itembase.ThrowItem();
+                                itembase.SetPlayerHaveItem(false);
+                                Debug.Log("投擲！！");
+                            }
+                            break;
+                    }
                 }
             }
         }
