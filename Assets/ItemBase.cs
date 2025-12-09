@@ -23,6 +23,8 @@ public class ItemBase : MonoBehaviour
 	public virtual void Update()
 	{
 		GameObject.SetActive(m_IsVisible);
+
+		// アイテムが地面に落ちているかどうか
 	}
 	// アイテムの座標情報
 	public Vector3 m_Position = new Vector3(0f, 0f, 0f);
@@ -36,14 +38,24 @@ public class ItemBase : MonoBehaviour
 	// プレイヤーがアイテムをとれるかどうか
 	public bool IsGetItem() { return m_IsActive; }
 
-	// アイテムがアクティブかどうかの情報を設定
-	public void SetActive(bool _IsActive) { m_IsActive = _IsActive; }
+	// アイテムが地面に落ちているかどうか
+	public bool IsItemOnGround = false;
 
 	// プレイヤーがアイテムを持っているか
 	public bool IsPlayerHaveItem = false;
 
-	// プレイヤーがアイテムを持っているかを設定
-	public void SetPlayerHaveItem(bool _IsPlayerHaveItem) { IsPlayerHaveItem = _IsPlayerHaveItem; }
+    // アイテムがアクティブかどうかの情報を設定
+    public void SetActive(bool _IsActive) { m_IsActive = _IsActive; }
+
+	// アイテムが地面に落ちたかを取得
+	public bool GetIsItemOnGround() { return IsItemOnGround; }
+
+    // アイテムが地面に落ちたかを設定
+	// 敵が取得しTrueであればfalseにする
+	public void SetIsItemOnGround(bool _IsItemOnGround) { IsItemOnGround = _IsItemOnGround; }
+
+    // プレイヤーがアイテムを持っているかを設定
+    public void SetPlayerHaveItem(bool _IsPlayerHaveItem) { IsPlayerHaveItem = _IsPlayerHaveItem; }
 
     // プレイヤーがアイテムをとった時の処理
     public virtual void GetItem()
@@ -60,8 +72,11 @@ public class ItemBase : MonoBehaviour
 			Debug.Log("hange");
 			// 非アクティブにする
 			m_IsActive = false;
-		}
-	}
+
+            // アイテムが地面に落ちていないことを設定
+			IsItemOnGround = false;
+        }
+    }
 
 	// プレイヤーがアイテムを投擲したときの処理
 	public virtual void ThrowItem(Vector3 _Position)
