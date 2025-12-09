@@ -56,6 +56,7 @@ public class spline_system : MonoBehaviour
                 spline_choice();
             }
         }
+        Debug.Log(splines_Percentage);
     }
 
     //ƒXƒvƒCƒ‰ƒ“‚É‰ˆ‚Á‚ÄˆÚ“®‚·‚éˆ—

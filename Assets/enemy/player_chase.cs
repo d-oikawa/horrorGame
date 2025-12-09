@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class player_chase : MonoBehaviour
 {
-    /*
     enemy_move en;
 
     //追跡するオブジェクト
@@ -11,6 +10,9 @@ public class player_chase : MonoBehaviour
     private GameObject target;
 
     private NavMeshAgent agent;
+
+    //追従フラグ
+    public bool chase_flg;
 
     //追跡するオブジェクトの座標
     //private Vector3 target_pos;
@@ -24,7 +26,8 @@ public class player_chase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+        chase_flg = false;
+
         //追跡するオブジェクトの座標を取得
         //target_pos =  target.transform.position;
         agent = this.gameObject.GetComponent<NavMeshAgent>();
@@ -36,9 +39,11 @@ public class player_chase : MonoBehaviour
         //Distance = target_pos - this.transform.position;
         //chase_vector = Distance.normalized;
 
-        agent.destination = target.transform.position;
+        if (chase_flg)
+        {
+            agent.destination = target.transform.position;
+        }
 
         //this.transform.position = target_pos;
     }
-    */
 }
