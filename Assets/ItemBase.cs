@@ -7,6 +7,10 @@ public class ItemBase : MonoBehaviour
 
 	// 表示等をするためにGameObjectをSeriaLizeField
 	[SerializeField] GameObject GameObject;
+
+	// Rigidbody
+	Rigidbody ItemRb;
+
 	//初期化処理
 	public virtual void Start()
 	{
@@ -22,12 +26,39 @@ public class ItemBase : MonoBehaviour
 	// Update is called once per frame
 	public virtual void Update()
 	{
+		// アイテムのアクティブ情報を更新
 		GameObject.SetActive(m_IsVisible);
 
-		// アイテムが地面に落ちているかどうか
-	}
-	// アイテムの座標情報
-	public Vector3 m_Position = new Vector3(0f, 0f, 0f);
+        // プレイヤーがアイテムを持っている間プレイヤーの位置にアイテムを追従させる
+		if (IsPlayerHaveItem)
+		{
+			// プレイヤーの位置を取得
+			GameObject player = GameObject.FindWithTag("Player");
+			if (player != null)
+			{
+				// アイテムの位置をプレイヤーの位置に設定
+				transform.position = m_Position;
+			}
+        }
+
+        // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
+		if (IsPlayerThrowItem)
+		{
+			// Rigidbodyを取得
+			ItemRb = GetComponent<Rigidbody>();
+			if (ItemRb != null)
+			{
+				// 力を加える
+				ItemRb.AddForce(transform.forward * 500f);
+				// 投擲したフラグをfalseにする
+				IsPlayerThrowItem = false;
+            }
+        }
+
+        // アイテムが地面に落ちているかどうか
+    }
+    // アイテムの座標情報
+    public Vector3 m_Position = new Vector3(0f, 0f, 0f);
 
 	// アイテムがアクティブかどうか
 	public bool m_IsActive = false;
@@ -43,6 +74,12 @@ public class ItemBase : MonoBehaviour
 
 	// プレイヤーがアイテムを持っているか
 	public bool IsPlayerHaveItem = false;
+
+	// プレイヤーがアイテムを投擲したか
+	public bool IsPlayerThrowItem = false;
+
+    // アイテムの位置をプレイヤーの位置に設定
+    public void SetItemPosition(Vector3 _Position) { m_Position = _Position; }
 
     // アイテムがアクティブかどうかの情報を設定
     public void SetActive(bool _IsActive) { m_IsActive = _IsActive; }
@@ -73,13 +110,16 @@ public class ItemBase : MonoBehaviour
 			// 非アクティブにする
 			m_IsActive = false;
 
+            // IshaveItemをtrueにする
+			IsPlayerHaveItem = true;
+
             // アイテムが地面に落ちていないことを設定
-			IsItemOnGround = false;
+            IsItemOnGround = false;
         }
     }
 
 	// プレイヤーがアイテムを投擲したときの処理
-	public virtual void ThrowItem(Vector3 _Position)
+	public virtual void ThrowItem()
 	{
 		// アイテムを投擲した時のサウンドを鳴らす
 		// まだない 12/3
@@ -89,5 +129,11 @@ public class ItemBase : MonoBehaviour
 		m_IsVisible = true;
 		// アイテムをアクティブにする
 		m_IsActive = true;
+
+        // プレイヤーがアイテムを持っていないことを設定
+		IsPlayerHaveItem = false;
+
+		IsPlayerThrowItem = true;
+
     }
 }
