@@ -49,7 +49,7 @@ public class ItemBase : MonoBehaviour
 			if (ItemRb != null)
 			{
 				// 力を加える
-				ItemRb.AddForce(transform.forward * 500f);
+				ItemRb.AddForce(transform.forward * 100f);
 				// 投擲したフラグをfalseにする
 				IsPlayerThrowItem = false;
             }
@@ -61,7 +61,7 @@ public class ItemBase : MonoBehaviour
     public Vector3 m_Position = new Vector3(0f, 0f, 0f);
 
 	// アイテムがアクティブかどうか
-	public bool m_IsActive = false;
+	public bool m_IsActive = true;
 
 	// アイテムを表示されているか
 	public bool m_IsVisible = true;
@@ -93,6 +93,9 @@ public class ItemBase : MonoBehaviour
 
     // プレイヤーがアイテムを持っているかを設定
     public void SetPlayerHaveItem(bool _IsPlayerHaveItem) { IsPlayerHaveItem = _IsPlayerHaveItem; }
+
+	// プレイヤーがアイテムを持っているかを取得
+	public bool GetIsPlayerHaveItem() { return IsPlayerHaveItem; }
 
     // プレイヤーがアイテムをとった時の処理
     public virtual void GetItem()
@@ -133,5 +136,11 @@ public class ItemBase : MonoBehaviour
 
 		IsPlayerThrowItem = true;
 
+    }
+	
+	// ゲームオブジェクト同士が接触したタイミングで実行
+	void OnCollisionEnter(Collision collision)
+	{
+			IsItemOnGround = true;
     }
 }
