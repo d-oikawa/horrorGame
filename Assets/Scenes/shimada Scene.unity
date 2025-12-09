@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Position: {x: 0, y: 0, z: 0}
   m_IsActive: 0
   m_IsVisible: 1
+  IsPlayerHaveItem: 0
 --- !u!65 &127413943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -461,6 +462,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7459998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00000015555203
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9867516
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.1622384
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -18.674
+      objectReference: {fileID: 0}
     - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
       propertyPath: Camera
       value: 
@@ -470,9 +491,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 127413941}
     - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: itembase
+      value: 
+      objectReference: {fileID: 127413942}
+    - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
       propertyPath: PlayerCamera
       value: 
       objectReference: {fileID: 1417694045}
+    - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: mauseSensitivti
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8227983598332122270, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645

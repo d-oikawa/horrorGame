@@ -29,6 +29,9 @@ public class enemy_move : MonoBehaviour
     //enemy_move.cs
     public spline_system spline_System;
 
+    //player_chase.cs
+    //public player_chase player_Chase;
+
     //次のスプラインに移動する際の最初の座標
     private Vector3 start_move;
 
@@ -39,6 +42,8 @@ public class enemy_move : MonoBehaviour
         //localAngle = this.transform.localEulerAngles;
 
         spline_System = GetComponent<spline_system>();
+
+        //player_Chase = GetComponent<player_chase>();
 
         //フラグ初期化
         //searchw = false;
@@ -64,10 +69,12 @@ public class enemy_move : MonoBehaviour
             if (!spline_System.spline_flg)
             {
                 spline_System.spline_flg = true;
+                //player_Chase.chase_flg = true;
             }
             else
             {
                 spline_System.spline_flg = false;
+                //player_Chase.chase_flg = false;
             }
         }
 
@@ -86,11 +93,13 @@ public class enemy_move : MonoBehaviour
         //音を聞いたら
         else
         {
-            normal_move();           
+            //normal_move();           
         }
 
        
     }
+    
+    /*
     void normal_move()
     {
         //エネミーの移動
@@ -118,4 +127,5 @@ public class enemy_move : MonoBehaviour
         //現在の座標を保存
         start_move = this.transform.position;
     }
+    */
 }
