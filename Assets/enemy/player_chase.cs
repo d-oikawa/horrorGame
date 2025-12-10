@@ -27,20 +27,21 @@ public class player_chase : MonoBehaviour
     public enemy_move enemy_Move;
 
     public Vector3 this_transform;
-    //追跡中だが停止しているflag
-    //public bool chase_stop;
 
-    //追跡するオブジェクトの座標
-    //private Vector3 target_pos;
+	//追跡中だが停止しているflag
+	//public bool chase_stop;
 
-    //距離
-    //Vector3 Distance;
+	//追跡するオブジェクトの座標
+	//private Vector3 target_pos;
 
-    //vector
-    //Vector3 chase_vector;　
+	//距離
+	//Vector3 Distance;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	//vector
+	//Vector3 chase_vector;　
+
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
     {
         //追跡するオブジェクトの座標を取得
         //target_pos =  target.transform.position;
@@ -61,10 +62,12 @@ public class player_chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Distance = target_pos - this.transform.position;
-        //chase_vector = Distance.normalized;
+		//Distance = target_pos - this.transform.position;
+		//chase_vector = Distance.normalized;
 
-        if (chase_flg /*= !chase_stop*/)
+		this_transform = this.transform.position;
+
+		if (chase_flg /*= !chase_stop*/)
         {
             Debug.Log("追跡中");
             agent.enabled = true;
@@ -94,11 +97,12 @@ public class player_chase : MonoBehaviour
                                                     Mathf.Floor(enemy_Move.start_pos.z * multiplier) / multiplier))
                                                     )*/
 
-            var a = this_transform;
-            var b = enemy_Move.start_pos;
-
-            if ( a.x == b.x && a.z == b.z)
+            //var a = this_transform;
+            //var b = enemy_Move.start_pos;
+            
+			if (Areerror(this_transform,enemy_Move.start_pos,0.1f))
             {
+                Debug.Log("スプライン移動に変更");
                 //スプライン上を動くflagをture
                 spline_system2.spline_flg = true;
                 //agentを殺す
@@ -146,4 +150,9 @@ public class player_chase : MonoBehaviour
             stoping_time = 0f;
         }
     }
+	public static bool Areerror(Vector3 v1, Vector3 v2, float tolerance)
+	{
+		// 距離の二乗が許容誤差の二乗以下であれば一致とみなす
+		return Vector3.SqrMagnitude(v1 - v2) <= tolerance * tolerance;
+	}
 }

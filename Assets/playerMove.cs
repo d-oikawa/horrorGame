@@ -23,9 +23,12 @@ public class PlayerMove:MonoBehaviour
     public float mauseSensitivti; //マウスの感度
     public Transform cam;
     private float xRotation;
+    private bool PlayerSound;
 
     public Camera Camera;
 
+    //プレイヤーが音を立てているか
+    public bool IsPlayerSound() {  return PlayerSound; }
 
     void Start()
     {
@@ -51,15 +54,18 @@ public class PlayerMove:MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))    //走り
         {
             movement = transform.rotation * movement * runSpeed;
+            PlayerSound = true;
         }
         else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
         {
             movement = transform.rotation * movement * slowwalkSpeed;
-        }
+			PlayerSound = false;
+		}
         else　//歩き
         {
             movement = transform.rotation * movement * walkSpeed;
-        }
+			PlayerSound = true;
+		}
         characterController.Move(movement);
 
         //カメラの動き

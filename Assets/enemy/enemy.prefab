@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5462005381211089350}
   - component: {fileID: 28739798903799781}
   - component: {fileID: 5509230911326158274}
-  - component: {fileID: 3436632475716067715}
   - component: {fileID: 4323241942817151860}
   - component: {fileID: 4806965850195527050}
   - component: {fileID: 9032498884719462630}
   - component: {fileID: 5595250990761960906}
   - component: {fileID: 2837347421859619712}
+  - component: {fileID: 6997919821405737426}
+  - component: {fileID: 8005504583457451498}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -92,27 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3436632475716067715
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7920753877263249640}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4323241942817151860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,12 +105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fa100d528f34f4590cd3fd6c2d2e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   localAngle: {x: 0, y: 0, z: 0}
   rayDistance: 2
   splineAnimate: {fileID: 4806965850195527050}
   spline_System: {fileID: 0}
   player_Chase: {fileID: 0}
+  start_pos: {x: 0, y: 0, z: 0}
 --- !u!114 &4806965850195527050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +130,7 @@ MonoBehaviour:
   spline_flg: 0
   spline_tag: 
   spline_nextmove: 0
+  change_splien: 0
 --- !u!54 &9032498884719462630
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -171,7 +153,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -189,7 +171,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  stop_time: 3
+  stoping_time: 0
   chase_flg: 0
+  spline_system2: {fileID: 0}
+  enemy_Move: {fileID: 0}
+  this_transform: {x: 0, y: 0, z: 0}
 --- !u!195 &2837347421859619712
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -212,3 +199,45 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6997919821405737426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920753877263249640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_Center: {x: 0.0000009536743, y: 0.11, z: 0}
+--- !u!135 &8005504583457451498
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920753877263249640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0.0000009536743, y: 0, z: 0}

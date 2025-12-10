@@ -36,6 +36,8 @@ public class enemy_move : MonoBehaviour
     [SerializeField]
     public Vector3 start_pos;
 
+    public PlayerMove PlayerMove;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +47,8 @@ public class enemy_move : MonoBehaviour
         spline_System = GetComponent<spline_system>();
 
         player_Chase = GetComponent<player_chase>();
+
+		PlayerMove = GetComponent<PlayerMove>();
 
         player_Chase.chase_flg = false;
 
@@ -66,6 +70,7 @@ public class enemy_move : MonoBehaviour
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
 
+        /*
         //デバッグFキー入力
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -80,7 +85,7 @@ public class enemy_move : MonoBehaviour
             //移動しているとき
             else
             {
-                //移動前のポジションを保存ff
+                //移動前のポジションを保存
                 start_pos = transform.position;
                 //スプライン上の移動をやめる
                 spline_System.spline_flg = false;
@@ -121,12 +126,41 @@ public class enemy_move : MonoBehaviour
         else
         {
             //normal_move();           
-        }
-
-       
+        }       
     }
+
     
-    /*
+	public void OnTreggerstay(Collider collider)
+    {
+        if (collider.tag == "Testitem" || collider.tag == "Player")
+        {
+            if (PlayerMove.IsPlayerSound())
+            {
+				//スプライン上を移動していないとき
+				if (!spline_System.spline_flg)
+				{
+					//spline上を移動するよう
+					spline_System.spline_flg = true;
+					//追跡をやめる
+					player_Chase.chase_flg = false;
+				}
+				//移動しているとき
+				else
+				{
+					//移動前のポジションを保存
+					start_pos = transform.position;
+					//スプライン上の移動をやめる
+					spline_System.spline_flg = false;
+					//追跡を開始
+					player_Chase.chase_flg = true;
+				}
+				Debug.Log(player_Chase.chase_flg);
+			}
+        }        
+    }
+	
+
+	/*
     void normal_move()
     {
         //エネミーの移動

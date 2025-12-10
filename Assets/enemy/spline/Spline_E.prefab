@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 330213417949055477}
   m_Layer: 0
   m_Name: Spline_E
-  m_TagString: Untagged
+  m_TagString: Spline_E
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 4862392009721010189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.847519, y: 3.005, z: -22.410913}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -14.51, y: 4, z: -22.56}
+  m_LocalScale: {x: 0.65782, y: 1, z: 0.69033}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

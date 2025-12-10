@@ -26,12 +26,16 @@ public class spline_system : MonoBehaviour
     //次のスプライトに移るまでの動き
     public bool spline_nextmove;
 
+    //スプラインを変更するフラグ
+    public bool change_splien;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spline_flg = true;
         splines_Percentage = 0;
-        spline_change("Spline_A");
+        change_splien = false;
+		spline_change("Spline_A");
     }
 
     // Update is called once per frame
@@ -60,17 +64,104 @@ public class spline_system : MonoBehaviour
         //Debug.Log(splines_Percentage);
     }
 
-    //スプイランに沿って移動する処理
+    //スプイランに沿って移動する処理(ごり押し)
     void spline_move()
     {
         splines_Percentage += Time.deltaTime * 0.1f;
-        if (splines_Percentage > 1f)
+        if (splineContainer.tag == "Spline_A")
         {
-            splines_Percentage = 0f;
+            if (splines_Percentage > 1f)
+            {
+                splines_Percentage = 0f;
+                change_splien = true;
+                spline_change("Spline_B");
+            }
         }
+        else if (splineContainer.tag == "Spline_B")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_C");
+			}
+		}
 
-        //位置を更新
-        Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
+		else if (splineContainer.tag == "Spline_C")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_D");
+			}
+		}
+		else if (splineContainer.tag == "Spline_D")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_E");
+			}
+		}
+		else if (splineContainer.tag == "Spline_E")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_F");
+			}
+		}
+		else if (splineContainer.tag == "Spline_F")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_G");
+			}
+		}
+		else if (splineContainer.tag == "Spline_G")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_H");
+			}
+		}
+		else if (splineContainer.tag == "Spline_H")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_I");
+			}
+		}
+		else if (splineContainer.tag == "Spline_I")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_J");
+			}
+		}
+		else if (splineContainer.tag == "Spline_J")
+		{
+			if (splines_Percentage > 1f)
+			{
+				splines_Percentage = 0f;
+				change_splien = true;
+				spline_change("Spline_A");
+			}
+		}
+
+		//位置を更新
+		Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
 
         enemy.position = pos;
 
@@ -106,6 +197,7 @@ public class spline_system : MonoBehaviour
         //スプラインのスタート地点に移動
         splines_Percentage = 0f;
     }
+
 
     //スプラインを変更する処理
     void spline_choice()

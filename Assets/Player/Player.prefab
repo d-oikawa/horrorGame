@@ -209,13 +209,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c48297e0698e5439836a3371270e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Itemobj: {fileID: 0}
+  itembase: {fileID: 0}
   characterController: {fileID: 7571437327225804261}
   walkSpeed: 3
   slowwalkSpeed: 1
   runSpeed: 5
   mauseSensitivti: 200
   cam: {fileID: 7945695816277899251}
-  PlayerCamera: {fileID: 1018654135529149657}
+  Camera: {fileID: 0}
 --- !u!1 &4474428005106143357
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +322,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
