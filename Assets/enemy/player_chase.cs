@@ -155,4 +155,11 @@ public class player_chase : MonoBehaviour
 		// 距離の二乗が許容誤差の二乗以下であれば一致とみなす
 		return Vector3.SqrMagnitude(v1 - v2) <= tolerance * tolerance;
 	}
+
+    // ゲームオーバーシーンへ遷移する関数
+    // 敵がプレイヤーと接触したときに呼び出してください おいかわ
+    public void TransitionGameOverScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+    }
 }
