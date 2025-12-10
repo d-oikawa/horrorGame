@@ -160,6 +160,6 @@ public class player_chase : MonoBehaviour
     // 敵がプレイヤーと接触したときに呼び出してください おいかわ
     public void TransitionGameOverScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver Scene");
     }
 }
