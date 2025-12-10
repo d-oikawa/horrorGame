@@ -6,9 +6,11 @@ public class player_chase : MonoBehaviour
 {
     enemy_move en;
 
-    //追跡するオブジェクト
+    //追跡するオブジェクト野座標
     [SerializeField]
-    private GameObject target;
+    public Vector3 target;
+
+    //private GameObject target;
 
     private NavMeshAgent agent;
 
@@ -71,7 +73,7 @@ public class player_chase : MonoBehaviour
         {
             Debug.Log("追跡中");
             agent.enabled = true;
-            agent.destination = target.transform.position;
+            agent.destination = target;
         }
         else
         {
@@ -108,6 +110,27 @@ public class player_chase : MonoBehaviour
                 //agentを殺す
                 //agent.enabled = false;
             }
+            
+        }
+
+        else if(!spline_system2.spline_flg && chase_flg)
+        {
+            if( Areerror(this_transform, target, 1f))
+            {
+                Debug.Log("なるほどね");
+                stoping_time += 1f * Time.deltaTime;
+            }
+            //chase_stop = true;
+            
+            Debug.Log("停止中");
+            if (stoping_time >= stop_time)
+            {
+                stoping_time = 0f;
+                chase_flg = false;                
+                //chase_stop = false;
+            }
+            Debug.Log(target);
+
         }
 
         /*
@@ -131,6 +154,7 @@ public class player_chase : MonoBehaviour
 
         //this.transform.position = target_pos;
     }
+    /*
     private void OnTriggerStay(Collider other)
     {
         if((other.gameObject.tag == "Player" || other.gameObject.tag == "Item") && chase_flg)
@@ -150,16 +174,18 @@ public class player_chase : MonoBehaviour
             stoping_time = 0f;
         }
     }
-	public static bool Areerror(Vector3 v1, Vector3 v2, float tolerance)
-	{
-		// 距離の二乗が許容誤差の二乗以下であれば一致とみなす
-		return Vector3.SqrMagnitude(v1 - v2) <= tolerance * tolerance;
-	}
+    */
+    public static bool Areerror(Vector3 v1, Vector3 v2, float tolerance)
+    {
+        // y を無視して x と z の差だけを見る
+        float dx = v1.x - v2.x;
+        float dz = v1.z - v2.z;
+
+        // (dx^2 + dz^2) <= tolerance^2 なら一致
+        return (dx * dx + dz * dz) <= tolerance * tolerance;
+    }
 
     // ゲームオーバーシーンへ遷移する関数
     // 敵がプレイヤーと接触したときに呼び出してください おいかわ
-    public void TransitionGameOverScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver Scene");
-    }
+
 }
