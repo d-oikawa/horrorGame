@@ -76,43 +76,44 @@ public class PlayerMove:MonoBehaviour
         //振り向き制限
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-       
 
-        //レイを使っての選択
-        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit,3.0f))
+
+        //Eを押したら
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
+
+
+            //アイテムを持っているか否かでアイテムの取得・投擲を分岐
+            switch (itembase.GetIsPlayerHaveItem())
             {
-                //Eを押したら
-                if (Input.GetKey(KeyCode.E))
-                {
-
-
-                    //アイテムを持っているか否かでアイテムの取得・投擲を分岐
-                    switch (itembase.GetIsPlayerHaveItem())
+                case false:
                     {
-                        case false:
+                        //レイを使っての選択
+                        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit, 3.0f))
+                        {
+                            if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
                             {
                                 //アイテムの取得
                                 itembase.GetItem();
                                 itembase.SetPlayerHaveItem(true);
                                 Debug.Log("ゲット！！");
                             }
-                            break;
-                        case true:
-                            {
-                                //アイテムを投げる
-                                itembase.ThrowItem();
-                                itembase.SetPlayerHaveItem(false);
-                                Debug.Log("投擲！！");
-                            }
-                            break;
+                        }
                     }
-                }
+                    break;
+                case true:
+                    {
+                        //アイテムを投げる
+                        itembase.ThrowItem();
+                        itembase.SetPlayerHaveItem(false);
+                        Debug.Log("投擲！！");
+                    }
+                    break;
             }
         }
+        
     }
 }
 
