@@ -116,8 +116,6 @@ public class ItemBase : MonoBehaviour
             // アイテムを非表示
             m_IsVisible = false;
 
-            Debug.Log("hange");
-
             // IshaveItemをtrueにする
             IsPlayerHaveItem = true;
 
