@@ -71,7 +71,7 @@ public class enemy_move : MonoBehaviour
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
 
-        
+        /*
         //デバッグFキー入力
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -169,7 +169,7 @@ public class enemy_move : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //TransitionGameOverScene();
+            TransitionGameOverScene();
             Debug.Log("死亡");
         }
        
@@ -207,6 +207,6 @@ public class enemy_move : MonoBehaviour
     */
     public void TransitionGameOverScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver Scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 }

@@ -9,6 +9,8 @@ public class ItemBase : MonoBehaviour
     [SerializeField] GameObject GameObject;
     [SerializeField] Renderer ItemRenderer;
 
+    public bool soundFlgRock;
+
     // Rigidbody
     Rigidbody ItemRb;
 
@@ -21,6 +23,8 @@ public class ItemBase : MonoBehaviour
 
         // アイテムがアクティブかの設定
         m_IsActive = true;
+
+        soundFlgRock = false;
 
     }
 
@@ -142,6 +146,10 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        IsItemOnGround = true;
+        if (collision.gameObject.tag != "enemy" && soundFlgRock)
+        {
+            IsItemOnGround = true;
+            soundFlgRock = true;
+        }
     }
 }
