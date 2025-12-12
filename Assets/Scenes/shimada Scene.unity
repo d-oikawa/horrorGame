@@ -152,10 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameObject: {fileID: 127413941}
+  ItemRenderer: {fileID: 0}
+  soundFlgRock: 0
   m_Position: {x: 0, y: 0, z: 0}
   m_IsActive: 0
   m_IsVisible: 1
+  IsItemOnGround: 0
   IsPlayerHaveItem: 0
+  IsPlayerThrowItem: 0
 --- !u!65 &127413943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -481,6 +485,10 @@ PrefabInstance:
     - target: {fileID: 4342118617321841388, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -18.674
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5742131737982905448, guid: d33eba5b77a20bc49ac14506fb0fb597, type: 3}
       propertyPath: Camera
