@@ -31,32 +31,39 @@ public class spline_system : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   
+        //初期化
         spline_flg = true;
         splines_Percentage = 0;
         change_splien = false;
-		spline_change("Spline_A");
+        //最初のスプラインを設定
+		spline_change("Spline_A");        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //splineのタグを取得
         spline_tag = splineContainer.gameObject.tag;
 
+        //splineに沿って移動していないとき
         if (!spline_flg)
         {
             return;
         }
+        //しているとき
         else
         {
+            //万が一splineが設定されていないとき
             if (splineContainer == null || enemy == null)
             {
                 Debug.Log("スプラインにそって移動していない");
                 return;
             }
+            //設定されているとき
             else
             {
-                //スプラインを変更
+                //スプラインを変更(デバッグ)
                 spline_choice();
             }
         }
@@ -66,20 +73,30 @@ public class spline_system : MonoBehaviour
 
     //スプイランに沿って移動する処理(ごり押し)
     void spline_move()
-    {
-        splines_Percentage += Time.deltaTime * 0.1f;
+    {        
+        //splineの長さ
+        float spuline_length = 0f;
+
+        //現在のスプラインタグを判別
         if (splineContainer.tag == "Spline_A")
         {
+            //splineの長さを取得
+            spuline_length = splineContainer.CalculateLength();
+            //splineの終点に到達したら
             if (splines_Percentage > 1f)
             {
+                //splineパーセンテージを0に
                 splines_Percentage = 0f;
+                //spline変更フラグ
                 change_splien = true;
-                spline_change("Spline_B");
+                spline_change("Spline_B");                
             }
         }
+
+        //以下同文
         else if (splineContainer.tag == "Spline_B")
-		{
-			if (splines_Percentage > 1f)
+		{            
+            if (splines_Percentage > 1f)
 			{
 				splines_Percentage = 0f;
 				change_splien = true;
@@ -160,9 +177,18 @@ public class spline_system : MonoBehaviour
 			}
 		}
 
-		//位置を更新
-		Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
+        //splineの長さを取得
+        spuline_length = splineContainer.CalculateLength();
 
+        float move_speed = 1 / spuline_length;
+
+        //splineの割合で移動
+        splines_Percentage += Time.deltaTime * move_speed;
+
+        Debug.Log("splineの長さ" + spuline_length);
+
+        //位置を更新
+        Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
         enemy.position = pos;
 
         //回転を更新
@@ -199,7 +225,7 @@ public class spline_system : MonoBehaviour
     }
 
 
-    //スプラインを変更する処理
+    //スプラインを変更する処理(デバッグ)
     void spline_choice()
     {
         //スプラインに沿って移動

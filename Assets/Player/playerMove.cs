@@ -9,7 +9,7 @@ public class PlayerMove:MonoBehaviour
 {
     //アイテムベースの変数
    public GameObject Itemobj;
-    public ItemBase itembase;
+    //public ItemBase itembase;
     
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
@@ -39,7 +39,7 @@ public class PlayerMove:MonoBehaviour
 
         //アイテムのスクリプトを使う処理
         Itemobj = GameObject.FindGameObjectWithTag("Testitem");
-        itembase = Itemobj.GetComponent<ItemBase>();
+        //itembase = Itemobj.GetComponent<ItemBase>();
     }
 
     void Update()
@@ -77,7 +77,7 @@ public class PlayerMove:MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-
+        /*
         //Eを押したら
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -112,7 +112,7 @@ public class PlayerMove:MonoBehaviour
                     }
                     break;
             }
-        }
+        }*/
         
     }
 }
