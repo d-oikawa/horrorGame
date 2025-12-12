@@ -17,7 +17,7 @@ public class spline_system : MonoBehaviour
     [SerializeField]
     private float splines_Percentage;
 
-    //スプラインに沿って移動するかどうか
+    //スプラインに沿って移動しているか
     public bool spline_flg;
 
     //アタッチされているスプラインのタグ
@@ -185,7 +185,7 @@ public class spline_system : MonoBehaviour
         //splineの割合で移動
         splines_Percentage += Time.deltaTime * move_speed;
 
-        Debug.Log("splineの長さ" + spuline_length);
+        //Debug.Log("splineの長さ" + spuline_length);
 
         //位置を更新
         Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);

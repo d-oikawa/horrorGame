@@ -70,7 +70,7 @@ public class enemy_move : MonoBehaviour
 
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
-
+             
         /*
         //デバッグFキー入力
         if (Input.GetKeyDown(KeyCode.F))
@@ -86,7 +86,7 @@ public class enemy_move : MonoBehaviour
             //移動しているとき
             else
             {
-                player_Chase.target = PlayerMove.transform.position; 
+                player_Chase.target = new Vector3(-1f,4f,0.5f); 
                 //移動前のポジションを保存
                 start_pos = transform.position;
                 //スプライン上の移動をやめる
@@ -132,7 +132,8 @@ public class enemy_move : MonoBehaviour
     }
 
     
-	public void OnTriggerStay(Collider collider)
+	
+public void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
@@ -153,23 +154,38 @@ public class enemy_move : MonoBehaviour
 				//{
                     //音源の位置保存
                     player_Chase.target = collider.transform.position;
-					//移動前のポジションを保存
-					start_pos = transform.position;
+                
 					//スプライン上の移動をやめる
 					spline_System.spline_flg = false;
 					//追跡を開始
 					player_Chase.chase_flg = true;
 				//}
-				Debug.Log(player_Chase.chase_flg);
+				Debug.Log("追跡" + player_Chase.chase_flg);
 			}
-        }        
+        }
+    }
+
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Testitem" || collider.tag == "Player")
+        {
+            if (PlayerMove.IsPlayerSound())
+            {
+
+                if (spline_System.spline_flg)
+                {
+                    //移動前のポジションを保存
+                    start_pos = transform.position;
+                }
+            }
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            TransitionGameOverScene();
+            //TransitionGameOverScene();
             Debug.Log("死亡");
         }
        
@@ -205,8 +221,11 @@ public class enemy_move : MonoBehaviour
         start_move = this.transform.position;
     }
     */
+
+    /*
     public void TransitionGameOverScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
+    */
 }

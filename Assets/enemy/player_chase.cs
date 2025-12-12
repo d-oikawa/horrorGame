@@ -69,43 +69,26 @@ public class player_chase : MonoBehaviour
 
 		this_transform = this.transform.position;
 
-		if (chase_flg /*= !chase_stop*/)
+		if (chase_flg)
         {
             Debug.Log("追跡中");
             agent.enabled = true;
             agent.destination = target;
         }
-        else
-        {
-            //agent.enabled = false;
-        }
-                //スプラインに沿って移動しておらず、音源を追ってもいない場合 
+        
+        //スプラインに沿って移動しておらず、音源を追ってもいない場合 
         if (!spline_system2.spline_flg  && !chase_flg)
         {
             agent.destination = enemy_Move.start_pos;
             Debug.Log("元の場所に移動中");
-            //もとの位置に移動
-
-            //float multiplier =Mathf.Pow(10f,2);
-
-            //元の位置と現在地の小数点2まで一致したら
-            /*
-            if ((this_transform = new Vector3(Mathf.Floor(this_transform.x * multiplier) / multiplier,
-                                               Mathf.Floor(this_transform.y * multiplier) / multiplier,
-                                                    Mathf.Floor(this_transform.z * multiplier) / multiplier))
-              ==
-              (enemy_Move.start_pos = new Vector3(Mathf.Floor(enemy_Move.start_pos.x * multiplier) / multiplier,
-                                               Mathf.Floor(enemy_Move.start_pos.y * multiplier) / multiplier,
-                                                    Mathf.Floor(enemy_Move.start_pos.z * multiplier) / multiplier))
-                                                    )*/
 
             //var a = this_transform;
             //var b = enemy_Move.start_pos;
             
-			if (Areerror(this_transform,enemy_Move.start_pos,0.1f))
+			if (Areerror(enemy_Move.start_pos, this_transform,0.001f))
             {
                 Debug.Log("スプライン移動に変更");
-                //スプライン上を動くflagをture
+                //スプライン上を動くflgをture
                 spline_system2.spline_flg = true;
                 //agentを殺す
                 //agent.enabled = false;
@@ -113,6 +96,7 @@ public class player_chase : MonoBehaviour
             
         }
 
+        //spline上を移動しておらず、追跡中であるとき
         else if(!spline_system2.spline_flg && chase_flg)
         {
             if( Areerror(this_transform, target, 1f))
