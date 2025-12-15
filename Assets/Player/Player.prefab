@@ -212,10 +212,11 @@ MonoBehaviour:
   Itemobj: {fileID: 0}
   itembase: {fileID: 0}
   characterController: {fileID: 7571437327225804261}
-  walkSpeed: 3
-  slowwalkSpeed: 1
   runSpeed: 5
-  speed: 2
+  walkSpeed: 4
+  sidespeed: 2
+  bagspeed: 2
+  slowwalkSpeed: 1
   orgspeed1: 0
   mauseSensitivti: 200
   cam: {fileID: 7945695816277899251}

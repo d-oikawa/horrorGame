@@ -15,10 +15,10 @@ public class PlayerMove:MonoBehaviour
     public CharacterController characterController;
 
     //動く速さ変数
-    public float walkSpeed;
-    public float slowwalkSpeed;
-    public float runSpeed;
-    public  float speed;
+    public float runSpeed;  //走る
+    public float walkSpeed; //歩く
+    public float slowwalkSpeed;//ゆっくり歩く
+    public float falseSpeed;
     public float orgspeed1;
 
     //視点移動変数
@@ -46,43 +46,56 @@ public class PlayerMove:MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical) * Time.deltaTime;
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical)*Time.deltaTime;
 
-        //歩き・走り・ゆっくり歩き
+        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+
+        //スピードの変化
         if (Input.GetKey(KeyCode.LeftShift))    //走り
         {
             orgspeed1 = runSpeed;
-            PlayerSound = true;
+           
         }
         else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
         {
             orgspeed1 = slowwalkSpeed;
             PlayerSound = false;
         }
-        else　//歩き
+        //後ろの時2
+        else if(movement == Vector3.back * Time.deltaTime)
+        {
+            orgspeed1 = 2.0f;
+            
+        }
+        //横の時3
+        else if (moveHorizontal == -1 || moveHorizontal == 1)
+        {
+            orgspeed1 = 3.0f;
+            
+        }
+       else if(moveHorizontal<=1 || moveHorizontal>=-1 || moveVertical<=1 || moveVertical>=-1)
         {
             orgspeed1 = walkSpeed;
-           // PlayerSound = true;
+
+        }
+       
+        if (!isMoving || orgspeed1==slowwalkSpeed)
+        {
+            PlayerSound = false;
+            Debug.Log("fff");
+        }
+        else
+        {
+            PlayerSound = true;
+            Debug.Log("ttt");
         }
 
-        ////横移動
-        //if (moveHorizontal >= 0)
-        //{
-        //    orgspeed1 = speed;
-        //}
-        ////縦移動
-        //if(moveVertical>=0)
-        //{
-        //    orgspeed1 = speed;
-        //}
+
         movement = transform.rotation * movement * orgspeed1;
         characterController.Move(movement);
 
-
         MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
-
-
     } 
 
         //Eを押したらアイテムを取得、投擲する処理
