@@ -103,10 +103,11 @@ public class player_chase : MonoBehaviour
             {
                 Debug.Log("‚È‚é‚Ù‚Ç‚Ë");
                 stoping_time += 1f * Time.deltaTime;
+                Debug.Log("’âŽ~’†");
             }
             //chase_stop = true;
             
-            Debug.Log("’âŽ~’†");
+           
             if (stoping_time >= stop_time)
             {
                 stoping_time = 0f;

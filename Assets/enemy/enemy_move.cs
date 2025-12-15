@@ -24,7 +24,7 @@ public class enemy_move : MonoBehaviour
     public spline_system splineAnimate;
 
     //音のなる方向に
-    //private bool searchw;
+    private bool searchw;
 
     //enemy_move.cs
     public spline_system spline_System;
@@ -36,7 +36,11 @@ public class enemy_move : MonoBehaviour
     [SerializeField]
     public Vector3 start_pos;
 
+    //PlayerMove.cs
     public PlayerMove PlayerMove;
+
+    //プレイヤーを発見した瞬間好きだと気付いた
+    public bool The_moment_our_eyes_meet;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,6 +59,8 @@ public class enemy_move : MonoBehaviour
 
         //フラグ初期化
         //searchw = false;
+
+        The_moment_our_eyes_meet = true;
     }
 
     // Update is called once per frame
@@ -131,14 +137,39 @@ public class enemy_move : MonoBehaviour
         }       
     }
 
-    
-	
-public void OnTriggerStay(Collider collider)
+    public void OnTriggerExit(Collider collider)
+    {
+        The_moment_our_eyes_meet = true;
+        /*
+        if (collider.tag == "Testitem" || collider.tag == "Player")
+        {
+            if (PlayerMove.IsPlayerSound())
+            {
+                Debug.Log(spline_System.spline_flg);
+
+                if (spline_System.spline_flg)
+                {
+                    //移動前のポジションを保存
+                    start_pos = transform.position;
+                }
+            }
+        }
+        */
+    }
+
+    public void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
             if (PlayerMove.IsPlayerSound())
             {
+                if (The_moment_our_eyes_meet)
+                {
+                    //移動前のポジションを保存
+                    start_pos = transform.position;
+                    The_moment_our_eyes_meet = false;
+                }
+
                 /*
 				//スプライン上を移動していないとき
 				if (!spline_System.spline_flg)
@@ -149,11 +180,11 @@ public void OnTriggerStay(Collider collider)
 					player_Chase.chase_flg = false;
 				}
                 */
-				//移動しているとき
-				//else
-				//{
-                    //音源の位置保存
-                    player_Chase.target = collider.transform.position;
+                //移動しているとき
+                //else
+                //{
+                //音源の位置保存
+                player_Chase.target = collider.transform.position;
                 
 					//スプライン上の移動をやめる
 					spline_System.spline_flg = false;
@@ -165,21 +196,7 @@ public void OnTriggerStay(Collider collider)
         }
     }
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (collider.tag == "Testitem" || collider.tag == "Player")
-        {
-            if (PlayerMove.IsPlayerSound())
-            {
-
-                if (spline_System.spline_flg)
-                {
-                    //移動前のポジションを保存
-                    start_pos = transform.position;
-                }
-            }
-        }
-    }
+   
 
     public void OnCollisionEnter(Collision collision)
     {
