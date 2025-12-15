@@ -19,7 +19,7 @@ public class PlayerMove:MonoBehaviour
     public float slowwalkSpeed;
     public float runSpeed;
     public  float speed;
-    public float speed1;
+    public float orgspeed1;
 
     //視点移動変数
     public float mauseSensitivti; //マウスの感度
@@ -36,46 +36,46 @@ public class PlayerMove:MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked; //マウスカーソルを中央に固定して非表示
 
-
         //アイテムのスクリプトを使う処理
         Itemobj = GameObject.FindGameObjectWithTag("Testitem");
-        itembase = Itemobj.GetComponent<ItemBase>();
-
-        
+        itembase = Itemobj.GetComponent<ItemBase>();  
     }
 
     void Update()
     {
-
-
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical) * Time.deltaTime;
 
-     
-
         //歩き・走り・ゆっくり歩き
         if (Input.GetKey(KeyCode.LeftShift))    //走り
-        {  
-            speed1= runSpeed;
+        {
+            orgspeed1 = runSpeed;
             PlayerSound = true;
         }
         else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
         {
-            speed1=slowwalkSpeed;
+            orgspeed1 = slowwalkSpeed;
             PlayerSound = false;
         }
         else　//歩き
         {
-           speed1= walkSpeed;
+            orgspeed1 = walkSpeed;
            // PlayerSound = true;
         }
-        if (moveHorizontal >= 0)
-        {
-            speed1 = speed;
-        }
-        movement = transform.rotation * movement * speed1;
+
+        ////横移動
+        //if (moveHorizontal >= 0)
+        //{
+        //    orgspeed1 = speed;
+        //}
+        ////縦移動
+        //if(moveVertical>=0)
+        //{
+        //    orgspeed1 = speed;
+        //}
+        movement = transform.rotation * movement * orgspeed1;
         characterController.Move(movement);
 
 

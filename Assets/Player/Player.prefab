@@ -215,6 +215,8 @@ MonoBehaviour:
   walkSpeed: 3
   slowwalkSpeed: 1
   runSpeed: 5
+  speed: 2
+  orgspeed1: 0
   mauseSensitivti: 200
   cam: {fileID: 7945695816277899251}
   Camera: {fileID: 0}
