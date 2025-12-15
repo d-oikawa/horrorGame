@@ -18,7 +18,6 @@ public class PlayerMove:MonoBehaviour
     public float runSpeed;  //走る
     public float walkSpeed; //歩く
     public float slowwalkSpeed;//ゆっくり歩く
-    public float falseSpeed;
     public float orgspeed1;
 
     //視点移動変数
@@ -27,7 +26,9 @@ public class PlayerMove:MonoBehaviour
     private float xRotation;
     private bool PlayerSound;
 
+    //レイで使う変数
     public Camera Camera;
+    public string hitTag;
 
     //プレイヤーが音を立てているか
     public bool IsPlayerSound() {  return PlayerSound; }
@@ -54,7 +55,6 @@ public class PlayerMove:MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))    //走り
         {
             orgspeed1 = runSpeed;
-           
         }
         else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
         {
@@ -65,18 +65,15 @@ public class PlayerMove:MonoBehaviour
         else if(movement == Vector3.back * Time.deltaTime)
         {
             orgspeed1 = 2.0f;
-            
         }
         //横の時3
         else if (moveHorizontal == -1 || moveHorizontal == 1)
         {
             orgspeed1 = 3.0f;
-            
         }
-       else if(moveHorizontal<=1 || moveHorizontal>=-1 || moveVertical<=1 || moveVertical>=-1)
+       else 
         {
             orgspeed1 = walkSpeed;
-
         }
        
         if (!isMoving || orgspeed1==slowwalkSpeed)
@@ -90,7 +87,6 @@ public class PlayerMove:MonoBehaviour
             Debug.Log("ttt");
         }
 
-
         movement = transform.rotation * movement * orgspeed1;
         characterController.Move(movement);
 
@@ -101,69 +97,70 @@ public class PlayerMove:MonoBehaviour
         //Eを押したらアイテムを取得、投擲する処理
         void GetItem()
         {
-            ////Eを押したら
-            //if (Input.GetKeyDown(KeyCode.E))
-            //{
+        //Eを押したら
+        if (Input.GetKeyDown(KeyCode.E))
+        {
 
-            //    //アイテムを持っているか否かでアイテムの取得・投擲を分岐
-            //    switch (itembase.GetIsPlayerHaveItem())
-            //    {
-            //        case false:
-            //            {
-            //                //レイを使っての選択
-            //                Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-            //                RaycastHit hit;
-            //                if (Physics.Raycast(ray, out hit, 3.0f))
-            //                {
-            //                    if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
-            //                    {
-            //                        //アイテムの取得
-            //                        itembase.GetItem();
-            //                        itembase.SetPlayerHaveItem(true);
-            //                        Debug.Log("ゲット！！");
-            //                    }
-            //                }
-            //            }
-            //            break;
-            //        case true:
-            //            {
-            //                //アイテムを投げる
-            //                itembase.ThrowItem();
-            //                itembase.SetPlayerHaveItem(false);
-            //                Debug.Log("投擲！！");
-            //            }
-            //            break;
-            //    }
-            //}
-
-
-
-            //Eを押したら
-            if (Input.GetKeyDown(KeyCode.E))
+            //アイテムを持っているか否かでアイテムの取得・投擲を分岐
+            switch (itembase.GetIsPlayerHaveItem())
             {
-                //レイを使っての選択
-                Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 3.0f))
-                {
-                }
-
-                if (Physics.Raycast(ray, out hit, 3.0f))
-                {
-                    //アイテムをもってたら
-                    if (itembase.GetIsPlayerHaveItem())
+                case false:
+                    {
+                        //レイを使っての選択
+                        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit, 3.0f))
+                        {
+                            if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
+                            {
+                                //アイテムの取得
+                                itembase.GetItem();
+                                itembase.SetPlayerHaveItem(true);
+                                Debug.Log("ゲット！！");
+                            }
+                        }
+                    }
+                    break;
+                case true:
                     {
                         //アイテムを投げる
                         itembase.ThrowItem();
                         itembase.SetPlayerHaveItem(false);
                         Debug.Log("投擲！！");
                     }
-                    //アイテムを持ってなかったら
-                }
-
+                    break;
             }
-
         }
+
+
+
+        //    //Eを押したら
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        //レイを使っての選択
+        //        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        //        RaycastHit hit;
+        //        if (Physics.Raycast(ray, out hit, 3.0f))
+        //        {
+
+        //        }
+
+        //        if (Physics.Raycast(ray, out hit, 3.0f))
+        //        {
+        //            //アイテムをもってたら
+        //            if (itembase.GetIsPlayerHaveItem())
+        //            {
+        //                //アイテムを投げる
+        //                itembase.ThrowItem();
+        //                itembase.SetPlayerHaveItem(false);
+        //                Debug.Log("投擲！！");
+        //            }
+
+        //        }
+
+        //    }
+
+    }
 
         //カメラの動き
         void MoveCamera()
