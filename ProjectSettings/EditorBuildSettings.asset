@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/oikawa Scene.unity
     guid: ff534adcda0a0f54a81bd10e847ac8e9
   - enabled: 0
-    path: Assets/Scenes/shimada Scene.unity
+    path: Assets/Scenes/Player Scene.unity
     guid: 2b8f7b5aecd0eb7489de96a4bca0ca04
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

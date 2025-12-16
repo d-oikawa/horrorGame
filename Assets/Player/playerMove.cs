@@ -9,8 +9,8 @@ public class PlayerMove:MonoBehaviour
 {
     //アイテムベースの変数
    public GameObject Itemobj;
-    public ItemBase itembase;
-    
+   public ItemBase itembase;
+
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
 
@@ -44,38 +44,45 @@ public class PlayerMove:MonoBehaviour
 
     void Update()
     {
+        //入力キーの判定
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
+        //プレイヤーが向いている向きに併せて進む
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical)*Time.deltaTime;
-
+        //移動するためのキーが押されているか
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
-        //スピードの変化
-        if (Input.GetKey(KeyCode.LeftShift))    //走り
-        {
-            orgspeed1 = runSpeed;
-        }
-        else if (Input.GetKey(KeyCode.LeftControl)) //ゆっくり歩き
+        //移動スピード
+        //遅く歩く
+        if (Input.GetKey(KeyCode.LeftControl))    
         {
             orgspeed1 = slowwalkSpeed;
             PlayerSound = false;
         }
-        //後ろの時2
-        else if(movement == Vector3.back * Time.deltaTime)
+        //後ろ向きで移動
+        else if (Input.GetKey(KeyCode.S))
+        {
+            
+            orgspeed1 = 1.0f;
+        }
+       //走る
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+           
+            orgspeed1 = runSpeed;
+        }
+       //横向きに移動
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             orgspeed1 = 2.0f;
         }
-        //横の時3
-        else if (moveHorizontal == -1 || moveHorizontal == 1)
-        {
-            orgspeed1 = 3.0f;
-        }
+        //歩く(通常)
        else 
         {
             orgspeed1 = walkSpeed;
         }
        
+        //歩く音の処理
         if (!isMoving || orgspeed1==slowwalkSpeed)
         {
             PlayerSound = false;
@@ -87,6 +94,7 @@ public class PlayerMove:MonoBehaviour
             Debug.Log("ttt");
         }
 
+        //移動する処理
         movement = transform.rotation * movement * orgspeed1;
         characterController.Move(movement);
 
@@ -94,88 +102,65 @@ public class PlayerMove:MonoBehaviour
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
     } 
 
-        //Eを押したらアイテムを取得、投擲する処理
-        void GetItem()
-        {
-        //Eを押したら
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+    //Eを押したらアイテムを取得、投擲する処理
+    void GetItem()
+    {
+       //Eを押したら
+       if (Input.GetKeyDown(KeyCode.E))
+       {
+           //レイを使っての選択
+           Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+           RaycastHit hit;
 
-            //アイテムを持っているか否かでアイテムの取得・投擲を分岐
-            switch (itembase.GetIsPlayerHaveItem())
+           //アイテムを持っていなかったら
+           if (!itembase.GetIsPlayerHaveItem())
+           {
+               //レイの感知する範囲
+               if (Physics.Raycast(ray, out hit, 3.0f))
+               {
+                   //タグをstring型で管理
+                   hitTag = hit.collider.gameObject.tag;
+                   //そのタグごとの処理
+                   switch(hitTag)
+                   {
+                       case "Testitem":
+                       {
+                          //アイテムの取得
+                          itembase.GetItem();
+                          itembase.SetPlayerHaveItem(true);
+                          Debug.Log("ゲット！！");
+                       }
+                       break;
+
+                       case "hide":
+
+                       break;
+
+                    }
+                }
+            }
+            else
             {
-                case false:
-                    {
-                        //レイを使っての選択
-                        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit, 3.0f))
-                        {
-                            if (hit.collider.CompareTag("Testitem")) // タグが Testitem かどうかをチェック
-                            {
-                                //アイテムの取得
-                                itembase.GetItem();
-                                itembase.SetPlayerHaveItem(true);
-                                Debug.Log("ゲット！！");
-                            }
-                        }
-                    }
-                    break;
-                case true:
-                    {
-                        //アイテムを投げる
-                        itembase.ThrowItem();
-                        itembase.SetPlayerHaveItem(false);
-                        Debug.Log("投擲！！");
-                    }
-                    break;
+                //アイテムを投げる
+                itembase.ThrowItem();
+                itembase.SetPlayerHaveItem(false);
+                Debug.Log("投擲！！");
             }
         }
-
-
-
-        //    //Eを押したら
-        //    if (Input.GetKeyDown(KeyCode.E))
-        //    {
-        //        //レイを使っての選択
-        //        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-        //        RaycastHit hit;
-        //        if (Physics.Raycast(ray, out hit, 3.0f))
-        //        {
-
-        //        }
-
-        //        if (Physics.Raycast(ray, out hit, 3.0f))
-        //        {
-        //            //アイテムをもってたら
-        //            if (itembase.GetIsPlayerHaveItem())
-        //            {
-        //                //アイテムを投げる
-        //                itembase.ThrowItem();
-        //                itembase.SetPlayerHaveItem(false);
-        //                Debug.Log("投擲！！");
-        //            }
-
-        //        }
-
-        //    }
-
     }
 
+    //カメラの動き
+     void MoveCamera()
+     {
         //カメラの動き
-        void MoveCamera()
-        {
-            //カメラの動き
-            float mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
-            transform.Rotate(Vector3.up * mauseX);
-            float mouseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
-            xRotation -= mouseY;
-            //振り向き制限
-            xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
-            cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        float mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
+        transform.Rotate(Vector3.up * mauseX);
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
+        xRotation -= mouseY;
+        //振り向き制限
+        xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
+         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        }
-
-    
+     }
  }
 
