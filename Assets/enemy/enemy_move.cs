@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class enemy_move : MonoBehaviour
@@ -42,6 +43,12 @@ public class enemy_move : MonoBehaviour
     //プレイヤーを発見した瞬間好きだと気付いた
     public bool The_moment_our_eyes_meet;
 
+    //testItem_drop.cs(デバッグ)
+    public testItem_drop testItem_Drop;
+
+    //アイテムが落ちた時のフラグ
+    public bool item_drop;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -55,12 +62,17 @@ public class enemy_move : MonoBehaviour
         GameObject pl = GameObject.FindGameObjectWithTag("Player");
 		PlayerMove = pl.GetComponent<PlayerMove>();
 
+        GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
+        testItem_Drop = tesit.GetComponent<testItem_drop>();
+
         player_Chase.chase_flg = false;
 
         //フラグ初期化
         //searchw = false;
 
         The_moment_our_eyes_meet = true;
+
+        item_drop = false;
     }
 
     // Update is called once per frame
@@ -72,7 +84,6 @@ public class enemy_move : MonoBehaviour
 
         //レイの向きをエネミーが向いている向きに
         direction = transform.forward;
-
 
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
@@ -161,7 +172,7 @@ public class enemy_move : MonoBehaviour
     {
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
-            if (PlayerMove.IsPlayerSound())
+            if (PlayerMove.IsPlayerSound() || item_drop)
             {
                 if (The_moment_our_eyes_meet)
                 {
@@ -184,8 +195,10 @@ public class enemy_move : MonoBehaviour
                 //else
                 //{
                 //音源の位置保存
-                player_Chase.target = collider.transform.position;
-                
+                if (collider != null)
+                {
+                    player_Chase.target = collider.transform.position;
+                }
 					//スプライン上の移動をやめる
 					spline_System.spline_flg = false;
 					//追跡を開始
@@ -194,9 +207,7 @@ public class enemy_move : MonoBehaviour
 				Debug.Log("追跡" + player_Chase.chase_flg);
 			}
         }
-    }
-
-   
+    }   
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -205,9 +216,7 @@ public class enemy_move : MonoBehaviour
             //TransitionGameOverScene();
             Debug.Log("死亡");
         }
-       
     }
-
 
     /*
     void normal_move()
@@ -245,4 +254,5 @@ public class enemy_move : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
     */
+
 }
