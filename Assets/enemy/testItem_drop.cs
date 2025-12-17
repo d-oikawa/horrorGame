@@ -26,20 +26,20 @@ public class testItem_drop : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Ground")
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Ground")
         {
             player_Chase.target = transform.position;
             enemy_Move.item_drop = true;
-            //Destroy(gameObject);
+			Debug.Log("ゴクマジオス");
+			Destroy(gameObject);
         }
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+	private void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.tag == "Ground")
         {
-            Debug.Log("ゴクマジオス");
         }
     }
 }

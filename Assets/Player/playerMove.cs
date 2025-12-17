@@ -175,7 +175,7 @@ public class PlayerMove:MonoBehaviour
     {
 		//プレイヤーの位置を保存隠れる前の
 		Vector3 woldPos = transform.position;
-    if(Ishide==false)
+        if(Ishide==false)
         {
             characterController.enabled = false;
 			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
@@ -185,7 +185,6 @@ public class PlayerMove:MonoBehaviour
 			Ishide = true;
 		}
            
-
         ////隠れている状態でEキーが押されたら元の場所に戻る
         //if (Input.GetKey(KeyCode.Space) && Ishide==true)
         //{
@@ -193,7 +192,7 @@ public class PlayerMove:MonoBehaviour
         //}
     }
 
-    //外に出る処理残してあるだけ
+    //外に出る処理
     private void Endwarp(Vector3 Ppos)
     {
         transform.position = Ppos;

@@ -213,7 +213,7 @@ public class enemy_move : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //TransitionGameOverScene();
+            TransitionGameOverScene();
             Debug.Log("Ž€–S");
         }
     }
@@ -248,11 +248,10 @@ public class enemy_move : MonoBehaviour
     }
     */
 
-    /*
+    
     public void TransitionGameOverScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
-    */
 
 }
