@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,82 +7,85 @@ using UnityEngine;
 
 public class PlayerMove:MonoBehaviour
 {
-    //ƒAƒCƒeƒ€ƒx[ƒX‚Ì•Ï”
+    //ã‚¢ã‚¤ãƒ†ãƒ ãƒ™ãƒ¼ã‚¹ã®å¤‰æ•°
    public GameObject Itemobj;
    public ItemBase itembase;
 
-    //ƒLƒƒƒ‰ƒNƒ^ƒRƒ“ƒgƒ[ƒ‰[‚ğg‚¤ˆ×‚Ì•Ï”
+    //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’ä½¿ã†ç‚ºã®å¤‰æ•°
     public CharacterController characterController;
 
-    //“®‚­‘¬‚³•Ï”
-    public float runSpeed;  //‘–‚é
-    public float walkSpeed; //•à‚­
-    public float slowwalkSpeed;//‚ä‚Á‚­‚è•à‚­
+    //å‹•ãé€Ÿã•å¤‰æ•°
+    public float runSpeed;  //èµ°ã‚‹
+    public float walkSpeed; //æ­©ã
+    public float slowwalkSpeed;//ã‚†ã£ãã‚Šæ­©ã
     public float orgspeed1;
 
-    //‹“_ˆÚ“®•Ï”
-    public float mauseSensitivti; //ƒ}ƒEƒX‚ÌŠ´“x
+    //è¦–ç‚¹ç§»å‹•å¤‰æ•°
+    public float mauseSensitivti; //ãƒã‚¦ã‚¹ã®æ„Ÿåº¦
     public Transform cam;
     private float xRotation;
     private bool PlayerSound;
 
-    //ƒŒƒC‚Åg‚¤•Ï”
+    //ãƒ¬ã‚¤ã§ä½¿ã†å¤‰æ•°
     public Camera Camera;
     public string hitTag;
 
-    //ƒvƒŒƒCƒ„[‚ª‰¹‚ğ—§‚Ä‚Ä‚¢‚é‚©
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒéŸ³ã‚’ç«‹ã¦ã¦ã„ã‚‹ã‹
     public bool IsPlayerSound() {  return PlayerSound; }
 
+    //éš ã‚Œã¦ã„ã‚‹ã‹ã„ãªã„ã‹
+    private bool Ishide=false;
+   
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; //ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ’†‰›‚ÉŒÅ’è‚µ‚Ä”ñ•\¦
+        Cursor.lockState = CursorLockMode.Locked; //ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸­å¤®ã«å›ºå®šã—ã¦éè¡¨ç¤º
 
-        //ƒAƒCƒeƒ€‚ÌƒXƒNƒŠƒvƒg‚ğg‚¤ˆ—
+        //ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ä½¿ã†å‡¦ç†
         Itemobj = GameObject.FindGameObjectWithTag("Testitem");
         itembase = Itemobj.GetComponent<ItemBase>();  
     }
 
     void Update()
     {
-        //“ü—ÍƒL[‚Ì”»’è
+        //å…¥åŠ›ã‚­ãƒ¼ã®åˆ¤å®š
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        //ƒvƒŒƒCƒ„[‚ªŒü‚¢‚Ä‚¢‚éŒü‚«‚É•¹‚¹‚Äi‚Ş
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå‘ã„ã¦ã„ã‚‹å‘ãã«ä½µã›ã¦é€²ã‚€
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical)*Time.deltaTime;
-        //ˆÚ“®‚·‚é‚½‚ß‚ÌƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
+        //ç§»å‹•ã™ã‚‹ãŸã‚ã®ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
-        //ˆÚ“®ƒXƒs[ƒh
-        //’x‚­•à‚­
+        //ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+        //é…ãæ­©ã
         if (Input.GetKey(KeyCode.LeftControl))    
         {
             orgspeed1 = slowwalkSpeed;
             PlayerSound = false;
         }
-        //Œã‚ëŒü‚«‚ÅˆÚ“®
+        //å¾Œã‚å‘ãã§ç§»å‹•
         else if (Input.GetKey(KeyCode.S))
         {
             
             orgspeed1 = 1.0f;
         }
-       //‘–‚é
+       //èµ°ã‚‹
         else if (Input.GetKey(KeyCode.LeftShift))
         {
            
             orgspeed1 = runSpeed;
         }
-       //‰¡Œü‚«‚ÉˆÚ“®
+       //æ¨ªå‘ãã«ç§»å‹•
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             orgspeed1 = 2.0f;
         }
-        //•à‚­(’Êí)
+        //æ­©ã(é€šå¸¸)
        else 
         {
             orgspeed1 = walkSpeed;
         }
        
-        //•à‚­‰¹‚Ìˆ—
+        //æ­©ãéŸ³ã®å‡¦ç†
         if (!isMoving || orgspeed1==slowwalkSpeed)
         {
             PlayerSound = false;
@@ -94,46 +97,49 @@ public class PlayerMove:MonoBehaviour
             Debug.Log("ttt");
         }
 
-        //ˆÚ“®‚·‚éˆ—
+        //ç§»å‹•ã™ã‚‹å‡¦ç†
         movement = transform.rotation * movement * orgspeed1;
-        characterController.Move(movement);
-
-        MoveCamera();   //ƒJƒƒ‰‚Ìã‰º¶‰E‚Ì“®‚«(‹“_)
-        GetItem();      //E‚ğ‰Ÿ‚µ‚½‚çƒAƒCƒeƒ€‚ğæ“¾A“Š±‚·‚éˆ—
+        if(characterController.enabled==true)
+        {
+			characterController.Move(movement);
+		}
+       
+        MoveCamera();   //ã‚«ãƒ¡ãƒ©ã®ä¸Šä¸‹å·¦å³ã®å‹•ã(è¦–ç‚¹)
+        GetItem();      //Eã‚’æŠ¼ã—ãŸã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã€æŠ•æ“²ã™ã‚‹å‡¦ç†
     } 
 
-    //E‚ğ‰Ÿ‚µ‚½‚çƒAƒCƒeƒ€‚ğæ“¾A“Š±‚·‚éˆ—
+    //Eã‚’æŠ¼ã—ãŸã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã€æŠ•æ“²ã™ã‚‹å‡¦ç†
     void GetItem()
     {
-       //E‚ğ‰Ÿ‚µ‚½‚ç
-       if (Input.GetKeyDown(KeyCode.E))
+       //Eã‚’æŠ¼ã—ãŸã‚‰
+       if (Input.GetKey(KeyCode.E))
        {
-           //ƒŒƒC‚ğg‚Á‚Ä‚Ì‘I‘ğ
+           //ãƒ¬ã‚¤ã‚’ä½¿ã£ã¦ã®é¸æŠ
            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
            RaycastHit hit;
 
-           //ƒAƒCƒeƒ€‚ğ‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç
+           //ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãªã‹ã£ãŸã‚‰
            if (!itembase.GetIsPlayerHaveItem())
            {
-               //ƒŒƒC‚ÌŠ´’m‚·‚é”ÍˆÍ
+               //ãƒ¬ã‚¤ã®æ„ŸçŸ¥ã™ã‚‹ç¯„å›²
                if (Physics.Raycast(ray, out hit, 3.0f))
                {
-                   //ƒ^ƒO‚ğstringŒ^‚ÅŠÇ—
+                   //ã‚¿ã‚°ã‚’stringå‹ã§ç®¡ç†
                    hitTag = hit.collider.gameObject.tag;
-                   //‚»‚Ìƒ^ƒO‚²‚Æ‚Ìˆ—
+                   //ãã®ã‚¿ã‚°ã”ã¨ã®å‡¦ç†
                    switch(hitTag)
                    {
                        case "Testitem":
                        {
-                          //ƒAƒCƒeƒ€‚Ìæ“¾
+                          //ã‚¢ã‚¤ãƒ†ãƒ ã®å–å¾—
                           itembase.GetItem();
                           itembase.SetPlayerHaveItem(true);
-                          Debug.Log("ƒQƒbƒgII");
+                          Debug.Log("ã‚²ãƒƒãƒˆï¼ï¼");
                        }
                        break;
 
-                       case "hide":
-
+                       case "warppos":
+							warp(hitTag);
                        break;
 
                     }
@@ -141,26 +147,58 @@ public class PlayerMove:MonoBehaviour
             }
             else
             {
-                //ƒAƒCƒeƒ€‚ğ“Š‚°‚é
+                //ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŠ•ã’ã‚‹
                 itembase.ThrowItem();
                 itembase.SetPlayerHaveItem(false);
-                Debug.Log("“Š±II");
+                Debug.Log("æŠ•æ“²ï¼ï¼");
             }
         }
     }
 
-    //ƒJƒƒ‰‚Ì“®‚«
+    //ã‚«ãƒ¡ãƒ©ã®å‹•ã
      void MoveCamera()
      {
-        //ƒJƒƒ‰‚Ì“®‚«
+        //ã‚«ãƒ¡ãƒ©ã®å‹•ã
         float mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
         transform.Rotate(Vector3.up * mauseX);
         float mouseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
         xRotation -= mouseY;
-        //U‚èŒü‚«§ŒÀ
+        //æŒ¯ã‚Šå‘ãåˆ¶é™
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
          cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
      }
- }
+	
+    //ã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ¯ãƒ¼ãƒ—ã™ã‚‹å‡¦ç†
+    //(çœŸã‚“ä¸­ã‚‰ã¸ã‚“ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãªã„ã¨ãƒ¯ãƒ¼ãƒ—ã—ãªã„ && ãƒ¯ãƒ¼ãƒ—ä½ç½®ãŒãƒ‰ã‚¢ã®ä½ç½®)
+    private void warp(string Tag)
+    {
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’ä¿å­˜éš ã‚Œã‚‹å‰ã®
+		Vector3 woldPos = transform.position;
+    if(Ishide==false)
+        {
+            characterController.enabled = false;
+			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
+			transform.position = haidpos.transform.position;
+			Debug.Log("warp!");
+			//éš ã‚Œã¦ã„ã‚‹
+			Ishide = true;
+		}
+           
+
+        ////éš ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã§Eã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰å…ƒã®å ´æ‰€ã«æˆ»ã‚‹
+        //if (Input.GetKey(KeyCode.Space) && Ishide==true)
+        //{
+        //    Endwarp(woldPos);
+        //}
+    }
+
+    //å¤–ã«å‡ºã‚‹å‡¦ç†æ®‹ã—ã¦ã‚ã‚‹ã ã‘
+    private void Endwarp(Vector3 Ppos)
+    {
+        transform.position = Ppos;
+        Ishide = false;
+		Debug.Log("WarpEnd");
+	}
+}
 
