@@ -154,7 +154,7 @@ public class ItemBase : MonoBehaviour
             IsItemOnGround = true;
             m_IsActive = false;
 
-            ItemRb.AddForce(0f, 0f, 0f, ForceMode.VelocityChange);
+            ItemRb.linearVelocity = Vector3.zero;
             Debug.Log("∑¥¿÷!");
         }
     }
