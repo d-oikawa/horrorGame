@@ -33,6 +33,7 @@ public class ItemBase : MonoBehaviour
     {
         // アイテムのアクティブ情報を更新
         GameObject.SetActive(m_IsActive);
+        ItemRenderer.enabled = m_IsActive;
 
         // プレイヤーがアイテムを持っている間プレイヤーの位置にアイテムを追従させる
         if (IsPlayerHaveItem)
@@ -55,7 +56,7 @@ public class ItemBase : MonoBehaviour
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
         {
-            // Rigidbodyを取得w
+            // Rigidbodyを取得
             ItemRb = GetComponent<Rigidbody>();
             if (ItemRb != null)
             {
@@ -141,15 +142,20 @@ public class ItemBase : MonoBehaviour
 
         IsPlayerThrowItem = true;
 
+        Debug.Log("ﾅｹﾞﾀﾖ!");
+
     }
 
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "enemy" && soundFlgRock)
-        {
+        if(collision.gameObject.tag=="Wall")
+        { // enemyに判定を渡してこのオブジェクトの役目を終える
             IsItemOnGround = true;
-            soundFlgRock = true;
+            m_IsActive = false;
+
+            ItemRb.linearVelocity = Vector3.zero;
+            Debug.Log("ｷｴﾀﾖ!");
         }
     }
 }
