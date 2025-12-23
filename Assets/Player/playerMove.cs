@@ -171,28 +171,28 @@ public class PlayerMove:MonoBehaviour
     }
 	
     //タグのオブジェクトにワープする処理
-    private void warp(string Tag)
-    {
-        if(Ishide==false)
-        {
-            //隠れる前のプレイヤーの位置を保存
-            woldPos = transform.position;
-            characterController.enabled = false;
-			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
-			transform.position = haidpos.transform.position;
-            Debug.Log("warp!");
-            //隠れている
-            Ishide = true;
-		}     
-    }
+ //   private void warp(string Tag)
+ //   {
+ //       if(Ishide==false)
+ //       {
+ //           //隠れる前のプレイヤーの位置を保存
+ //           woldPos = transform.position;
+ //           characterController.enabled = false;
+	//		GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
+	//		transform.position = haidpos.transform.position;
+ //           Debug.Log("warp!");
+ //           //隠れている
+ //           Ishide = true;
+	//	}     
+ //   }
 
-    //外に出る処理
-    private void Endwarp(Vector3 Ppos)
-    {
-        Ishide = false;
-        transform.position = Ppos;
-        characterController.enabled = true;
-        Debug.Log("WarpEnd");
-	} 
+ //   //外に出る処理
+ //   private void Endwarp(Vector3 Ppos)
+ //   {
+ //       Ishide = false;
+ //       transform.position = Ppos;
+ //       characterController.enabled = true;
+ //       Debug.Log("WarpEnd");
+	//} 
 }
 
