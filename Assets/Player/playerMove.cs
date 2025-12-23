@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
-
 public class PlayerMove:MonoBehaviour
 {
     //アイテムベースの変数
@@ -18,7 +16,7 @@ public class PlayerMove:MonoBehaviour
     public float runSpeed;  //走る
     public float walkSpeed; //歩く
     public float slowwalkSpeed;//ゆっくり歩く
-    public float orgspeed1;
+    public float orgspeed1;    //スピードが入る
 
     //視点移動変数
     public float mauseSensitivti; //マウスの感度
@@ -35,8 +33,10 @@ public class PlayerMove:MonoBehaviour
 
     //隠れているかいないか
     private bool Ishide=false;
-   
-    void Start()
+    Vector3 woldPos;
+
+
+	void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //マウスカーソルを中央に固定して非表示
 
@@ -103,8 +103,14 @@ public class PlayerMove:MonoBehaviour
         {
 			characterController.Move(movement);
 		}
-       
-        MoveCamera();   //カメラの上下左右の動き(視点)
+
+		if (Input.GetKey(KeyCode.N))
+        {
+			transform.position = woldPos;
+		}
+			
+
+		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
     } 
 
@@ -137,23 +143,18 @@ public class PlayerMove:MonoBehaviour
                           Debug.Log("ゲット！！");
                        }
                        break;
-
-                       case "warppos":
-							warp(hitTag);
-                       break;
-
-                    }
-                }
-            }
-            else
-            {
+                   }
+               }
+           }
+           else
+           {
                 //アイテムを投げる
                 itembase.ThrowItem();
                 itembase.SetPlayerHaveItem(false);
                 Debug.Log("投擲！！");
-            }
-        }
-    }
+           }
+       }
+	}
 
     //カメラの動き
      void MoveCamera()
@@ -166,38 +167,30 @@ public class PlayerMove:MonoBehaviour
         //振り向き制限
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
          cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
      }
 	
     //タグのオブジェクトにワープする処理
     //(真ん中らへんをクリックしないとワープしない && ワープ位置がドアの位置)
-    private void warp(string Tag)
-    {
-		//プレイヤーの位置を保存隠れる前の
-		Vector3 woldPos = transform.position;
-        if(Ishide==false)
-        {
-            characterController.enabled = false;
-			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
-			transform.position = haidpos.transform.position;
-			Debug.Log("warp!");
-			//隠れている
-			Ishide = true;
-		}
-           
-        ////隠れている状態でEキーが押されたら元の場所に戻る
-        //if (Input.GetKey(KeyCode.Space) && Ishide==true)
-        //{
-        //    Endwarp(woldPos);
-        //}
-    }
+ //   private void warp(string Tag)
+ //   {
+ //       if(Ishide==false)
+ //       {
+ //           characterController.enabled = false;
+	//		GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
+	//		transform.position = haidpos.transform.position;
+	//		//隠れている
+	//		Ishide = true;
+	//		Debug.Log("warp!");
+	//	}
+ //   }
 
-    //外に出る処理
-    private void Endwarp(Vector3 Ppos)
-    {
-        transform.position = Ppos;
-        Ishide = false;
-		Debug.Log("WarpEnd");
-	}
+ //   //外に出る処理
+ //   private void Endwarp(Vector3 Ppos)
+ //   {
+	//	characterController.enabled = true;
+	//	transform.position = Ppos;
+ //       Ishide = false;
+	//	Debug.Log("WarpEnd");
+	//}
 }
 
