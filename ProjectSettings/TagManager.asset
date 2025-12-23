@@ -19,8 +19,12 @@ TagManager:
   - PlayerCamera
   - Item
   - Testitem
+<<<<<<< HEAD
   - gate
   - warppos
+=======
+  - Warppos
+>>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
   layers:
   - Default
   - TransparentFX

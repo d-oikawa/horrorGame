@@ -33,16 +33,23 @@ public class PlayerMove:MonoBehaviour
 
     //隠れているかいないか
     private bool Ishide=false;
+<<<<<<< HEAD
     Vector3 woldPos;
 
 
 	void Start()
+=======
+    //プレイヤーの位置を保存隠れる前の
+    Vector3 woldPos;
+    private float timr=2.0f;
+
+
+    void Start()
+>>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
     {
         Cursor.lockState = CursorLockMode.Locked; //マウスカーソルを中央に固定して非表示
 
-        //アイテムのスクリプトを使う処理
-        Itemobj = GameObject.FindGameObjectWithTag("Testitem");
-        itembase = Itemobj.GetComponent<ItemBase>();  
+        
     }
 
     void Update()
@@ -112,16 +119,18 @@ public class PlayerMove:MonoBehaviour
 
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
+        Haid();
     } 
 
     //Eを押したらアイテムを取得、投擲する処理
     void GetItem()
     {
        //Eを押したら
-       if (Input.GetKey(KeyCode.E))
+       if (Input.GetKeyDown(KeyCode.E))
        {
            //レイを使っての選択
            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+<<<<<<< HEAD
            RaycastHit hit;
 
            //アイテムを持っていなかったら
@@ -148,17 +157,90 @@ public class PlayerMove:MonoBehaviour
            }
            else
            {
+=======
+           RaycastHit itemhit;
+
+            //アイテムを持っていなかったら
+            if (!itembase.GetIsPlayerHaveItem())
+            {
+                //レイの感知する範囲
+                if (Physics.Raycast(ray, out itemhit, 3.0f))
+                {
+                    //タグをstring型で管理
+                    hitTag = itemhit.collider.gameObject.tag;
+                    //そのタグごとの処理
+                    switch (hitTag)
+                    {
+                        case "Testitem":
+                        {
+                            ItemBase itembase = itemhit.collider.GetComponent<ItemBase>();
+                             //アイテムの取得
+                             itembase.GetItem();
+                             itembase.SetPlayerHaveItem(true);
+                             Debug.Log("ゲット！！");
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+>>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
                 //アイテムを投げる
                 itembase.ThrowItem();
                 itembase.SetPlayerHaveItem(false);
                 Debug.Log("投擲！！");
+<<<<<<< HEAD
            }
        }
 	}
+=======
+            }     
+       }
+    }
+
+    private void Haid()
+    {
+        ////Eを押したら
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    //レイを使っての選択
+        //    Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //    //レイの感知する範囲
+        //    if (Physics.Raycast(ray, out hit, 3.0f))
+        //    {
+        //        //タグをstring型で管理
+        //        hitTag = hit.collider.gameObject.tag;
+        //        //そのタグごとの処理
+        //        switch (hitTag)
+        //        {
+        //            case "Warppos":
+        //                {
+        //                    warp(hitTag);
+
+        //                }
+        //                break;
+        //        }
+        //    }
+        //}
+        //if(Input.GetKeyDown(KeyCode.E))
+        //{
+        //    if(Ishide==true)
+        //    {
+        //        Endwarp(woldPos);
+        //    }
+        //    else
+        //    {
+        //        warp(hitTag);
+        //    }
+        //}
+    }
+>>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
 
     //カメラの動き
-     void MoveCamera()
-     {
+    void MoveCamera()
+    {
         //カメラの動き
         float mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
         transform.Rotate(Vector3.up * mauseX);
@@ -167,6 +249,7 @@ public class PlayerMove:MonoBehaviour
         //振り向き制限
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
          cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+<<<<<<< HEAD
      }
 	
     //タグのオブジェクトにワープする処理
@@ -192,5 +275,36 @@ public class PlayerMove:MonoBehaviour
  //       Ishide = false;
 	//	Debug.Log("WarpEnd");
 	//}
+=======
+    }
+	
+    //タグのオブジェクトにワープする処理
+    //(真ん中らへんをクリックしないとワープしない && ワープ位置がドアの位置)
+    private void warp(string Tag)
+    {
+        if(Ishide==false)
+        {
+            //プレイヤーの位置を保存隠れる前の
+            woldPos = transform.position;
+            characterController.enabled = false;
+			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
+			transform.position = haidpos.transform.position;
+            Debug.Log("warp!");
+            //隠れている
+            Ishide = true;
+
+		}     
+    }
+
+    //外に出る処理
+    private void Endwarp(Vector3 Ppos)
+    {
+        Ishide = false;
+        transform.position = Ppos;
+        characterController.enabled = true;
+        Debug.Log("WarpEnd");
+	} 
+   
+>>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
 }
 
