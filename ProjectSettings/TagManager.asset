@@ -3,28 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - Wall
-  - Spline_A
-  - Spline_B
-  - enemy
-  - Spline_C
-  - Spline_D
-  - Spline_E
-  - Spline_F
-  - Spline_G
-  - Spline_H
-  - Spline_I
-  - Spline_J
-  - PlayerCamera
-  - Item
-  - Testitem
-<<<<<<< HEAD
-  - gate
-  - warppos
-=======
-  - Warppos
->>>>>>> b5cfbed6df1511c4e05968e92c8cf1c7691738f6
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -64,10 +43,3 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7
