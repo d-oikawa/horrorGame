@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMove:MonoBehaviour
 {
@@ -23,9 +24,11 @@ public class PlayerMove:MonoBehaviour
     public Transform cam;
     private float xRotation;
     private bool PlayerSound;
+    float mauseX;
+    float mauseY;
 
-    //レイで使う変数
-    public Camera Camera;
+	//レイで使う変数
+	public Camera Camera;
     public string hitTag;
 
     //プレイヤーが音を立てているか
@@ -37,8 +40,8 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        //マウスカーソルを中央に固定して非表示
+		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+		//マウスカーソルを中央に固定して非表示
 	}
 
     void Update()
@@ -108,7 +111,7 @@ public class PlayerMove:MonoBehaviour
 
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
-        //Haid();
+        Haid();
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -155,48 +158,64 @@ public class PlayerMove:MonoBehaviour
             }
         }
     }
-   
-    //private void Haid()
-    //{
-      
-    //}
+
+    private void Haid()
+    {
+        //Eを押したら
+        if (Input.GetKeyDown(KeyCode.E) && hitTag=="warp")
+        {
+            warp(hitTag);
+        }
+        else if(Ishide==true && Input.GetKeyDown(KeyCode.E))
+        {
+            Endwarp(woldPos);
+        }
+    }
 
     //カメラの動き
     void MoveCamera()
     {
         //カメラの動き
-        float mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
-        transform.Rotate(Vector3.up * mauseX);
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
-        xRotation -= mouseY;
+         mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
+        transform.Rotate(Vector3.up *mauseX);
+         mauseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
+        xRotation -= mauseY;
+
         //振り向き制限
         xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
          cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        
+        if(Ishide==true)
+        {
+            mauseX = Input.GetAxisRaw("Mouse X") * 0.0f * Time.deltaTime;
+			xRotation = Mathf.Clamp(xRotation, 0.0f, 0.0f);
+		}
     }
 	
     //タグのオブジェクトにワープする処理
- //   private void warp(string Tag)
- //   {
- //       if(Ishide==false)
- //       {
- //           //隠れる前のプレイヤーの位置を保存
- //           woldPos = transform.position;
- //           characterController.enabled = false;
-	//		GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
-	//		transform.position = haidpos.transform.position;
- //           Debug.Log("warp!");
- //           //隠れている
- //           Ishide = true;
-	//	}     
- //   }
+    private void warp(string Tag)
+    {
+        if (Ishide == false)
+        {
+            //隠れる前のプレイヤーの位置を保存
+            woldPos = transform.position;
+            characterController.enabled = false;
+			//隠れている
+			Ishide = true;
+			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
+            transform.position = haidpos.transform.position;
+            Debug.Log("warp!");
+           
+        }
+    }
 
- //   //外に出る処理
- //   private void Endwarp(Vector3 Ppos)
- //   {
- //       Ishide = false;
- //       transform.position = Ppos;
- //       characterController.enabled = true;
- //       Debug.Log("WarpEnd");
-	//} 
+    //外に出る処理
+    private void Endwarp(Vector3 Ppos)
+    {
+        Ishide = false;
+        transform.position = Ppos;
+        characterController.enabled = true;
+        Debug.Log("WarpEnd");
+    }
 }
 
