@@ -37,8 +37,9 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; //マウスカーソルを中央に固定して非表示   
-    }
+        Cursor.lockState = CursorLockMode.Locked;
+        //マウスカーソルを中央に固定して非表示
+	}
 
     void Update()
     {
@@ -123,11 +124,14 @@ public class PlayerMove:MonoBehaviour
             //アイテムを持っていなかったら
             if (!itembase.GetIsPlayerHaveItem())
             {
+                
                 //レイの感知する範囲
                 if (Physics.Raycast(ray, out hit, 3.0f))
                 {
-                    //タグをstring型で管理
-                    hitTag = hit.collider.gameObject.tag;
+					itembase = itembase.GetComponent<ItemBase>();
+                    gameObject.GetComponent<ItemBase>();
+					//タグをstring型で管理
+					hitTag = hit.collider.gameObject.tag;
                     //そのタグごとの処理
                     switch (hitTag)
                     {
