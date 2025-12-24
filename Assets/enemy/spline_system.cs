@@ -180,7 +180,7 @@ public class spline_system : MonoBehaviour
         //spline‚Ì’·‚³‚ğæ“¾
         spuline_length = splineContainer.CalculateLength();
 
-        float move_speed = 1 / spuline_length;
+        float move_speed = 6 / spuline_length;
 
         //spline‚ÌŠ„‡‚ÅˆÚ“®
         splines_Percentage += Time.deltaTime * move_speed;
