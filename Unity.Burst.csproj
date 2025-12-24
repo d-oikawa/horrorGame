@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3FA0BBA8-77AA-27AB-A243-45FFE9320482}</ProjectGuid>
+    <ProjectGuid>{E4AB556A-CCAD-B7D6-9091-3CC50DD90EFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.Burst</AssemblyName>
@@ -1087,11 +1087,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{ECABE629-7B63-294D-2C00-2ADFF9D97F45}</Project>
+      <Project>{A547CE7A-F6E5-59A6-1682-A753B45EDB37}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{F978A3F8-11D8-51E5-403C-0F6C3A266551}</Project>
+      <Project>{64D80BDC-2EDA-B8AA-7FA4-A37279809834}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
   </ItemGroup>

@@ -107,11 +107,10 @@ public class PlayerMove:MonoBehaviour
         {
 			transform.position = woldPos;
 		}
-			
-
+		
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
-        Haid();
+       // Haid();
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -127,7 +126,6 @@ public class PlayerMove:MonoBehaviour
             //アイテムを持っていなかったら
             if (!itembase.GetIsPlayerHaveItem())
             {
-                
                 //レイの感知する範囲
                 if (Physics.Raycast(ray, out hit, 3.0f))
                 {
@@ -146,6 +144,16 @@ public class PlayerMove:MonoBehaviour
                             Debug.Log("ゲット！！");
                         }
                         break;
+                        case "warp":
+                        {
+                                warp(hitTag);
+                        }
+                         break;
+                        case "door":
+                        {
+                                Endwarp(woldPos);
+                        }
+                         break;
                     }
                 }
             }
@@ -159,18 +167,21 @@ public class PlayerMove:MonoBehaviour
         }
     }
 
-    private void Haid()
-    {
-        //Eを押したら
-        if (Input.GetKeyDown(KeyCode.E) && hitTag=="warp")
-        {
-            warp(hitTag);
-        }
-        else if(Ishide==true && Input.GetKeyDown(KeyCode.E))
-        {
-            Endwarp(woldPos);
-        }
-    }
+    //private void Haid()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        //Eを押したら
+    //        if (hitTag == "warp")
+    //        {
+    //            warp(hitTag);
+    //        }
+    //        else if (Ishide == true && hitTag == "door")
+    //        {
+    //            Endwarp(woldPos);
+    //        }
+    //    }
+    //}
 
     //カメラの動き
     void MoveCamera()
@@ -187,7 +198,7 @@ public class PlayerMove:MonoBehaviour
         
         if(Ishide==true)
         {
-            mauseX = Input.GetAxisRaw("Mouse X") * 0.0f * Time.deltaTime;
+            mauseX = 0.0f;
 			xRotation = Mathf.Clamp(xRotation, 0.0f, 0.0f);
 		}
     }
