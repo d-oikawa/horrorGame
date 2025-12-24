@@ -1,3 +1,5 @@
+using Unity.VisualScripting.Antlr3.Runtime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.UI.Image;
@@ -54,6 +56,8 @@ public class player_chase : MonoBehaviour
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
+        agent.speed = 20.0f;
+
         stoping_time = 0f;
 
         this_transform = this.transform.position;
@@ -88,20 +92,22 @@ public class player_chase : MonoBehaviour
 			if (Areerror(enemy_Move.start_pos, this_transform,0.001f))
             {
                 Debug.Log("スプライン移動に変更");
-                //スプライン上を動くflgをture
-                spline_system2.spline_flg = true;
-                //agentを殺す
-                //agent.enabled = false;
-            }
-            
-        }
+				//スプライン上を動くflgをture
+				spline_system2.spline_flg = true;
+                agent.isStopped = true;
+                //agent.isStopped = true;
+				//agentを殺す
+				//agent.enabled = false;
+			}
+
+		}
 
         //spline上を移動しておらず、追跡中であるとき
         else if(!spline_system2.spline_flg && chase_flg)
         {
+            agent.isStopped = false;
             if( Areerror(this_transform, target, 1f))
             {
-                Debug.Log("なるほどね");
                 stoping_time += 1f * Time.deltaTime;
                 Debug.Log("停止中");
             }
