@@ -7,6 +7,29 @@ TagManager:
   - PlayerCamera
   - Testitem
   - warp
+  - Spline_D
+  - enemy
+  - Spline_A
+  - Spline_C
+  - Spline_B
+  - Spline_J
+  - Spline_G
+  - Ground
+  - Wall
+  - Spline_E
+  - Spline_F
+  - Spline_H
+  - Spline_I
+  - Start
+  - Day1_end
+  - Day2_Start
+  - Search_1
+  - Runaway
+  - Search_2
+  - Day2_end
+  - Day3_Start
+  - Exit_1
+  - Exit_2
   layers:
   - Default
   - TransparentFX
