@@ -30,6 +30,7 @@ TagManager:
   - Day3_Start
   - Exit_1
   - Exit_2
+  - point
   layers:
   - Default
   - TransparentFX

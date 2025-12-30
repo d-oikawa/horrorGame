@@ -34,9 +34,15 @@ public class PlayerMove:MonoBehaviour
     //プレイヤーが音を立てているか
     public bool IsPlayerSound() {  return PlayerSound; }
 
-    //隠れているかいないか
+    //隠れている時に使う変数
     private bool Ishide=false;
     Vector3 woldPos;
+
+    //チェックポイントで使う処理
+    //string nawtag;
+    public int pointNum=0;   //なくていい気がする
+    bool cleatag=false;      //前のミッションをクリアしたか否か
+    
 
     void Start()
     {
@@ -146,14 +152,28 @@ public class PlayerMove:MonoBehaviour
                         break;
                         case "warp":
                         {
+                                //ワープする
                                 warp(hitTag);
                         }
                          break;
                         case "door":
                         {
+                                //戻る
                                 Endwarp(woldPos);
                         }
                          break;
+                        case "point":
+                        {
+                                //チェックポイントを触ったら
+                                Pointyecu(hitTag);
+                        }
+                         break;
+                        case "point2":
+                        {
+                                //チェックポイントを触ったら
+                                Pointyecu(hitTag);
+                        }
+                        break;
                     }
                 }
             }
@@ -166,22 +186,6 @@ public class PlayerMove:MonoBehaviour
             }
         }
     }
-
-    //private void Haid()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        //Eを押したら
-    //        if (hitTag == "warp")
-    //        {
-    //            warp(hitTag);
-    //        }
-    //        else if (Ishide == true && hitTag == "door")
-    //        {
-    //            Endwarp(woldPos);
-    //        }
-    //    }
-    //}
 
     //カメラの動き
     void MoveCamera()
@@ -227,6 +231,24 @@ public class PlayerMove:MonoBehaviour
         transform.position = Ppos;
         characterController.enabled = true;
         Debug.Log("WarpEnd");
+    }
+
+    //チェックポイントの処理
+    public void Pointyecu(string tag)
+    {
+        //もし前のミッションをクリアかつタグが一致していたら
+        if(cleatag==true && tag== "point")
+        {
+            ++pointNum;
+            cleatag = false;
+            Debug.Log("=1");
+        }
+        else if(cleatag==true && tag == "point2")
+        {
+            ++pointNum;
+            cleatag = false;
+            Debug.Log("=2");
+        }
     }
 }
 
