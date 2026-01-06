@@ -29,6 +29,9 @@ public class spline_system : MonoBehaviour
     //スプラインを変更するフラグ
     public bool change_splien;
 
+    public bool next_spuline;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -36,6 +39,7 @@ public class spline_system : MonoBehaviour
         spline_flg = true;
         splines_Percentage = 0;
         change_splien = false;
+        next_spuline = false;
         //最初のスプラインを設定
 		spline_change("Spline_A");        
     }
@@ -180,6 +184,7 @@ public class spline_system : MonoBehaviour
         //splineの長さを取得
         spuline_length = splineContainer.CalculateLength();
 
+        //移動速度を設定
         float move_speed = 6 / spuline_length;
 
         //splineの割合で移動

@@ -31,7 +31,7 @@ public class testItem_drop : MonoBehaviour
 		if (other.gameObject.tag == "Ground")
         {
             player_Chase.target = transform.position;
-            enemy_Move.item_drop = true;
+            //enemy_Move.item_drop = true;
 			Debug.Log("ゴクマジオス");
 			Destroy(gameObject);
         }

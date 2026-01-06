@@ -43,11 +43,13 @@ public class enemy_move : MonoBehaviour
     //プレイヤーを発見した瞬間好きだと気付いた
     public bool The_moment_our_eyes_meet;
 
+    public ItemBase ItemBase;
+
     //testItem_drop.cs(デバッグ)
-    public testItem_drop testItem_Drop;
+    //public testItem_drop testItem_Drop;
 
     //アイテムが落ちた時のフラグ
-    public bool item_drop;
+    //public bool item_drop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,8 +64,11 @@ public class enemy_move : MonoBehaviour
         GameObject pl = GameObject.FindGameObjectWithTag("Player");
 		PlayerMove = pl.GetComponent<PlayerMove>();
 
-        GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
-        testItem_Drop = tesit.GetComponent<testItem_drop>();
+        GameObject itm = GameObject.FindGameObjectWithTag("Testitem");
+        ItemBase = itm.GetComponent<ItemBase>();
+
+        //GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
+        //testItem_Drop = tesit.GetComponent<testItem_drop>();
 
         player_Chase.chase_flg = false;
 
@@ -72,7 +77,7 @@ public class enemy_move : MonoBehaviour
 
         The_moment_our_eyes_meet = true;
 
-        item_drop = false;
+        //item_drop = false;
     }
 
     // Update is called once per frame
@@ -168,11 +173,14 @@ public class enemy_move : MonoBehaviour
         */
     }
 
+    //プレイヤーもしくはアイテムが出す音を感知したらその音をターゲットにする
     public void OnTriggerStay(Collider collider)
     {
+        //感知範囲内のオブジェクトを判別
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
-            if (PlayerMove.IsPlayerSound() || item_drop)
+            //プレイヤー、もしくは落としたアイテムの音を検知
+            if (PlayerMove.IsPlayerSound() || ItemBase.IsItemOnGround)
             {
                 if (The_moment_our_eyes_meet)
                 {
