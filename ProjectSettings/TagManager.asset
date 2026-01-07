@@ -31,6 +31,7 @@ TagManager:
   - Exit_1
   - Exit_2
   - point
+  - door
   layers:
   - Default
   - TransparentFX

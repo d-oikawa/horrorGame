@@ -38,6 +38,12 @@ public class PlayerMove:MonoBehaviour
     private bool Ishide=false;
     Vector3 woldPos;
 
+    //チェックポイント取得処理
+    //string nawtag;
+    public int pointNum = 0;    //なくていいかも
+    bool cleatag = false;       //前のミッションクリアしたか否か
+
+
     void Start()
     {
 		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -167,22 +173,6 @@ public class PlayerMove:MonoBehaviour
         }
     }
 
-    //private void Haid()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        //Eを押したら
-    //        if (hitTag == "warp")
-    //        {
-    //            warp(hitTag);
-    //        }
-    //        else if (Ishide == true && hitTag == "door")
-    //        {
-    //            Endwarp(woldPos);
-    //        }
-    //    }
-    //}
-
     //カメラの動き
     void MoveCamera()
     {
@@ -227,6 +217,24 @@ public class PlayerMove:MonoBehaviour
         transform.position = Ppos;
         characterController.enabled = true;
         Debug.Log("WarpEnd");
+    }
+
+    //チェックポイントの処理
+    public void Pointyecu(string tag)
+    {
+        //もし前のミッションクリアしていたら
+        if(cleatag==true && tag=="point")
+        {
+            ++pointNum;
+            cleatag = false;
+            Debug.Log("=1");
+        }
+        else if(cleatag == true && tag == "point1")
+        {
+			++pointNum;
+			cleatag = false;
+			Debug.Log("=2");
+		}
     }
 }
 
