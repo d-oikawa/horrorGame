@@ -40,7 +40,7 @@ public class PlayerMove:MonoBehaviour
     public bool IsPlayerSound() {  return PlayerSound; }
 
     //隠れているかいないか
-    private bool Ishide=false;
+    public bool Ishide=false;
     Vector3 woldPos;
 
     void Start()
