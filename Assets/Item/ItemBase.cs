@@ -50,8 +50,8 @@ public class ItemBase : MonoBehaviour
                 transform.rotation = player.transform.rotation;
 
                 IsItemOnGround = false;
-            }
-        }
+			}
+		}
 
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
@@ -61,9 +61,10 @@ public class ItemBase : MonoBehaviour
             if (ItemRb != null)
             {
                 // 力を加える
-                ItemRb.AddForce(transform.forward * 1000f, ForceMode.Acceleration);
-                // 投擲したフラグをfalseにする
-                IsPlayerThrowItem = false;
+                ItemRb.AddForce(transform.forward * 800, ForceMode.Acceleration);
+				ItemRb.AddForce(transform.up * 800, ForceMode.Acceleration);
+				// 投擲したフラグをfalseにする
+				IsPlayerThrowItem = false;
             }
         }
 
@@ -126,8 +127,10 @@ public class ItemBase : MonoBehaviour
 
             // アイテムが地面に落ちていないことを設定
             IsItemOnGround = false;
-        }
-    }
+
+			ItemRb.linearVelocity = Vector3.zero;
+		}
+	}
 
     // プレイヤーがアイテムを投擲したときの処理
     public virtual void ThrowItem()
@@ -149,12 +152,12 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Wall")
+        if(collision.gameObject.tag=="Wall" && IsPlayerThrowItem)
         { // enemyに判定を渡してこのオブジェクトの役目を終える
             IsItemOnGround = true;
-            //m_IsActive = false;
+            m_IsActive = false;
 
-            ItemRb.linearVelocity = Vector3.zero;
+            //ItemRb.linearVelocity = Vector3.zero;
             Debug.Log("ｷｴﾀﾖ!");
         }
     }

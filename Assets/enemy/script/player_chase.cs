@@ -8,7 +8,7 @@ public class player_chase : MonoBehaviour
 {
     enemy_move en;
 
-    //追跡するオブジェクト野座標
+    //追跡するオブジェクトの座標
     [SerializeField]
     public Vector3 target;
 
@@ -56,7 +56,8 @@ public class player_chase : MonoBehaviour
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
-        agent.speed = 20.0f;
+        //追跡するすぴーど
+        agent.speed = 10.0f;
 
         stoping_time = 0f;
 
