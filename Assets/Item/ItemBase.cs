@@ -43,6 +43,8 @@ public class ItemBase : MonoBehaviour
             m_Position = player.transform.position;
             if (player != null)
             {
+                ItemRb = GetComponent<Rigidbody>();
+
                 // アイテムの位置をプレイヤーの位置に設定
                 transform.position = m_Position + transform.forward * 2f;
 
@@ -50,8 +52,9 @@ public class ItemBase : MonoBehaviour
                 transform.rotation = player.transform.rotation;
 
                 IsItemOnGround = false;
-			}
-		}
+                ItemRb.linearVelocity = Vector3.zero;
+            }
+        }
 
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
@@ -61,13 +64,12 @@ public class ItemBase : MonoBehaviour
             if (ItemRb != null)
             {
                 // 力を加える
-                ItemRb.AddForce(transform.forward * 800, ForceMode.Acceleration);
-				ItemRb.AddForce(transform.up * 800, ForceMode.Acceleration);
+                ItemRb.AddForce(transform.forward * 400, ForceMode.Acceleration);
+				ItemRb.AddForce(transform.up * 100, ForceMode.Acceleration);
 				// 投擲したフラグをfalseにする
 				IsPlayerThrowItem = false;
             }
         }
-
         // アイテムが地面に落ちているかどうか
     }
     // アイテムの座標情報
@@ -127,8 +129,6 @@ public class ItemBase : MonoBehaviour
 
             // アイテムが地面に落ちていないことを設定
             IsItemOnGround = false;
-
-			ItemRb.linearVelocity = Vector3.zero;
 		}
 	}
 
@@ -152,7 +152,8 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Wall" && IsPlayerThrowItem)
+        /*
+        if(collision.gameObject.tag=="Wall")
         { // enemyに判定を渡してこのオブジェクトの役目を終える
             IsItemOnGround = true;
             m_IsActive = false;
@@ -160,5 +161,6 @@ public class ItemBase : MonoBehaviour
             //ItemRb.linearVelocity = Vector3.zero;
             Debug.Log("ｷｴﾀﾖ!");
         }
+        */
     }
 }
