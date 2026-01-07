@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Switch;
 using UnityEngine.UIElements;
 
 public class PlayerMove:MonoBehaviour
@@ -9,6 +10,10 @@ public class PlayerMove:MonoBehaviour
     //アイテムベースの変数
    public GameObject Itemobj;
    public ItemBase itembase;
+
+    //チェックポイントの変数
+    public CheckpointTag checkpointtag;
+    public GameObject checkpointtagobj;
 
     //キャラクタコントローラーを使う為の変数
     public CharacterController characterController;
@@ -38,16 +43,12 @@ public class PlayerMove:MonoBehaviour
     private bool Ishide=false;
     Vector3 woldPos;
 
-    //チェックポイント取得処理
-    //string nawtag;
-    public int pointNum = 0;    //なくていいかも
-    bool cleatag = false;       //前のミッションクリアしたか否か
-
-
     void Start()
     {
 		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 		//マウスカーソルを中央に固定して非表示
+
+		
 	}
 
     void Update()
@@ -135,8 +136,11 @@ public class PlayerMove:MonoBehaviour
                 //レイの感知する範囲
                 if (Physics.Raycast(ray, out hit, 3.0f))
                 {
+                    //違うスクリプトの変数を使えるように
+                    //アイテム
 					itembase = itembase.GetComponent<ItemBase>();
                     gameObject.GetComponent<ItemBase>();
+
 					//タグをstring型で管理
 					hitTag = hit.collider.gameObject.tag;
                     //そのタグごとの処理
@@ -154,13 +158,71 @@ public class PlayerMove:MonoBehaviour
                         {
                                 warp(hitTag);
                         }
-                         break;
+                        break;
                         case "door":
                         {
                                 Endwarp(woldPos);
                         }
-                         break;
-                    }
+                        break;
+
+                        //チェックポイント
+                        case "None":
+                        {
+								Pointyecu(hitTag);
+						}
+                        break;
+						case "Start":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+                        case "Day1_end":
+                        {
+								Pointyecu(hitTag);
+						}
+                        break;
+						case "Day2_Sturt":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Search_1":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Runaway":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Search_2":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Day2_end":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Day3_start":
+						{
+								Pointyecu(hitTag);
+							}
+						break;
+						case "Exit_1":
+						{
+								Pointyecu(hitTag);
+						}
+						break;
+						case "Exit_2":
+						{
+                                Pointyecu(hitTag);
+						}
+						break;
+
+					}
                 }
             }
             else
@@ -222,18 +284,100 @@ public class PlayerMove:MonoBehaviour
     //チェックポイントの処理
     public void Pointyecu(string tag)
     {
+		//チェックポイント
+		checkpointtag = checkpointtag.GetComponent<CheckpointTag>();
+		checkpointtagobj.GetComponent<CheckpointTag>();
+		int pointNum = 0;
         //もし前のミッションクリアしていたら
-        if(cleatag==true && tag=="point")
+        if(Ishide==false)
         {
-            ++pointNum;
-            cleatag = false;
-            Debug.Log("=1");
-        }
-        else if(cleatag == true && tag == "point1")
-        {
-			++pointNum;
-			cleatag = false;
-			Debug.Log("=2");
+            for(int i=0; i<10; i++)
+            {
+				if (tag == checkpointtag.chekepointTag[pointNum])
+                {
+                    ++pointNum;
+                    checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+                    Debug.Log(i);
+                }
+            }
+
+			//if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//             checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=1");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=2");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=3");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=4");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=5");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=6");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=7");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=8");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=9");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=10");
+			//}
+			//else if (tag == checkpointtag.chekepointTag[pointNum])
+			//{
+			//	++pointNum;
+			//	cleatag = false;
+			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
+			//	Debug.Log("=11");
+			//}
 		}
     }
 }
