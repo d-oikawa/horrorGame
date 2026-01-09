@@ -156,7 +156,7 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Wall" && desutoroizyunnbi)
+        if((collision.gameObject.tag=="Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
         { // enemyに判定を渡してこのオブジェクトの役目を終える
             IsItemOnGround = true;           
             m_IsActive = false;

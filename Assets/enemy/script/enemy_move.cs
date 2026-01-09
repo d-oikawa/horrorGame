@@ -182,7 +182,7 @@ public class enemy_move : MonoBehaviour
     public void OnTriggerStay(Collider collider)
     {
         //感知範囲内のオブジェクトを判別
-        if (collider.tag == "Testitem" || ItemBase.IsItemOnGround)
+        if (collider.tag == "Player" || collider.tag == "Testitem")
         {
             //プレイヤー、もしくは落としたアイテムの音を検知
             if (PlayerMove.IsPlayerSound())
@@ -206,7 +206,7 @@ public class enemy_move : MonoBehaviour
 				Debug.Log("追跡" + player_Chase.chase_flg);
 			}
 
-            else if (ItemBase.IsItemOnGround)
+            if (ItemBase.IsItemOnGround)
             {
                 if (The_moment_our_eyes_meet)
                 {
