@@ -57,7 +57,7 @@ public class player_chase : MonoBehaviour
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
         //’ÇÕ‚·‚é‚·‚Ò[‚Ç
-        agent.speed = 10.0f;
+        agent.speed = 6.0f;
 
         stoping_time = 0f;
 
@@ -85,7 +85,8 @@ public class player_chase : MonoBehaviour
         if (!spline_system2.spline_flg  && !chase_flg)
         {
             agent.destination = enemy_Move.start_pos;
-            Debug.Log("Œ³‚ÌêŠ‚ÉˆÚ“®’†");
+            Debug.Log("Œ³‚ÌêŠ‚ÉˆÚ“®’†" + enemy_Move.start_pos);
+
 
             //var a = this_transform;
             //var b = enemy_Move.start_pos;

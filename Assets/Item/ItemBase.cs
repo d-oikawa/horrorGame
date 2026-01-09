@@ -30,7 +30,7 @@ public class ItemBase : MonoBehaviour
 
     // Update is called once per frame
     public virtual void Update()
-    {
+    {       
         // アイテムのアクティブ情報を更新
         GameObject.SetActive(m_IsActive);
         ItemRenderer.enabled = m_IsActive;
@@ -64,7 +64,7 @@ public class ItemBase : MonoBehaviour
             if (ItemRb != null)
             {
                 // 力を加える
-                ItemRb.AddForce(transform.forward * 400, ForceMode.Acceleration);
+                ItemRb.AddForce(transform.forward * 600, ForceMode.Acceleration);
 				ItemRb.AddForce(transform.up * 100, ForceMode.Acceleration);
 				// 投擲したフラグをfalseにする
 				IsPlayerThrowItem = false;
@@ -92,6 +92,8 @@ public class ItemBase : MonoBehaviour
 
     // プレイヤーがアイテムを投擲したか
     public bool IsPlayerThrowItem = false;
+
+    public bool desutoroizyunnbi = false;
 
     // アイテムの位置をプレイヤーの位置に設定
     public void SetItemPosition(Vector3 _Position) { m_Position = _Position; }
@@ -145,6 +147,8 @@ public class ItemBase : MonoBehaviour
 
         IsPlayerThrowItem = true;
 
+        desutoroizyunnbi = true;
+
         Debug.Log("ﾅｹﾞﾀﾖ!");
 
     }
@@ -152,15 +156,13 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionEnter(Collision collision)
     {
-        /*
-        if(collision.gameObject.tag=="Wall")
+        if(collision.gameObject.tag=="Wall" && desutoroizyunnbi)
         { // enemyに判定を渡してこのオブジェクトの役目を終える
-            IsItemOnGround = true;
-            m_IsActive = false;
+            IsItemOnGround = true;           
+            m_IsActive = false;            
 
             //ItemRb.linearVelocity = Vector3.zero;
             Debug.Log("ｷｴﾀﾖ!");
         }
-        */
     }
 }

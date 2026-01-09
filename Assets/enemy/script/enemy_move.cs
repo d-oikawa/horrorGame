@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemy_move : MonoBehaviour
@@ -45,6 +46,10 @@ public class enemy_move : MonoBehaviour
 
     public ItemBase ItemBase;
 
+    public GameObject pl;
+
+    public GameObject itm;
+
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
 
@@ -61,10 +66,10 @@ public class enemy_move : MonoBehaviour
 
         player_Chase = GetComponent<player_chase>();
 
-        GameObject pl = GameObject.FindGameObjectWithTag("Player");
-		PlayerMove = pl.GetComponent<PlayerMove>();
+        pl = GameObject.FindGameObjectWithTag("Player");
+        PlayerMove = pl.GetComponent<PlayerMove>();
 
-        GameObject itm = GameObject.FindGameObjectWithTag("Testitem");
+        itm = GameObject.FindGameObjectWithTag("Testitem");
         ItemBase = itm.GetComponent<ItemBase>();
 
         //GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
@@ -75,7 +80,7 @@ public class enemy_move : MonoBehaviour
         //フラグ初期化
         //searchw = false;
 
-        The_moment_our_eyes_meet = true;
+        The_moment_our_eyes_meet = false;
 
         //item_drop = false;
     }
@@ -180,7 +185,7 @@ public class enemy_move : MonoBehaviour
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
             //プレイヤー、もしくは落としたアイテムの音を検知
-            if (PlayerMove.IsPlayerSound() || ItemBase.IsItemOnGround)
+            if (PlayerMove.IsPlayerSound())
             {
                 if (The_moment_our_eyes_meet)
                 {
@@ -188,24 +193,10 @@ public class enemy_move : MonoBehaviour
                     start_pos = transform.position;
                     The_moment_our_eyes_meet = false;
                 }
-
-                /*
-				//スプライン上を移動していないとき
-				if (!spline_System.spline_flg)
-				{
-					//spline上を移動するよう
-					spline_System.spline_flg = true;
-					//追跡をやめる
-					player_Chase.chase_flg = false;
-				}
-                */
-                //移動しているとき
-                //else
-                //{
-                //音源の位置保存
+               
                 if (collider != null)
-                {
-                    player_Chase.target = collider.transform.position;
+                {                    
+                    player_Chase.target = pl.transform.position;
                 }
 					//スプライン上の移動をやめる
 					spline_System.spline_flg = false;
@@ -214,6 +205,27 @@ public class enemy_move : MonoBehaviour
 				//}
 				Debug.Log("追跡" + player_Chase.chase_flg);
 			}
+
+            else if (ItemBase.IsItemOnGround)
+            {
+                if (The_moment_our_eyes_meet)
+                {
+                    //移動前のポジションを保存
+                    start_pos = transform.position;
+                    The_moment_our_eyes_meet = false;
+                }
+
+                if (collider != null)
+                {
+                    player_Chase.target = itm.transform.position;
+                }
+                //スプライン上の移動をやめる
+                spline_System.spline_flg = false;
+                //追跡を開始
+                player_Chase.chase_flg = true;
+                //}
+                Debug.Log("追跡" + player_Chase.chase_flg);               
+            }
         }
     }   
 
