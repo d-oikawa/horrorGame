@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.UIElements;
 
@@ -43,13 +44,22 @@ public class PlayerMove:MonoBehaviour
     public bool Ishide=false;
     Vector3 woldPos;
 
+    //サウンドで使う変数
+    public AudioSource audioSource;
+    public AudioClip sound1;
+    public AudioClip sound2;
+    float timer1 = 0.0f;
+    float timer2 = 0.0f;
+
     void Start()
     {
 		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-		//マウスカーソルを中央に固定して非表示
+        //マウスカーソルを中央に固定して非表示
 
-		
-	}
+        //Componentを取得(サウンド)
+        audioSource = GetComponent<AudioSource>();
+
+    }
 
     void Update()
     {
@@ -117,7 +127,7 @@ public class PlayerMove:MonoBehaviour
 		
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
-       // Haid();
+        onSaund();
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -379,6 +389,35 @@ public class PlayerMove:MonoBehaviour
 			//	Debug.Log("=11");
 			//}
 		}
+    }
+
+    //SEを鳴らす処理(歩く、走る)
+    void onSaund()
+    {
+
+        //歩く時
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                timer2 += Time.deltaTime;
+                if (timer2 > 1f)
+                {
+                    audioSource.PlayOneShot(sound1);
+                    timer2 = 0.0f;
+                }
+
+            }
+            else
+            { 
+                timer1 += Time.deltaTime;
+                if(timer1>1f)
+                {
+                    audioSource.PlayOneShot(sound1);
+                    timer1 = 0.0f;
+                }
+            }
+        }
     }
 }
 
