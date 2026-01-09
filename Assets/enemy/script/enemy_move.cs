@@ -182,7 +182,7 @@ public class enemy_move : MonoBehaviour
     public void OnTriggerStay(Collider collider)
     {
         //感知範囲内のオブジェクトを判別
-        if (collider.tag == "Testitem" || collider.tag == "Player")
+        if (collider.tag == "Testitem" || ItemBase.IsItemOnGround)
         {
             //プレイヤー、もしくは落としたアイテムの音を検知
             if (PlayerMove.IsPlayerSound())

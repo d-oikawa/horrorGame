@@ -159,7 +159,7 @@ public class ItemBase : MonoBehaviour
         if(collision.gameObject.tag=="Wall" && desutoroizyunnbi)
         { // enemyに判定を渡してこのオブジェクトの役目を終える
             IsItemOnGround = true;           
-            m_IsActive = false;            
+            m_IsActive = false;
 
             //ItemRb.linearVelocity = Vector3.zero;
             Debug.Log("ｷｴﾀﾖ!");

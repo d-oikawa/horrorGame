@@ -32,6 +32,8 @@ public class player_chase : MonoBehaviour
 
     public Vector3 this_transform;
 
+    public ItemBase item;
+
 	//’ÇÕ’†‚¾‚ª’â~‚µ‚Ä‚¢‚éflag
 	//public bool chase_stop;
 
@@ -55,6 +57,9 @@ public class player_chase : MonoBehaviour
         enemy_Move = GetComponent<enemy_move>();
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
+
+        GameObject itm = GameObject.FindGameObjectWithTag("Testitem");
+        item = itm.GetComponent<ItemBase>();
 
         //’ÇÕ‚·‚é‚·‚Ò[‚Ç
         agent.speed = 6.0f;
@@ -109,15 +114,17 @@ public class player_chase : MonoBehaviour
         {
             agent.isStopped = false;
             if( Areerror(this_transform, target, 1f))
-            {
+            {                
                 stoping_time += 1f * Time.deltaTime;
                 Debug.Log("’â~’†");
+                
             }
             //chase_stop = true;
             
            
             if (stoping_time >= stop_time)
             {
+                item.IsItemOnGround = false;
                 stoping_time = 0f;
                 chase_flg = false;                
                 //chase_stop = false;
