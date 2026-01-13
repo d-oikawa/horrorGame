@@ -149,7 +149,7 @@ public class ItemBase : MonoBehaviour
 
         desutoroizyunnbi = true;
 
-        Debug.Log("ﾅｹﾞﾀﾖ!");
+        //Debug.Log("ﾅｹﾞﾀﾖ!");
 
     }
 
@@ -158,11 +158,10 @@ public class ItemBase : MonoBehaviour
     {
         if((collision.gameObject.tag=="Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
         { // enemyに判定を渡してこのオブジェクトの役目を終える
-            IsItemOnGround = true;           
+            IsItemOnGround = true;
             m_IsActive = false;
-
             //ItemRb.linearVelocity = Vector3.zero;
-            Debug.Log("ｷｴﾀﾖ!");
+            //Debug.Log("ｷｴﾀﾖ!");
         }
     }
 }
