@@ -154,8 +154,8 @@ public class enemy_move : MonoBehaviour
         //音を聞いたら
         else
         {
-            //normal_move();           
-        }       
+            //normal_move();
+        }
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -211,19 +211,15 @@ public class enemy_move : MonoBehaviour
                 Debug.Log("追跡" + player_Chase.chase_flg);
             }
         }
-        /*
         if (collider.tag == "Testitem")
-        {
-            if (ItemBase.IsItemOnGround)
-            {
-                if (The_moment_our_eyes_meet)
-                {
+        {       
+            if (The_moment_our_eyes_meet || ItemBase.IsItemOnGround)
+            {                
                     Debug.Log("アイテム");
 
                     //移動前のポジションを保存
                     start_pos = transform.position;
                     The_moment_our_eyes_meet = false;
-                }
 
                 if (collider != null)
                 {
@@ -237,8 +233,7 @@ public class enemy_move : MonoBehaviour
                 Debug.Log("追跡" + player_Chase.chase_flg);
             }
         }
-        */
-    }   
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -284,5 +279,4 @@ public class enemy_move : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
-
 }
