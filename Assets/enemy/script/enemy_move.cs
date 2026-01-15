@@ -154,13 +154,18 @@ public class enemy_move : MonoBehaviour
         //音を聞いたら
         else
         {
-            //normal_move();           
-        }       
+            //normal_move();
+        }
     }
 
-    public void OnTriggerExit(Collider collider)
+    public void OnTriggerEnter(Collider collider)
     {
-        The_moment_our_eyes_meet = true;
+        if (collider.tag == "Player" || collider.tag == "Testitem")
+        {
+            The_moment_our_eyes_meet = true;
+
+            Debug.Log("目と目が合う");
+        }
         /*
         if (collider.tag == "Testitem" || collider.tag == "Player")
         {
@@ -182,7 +187,7 @@ public class enemy_move : MonoBehaviour
     public void OnTriggerStay(Collider collider)
     {
         //感知範囲内のオブジェクトを判別
-        if (collider.tag == "Player" || collider.tag == "Testitem")
+        if (collider.tag == "Player")
         {
             //プレイヤー、もしくは落としたアイテムの音を検知
             if (PlayerMove.IsPlayerSound())
@@ -193,27 +198,28 @@ public class enemy_move : MonoBehaviour
                     start_pos = transform.position;
                     The_moment_our_eyes_meet = false;
                 }
-               
+
                 if (collider != null)
-                {                    
+                {
                     player_Chase.target = pl.transform.position;
                 }
-					//スプライン上の移動をやめる
-					spline_System.spline_flg = false;
-					//追跡を開始
-					player_Chase.chase_flg = true;
-				//}
-				Debug.Log("追跡" + player_Chase.chase_flg);
-			}
+                //スプライン上の移動をやめる
+                spline_System.spline_flg = false;
+                //追跡を開始
+                player_Chase.chase_flg = true;
+                //}
+                Debug.Log("追跡" + player_Chase.chase_flg);
+            }
+        }
+        if (collider.tag == "Testitem")
+        {       
+            if (The_moment_our_eyes_meet || ItemBase.IsItemOnGround)
+            {                
+                    Debug.Log("アイテム");
 
-            if (ItemBase.IsItemOnGround)
-            {
-                if (The_moment_our_eyes_meet)
-                {
                     //移動前のポジションを保存
                     start_pos = transform.position;
                     The_moment_our_eyes_meet = false;
-                }
 
                 if (collider != null)
                 {
@@ -223,11 +229,11 @@ public class enemy_move : MonoBehaviour
                 spline_System.spline_flg = false;
                 //追跡を開始
                 player_Chase.chase_flg = true;
-                //}
-                Debug.Log("追跡" + player_Chase.chase_flg);               
+                //
+                Debug.Log("追跡" + player_Chase.chase_flg);
             }
         }
-    }   
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -273,5 +279,4 @@ public class enemy_move : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
-
 }
