@@ -189,6 +189,7 @@ public class PlayerMove:MonoBehaviour
                         case "Day1_end":
                         {
 								Pointyecu(hitTag);
+                                
 						}
                         break;
 						case "Day2_Sturt":
@@ -296,18 +297,18 @@ public class PlayerMove:MonoBehaviour
     {
 		//チェックポイント
 		checkpointtag = checkpointtag.GetComponent<CheckpointTag>();
-		checkpointtagobj.GetComponent<CheckpointTag>();
-		int pointNum = 0;
+        //checkpointtagobj.GetComponent<CheckpointTag>();
+        int pointNum = 1;
         //もし前のミッションクリアしていたら
-        if(Ishide==false)
+        if (Ishide==false)
         {
             for(int i=0; i<10; i++)
             {
-				if (tag == checkpointtag.chekepointTag[pointNum])
+				if (tag == checkpointtag.chekepointTag[i])
                 {
-                    ++pointNum;
-                    checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-                    Debug.Log(i);
+                    
+                    checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[i]);
+                    Debug.Log("チェックポイント通過"+pointNum);
                 }
             }
 
@@ -401,9 +402,9 @@ public class PlayerMove:MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 timer2 += Time.deltaTime;
-                if (timer2 > 1f)
+                if (timer2 > 1.2f)
                 {
-                    audioSource.PlayOneShot(sound1);
+                    audioSource.PlayOneShot(sound2);
                     timer2 = 0.0f;
                 }
 
@@ -411,7 +412,7 @@ public class PlayerMove:MonoBehaviour
             else
             { 
                 timer1 += Time.deltaTime;
-                if(timer1>1f)
+                if(timer1>1.5f)
                 {
                     audioSource.PlayOneShot(sound1);
                     timer1 = 0.0f;

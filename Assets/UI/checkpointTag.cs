@@ -40,14 +40,15 @@ public class CheckpointTag : MonoBehaviour
     void Start()
     {
         // 初期値を設定
-        currentCheckpointTag = chekepointTag[0];
-        nextCheckpointTag = chekepointTag[1];
+        currentCheckpointTag = chekepointTag[1];
+        nextCheckpointTag = chekepointTag[2];
     }
 
     void Update()
     {
+
         // チェックポイントタグの更新
-        if (fetchedCheckpointTag == nextCheckpointTag)
+        if (fetchedCheckpointTag == currentCheckpointTag)
         {
             currentCheckpointTag = nextCheckpointTag;
             // 次のチェックポイントタグを設定
