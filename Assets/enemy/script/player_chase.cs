@@ -62,11 +62,13 @@ public class player_chase : MonoBehaviour
         item = itm.GetComponent<ItemBase>();
 
         //’ÇÕ‚·‚é‚·‚Ò[‚Ç
-        agent.speed = 6.0f;
+        agent.speed = 7.0f;
 
         stoping_time = 0f;
 
         this_transform = this.transform.position;
+
+        chase_flg = false;
 
        // chase_stop = false;
     }
@@ -90,7 +92,7 @@ public class player_chase : MonoBehaviour
         if (!spline_system2.spline_flg  && !chase_flg)
         {
             agent.destination = enemy_Move.start_pos;
-            Debug.Log("Œ³‚ÌêŠ‚ÉˆÚ“®’†" + enemy_Move.start_pos);
+            //Debug.Log("Œ³‚ÌêŠ‚ÉˆÚ“®’†" + enemy_Move.start_pos);
 
 
             //var a = this_transform;
@@ -106,6 +108,7 @@ public class player_chase : MonoBehaviour
 				//agent‚ğE‚·
 				//agent.enabled = false;
 			}
+
 
 		}
 
@@ -129,7 +132,7 @@ public class player_chase : MonoBehaviour
                 chase_flg = false;                
                 //chase_stop = false;
             }
-            Debug.Log(target);
+            //Debug.Log(target);
 
         }
 

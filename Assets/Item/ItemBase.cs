@@ -43,10 +43,12 @@ public class ItemBase : MonoBehaviour
             m_Position = player.transform.position;
             if (player != null)
             {
+                
+
                 ItemRb = GetComponent<Rigidbody>();
 
                 // アイテムの位置をプレイヤーの位置に設定
-                transform.position = m_Position + transform.forward * 2f;
+                transform.position = m_Position + transform.forward * 2f + transform.right * -1f + transform.up * -0.8f;
 
                 //回転も追従させる
                 transform.rotation = player.transform.rotation;
@@ -59,13 +61,15 @@ public class ItemBase : MonoBehaviour
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
         {
+            //transform.position = transform.right / -1.2f + transform.up / -1f; ;
             // Rigidbodyを取得
             ItemRb = GetComponent<Rigidbody>();
             if (ItemRb != null)
-            {
+            {               
+
                 // 力を加える
                 ItemRb.AddForce(transform.forward * 600, ForceMode.Acceleration);
-				ItemRb.AddForce(transform.up * 100, ForceMode.Acceleration);
+				ItemRb.AddForce(transform.up * 150, ForceMode.Acceleration);
 				// 投擲したフラグをfalseにする
 				IsPlayerThrowItem = false;
             }

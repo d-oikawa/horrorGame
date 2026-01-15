@@ -75,7 +75,7 @@ public class enemy_move : MonoBehaviour
         //GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
         //testItem_Drop = tesit.GetComponent<testItem_drop>();
 
-        player_Chase.chase_flg = false;
+        //player_Chase.chase_flg = false;
 
         //フラグ初期化
         //searchw = false;
@@ -160,7 +160,7 @@ public class enemy_move : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player" || collider.tag == "Testitem")
+        if ((collider.tag == "Player" || collider.tag == "Testitem"))
         {
             The_moment_our_eyes_meet = true;
 
@@ -192,21 +192,22 @@ public class enemy_move : MonoBehaviour
             //プレイヤー、もしくは落としたアイテムの音を検知
             if (PlayerMove.IsPlayerSound())
             {
-                if (The_moment_our_eyes_meet)
+                if (!player_Chase.chase_flg)
                 {
                     //移動前のポジションを保存
                     start_pos = transform.position;
-                    The_moment_our_eyes_meet = false;
+                    //The_moment_our_eyes_meet = false;
                 }
 
                 if (collider != null)
                 {
                     player_Chase.target = pl.transform.position;
                 }
-                //スプライン上の移動をやめる
-                spline_System.spline_flg = false;
                 //追跡を開始
                 player_Chase.chase_flg = true;
+                //スプライン上の移動をやめる
+                spline_System.spline_flg = false;
+
                 //}
                 Debug.Log("追跡" + player_Chase.chase_flg);
             }
@@ -217,18 +218,23 @@ public class enemy_move : MonoBehaviour
             {                
                     Debug.Log("アイテム");
 
+                if (!player_Chase.chase_flg)
+                {
                     //移動前のポジションを保存
                     start_pos = transform.position;
-                    The_moment_our_eyes_meet = false;
+                    //The_moment_our_eyes_meet = false;
+                }
 
                 if (collider != null)
                 {
-                    player_Chase.target = itm.transform.position;
+                    player_Chase.target = collider.transform.position;
                 }
-                //スプライン上の移動をやめる
-                spline_System.spline_flg = false;
+              
                 //追跡を開始
                 player_Chase.chase_flg = true;
+
+                //スプライン上の移動をやめる
+                spline_System.spline_flg = false;
                 //
                 Debug.Log("追跡" + player_Chase.chase_flg);
             }

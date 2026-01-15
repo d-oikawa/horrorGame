@@ -18,6 +18,7 @@ public class spline_system : MonoBehaviour
     private float splines_Percentage;
 
     //スプラインに沿って移動しているか
+    [SerializeField]
     public bool spline_flg;
 
     //アタッチされているスプラインのタグ
