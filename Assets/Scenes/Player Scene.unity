@@ -524,6 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 711942323}
   - component: {fileID: 711942322}
+  - component: {fileID: 711942324}
   m_Layer: 0
   m_Name: start
   m_TagString: Start
@@ -567,6 +568,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 488239182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &711942324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711942320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269bf070a2ce1584eaf9a361345a6a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointtag_1: {fileID: 763002658}
 --- !u!1 &763002648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 798800002193359300, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}

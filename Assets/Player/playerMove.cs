@@ -192,11 +192,13 @@ public class PlayerMove:MonoBehaviour
                                 
 						}
                         break;
+                        //逃げ道探し
 						case "Day2_Sturt":
 						{
 								Pointyecu(hitTag);
 						}
 						break;
+                         //地図探し
 						case "Search_1":
 						{
 								Pointyecu(hitTag);
@@ -298,7 +300,7 @@ public class PlayerMove:MonoBehaviour
 		//チェックポイント
 		checkpointtag = checkpointtag.GetComponent<CheckpointTag>();
         //checkpointtagobj.GetComponent<CheckpointTag>();
-        int pointNum = 1;
+       
         //もし前のミッションクリアしていたら
         if (Ishide==false)
         {
@@ -308,7 +310,7 @@ public class PlayerMove:MonoBehaviour
                 {
                     
                     checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[i]);
-                    Debug.Log("チェックポイント通過"+pointNum);
+                    Debug.Log("チェックポイント通過"+i);
                 }
             }
 
@@ -396,9 +398,10 @@ public class PlayerMove:MonoBehaviour
     void onSaund()
     {
 
-        //歩く時
+        
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
+            //走る時の
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 timer2 += Time.deltaTime;
@@ -409,6 +412,12 @@ public class PlayerMove:MonoBehaviour
                 }
 
             }
+            //ゆっくり歩く時の
+            else if(Input.GetKey(KeyCode.LeftControl))
+            {
+                audioSource.mute = false;
+            }
+            //歩く時の
             else
             { 
                 timer1 += Time.deltaTime;
