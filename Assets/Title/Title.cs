@@ -8,6 +8,6 @@ public class Title : MonoBehaviour
 {
     public void onClickStartButton()
     {
-        SceneManager.LoadScene("main Scene");//次に行きたいシーン名を書く
+        SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
     }
 }
