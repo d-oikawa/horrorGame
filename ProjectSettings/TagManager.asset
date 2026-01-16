@@ -32,6 +32,7 @@ TagManager:
   - Exit_2
   - point
   - door
+  - Sound_Event
   layers:
   - Default
   - TransparentFX

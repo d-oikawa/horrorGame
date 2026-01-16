@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class debag_va : MonoBehaviour
@@ -6,18 +7,28 @@ public class debag_va : MonoBehaviour
     private Vector3 offset;
 
     private Quaternion initialRot;
+    
 
     void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("enemy");
-        offset = transform.position - playerObj.transform.position;
-
-        initialRot = transform.rotation;
+        if (playerObj != null)
+        {
+            offset = transform.position - playerObj.transform.position;
+        }
+        else
+        {
+            return;
+        }
+            initialRot = transform.rotation;
     }
 
     void LateUpdate()
     {
-        transform.position = playerObj.transform.position + offset;
-        transform.rotation = initialRot;
+        if (playerObj != null)
+        {
+            transform.position = playerObj.transform.position + offset;
+            transform.rotation = initialRot;
+        }
     }
 }

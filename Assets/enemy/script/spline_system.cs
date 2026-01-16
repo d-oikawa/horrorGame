@@ -46,8 +46,8 @@ public class spline_system : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update()    {
+                
         //splineのタグを取得
         spline_tag = splineContainer.gameObject.tag;
 
@@ -238,7 +238,6 @@ public class spline_system : MonoBehaviour
         //(現在のスプラインと変更後スプラインが一致しない場合処理)
         spline_move();
 
-        /*
         //スプラインを変更
         if (Input.GetKeyDown(KeyCode.Alpha1) && spline_tag != "Spline_A")
         {
@@ -289,6 +288,5 @@ public class spline_system : MonoBehaviour
         {
             spline_change("Spline_J");
         }
-        */
     }
 }

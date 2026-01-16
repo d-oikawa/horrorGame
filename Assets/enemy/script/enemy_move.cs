@@ -44,11 +44,17 @@ public class enemy_move : MonoBehaviour
     //プレイヤーを発見した瞬間好きだと気付いた
     public bool The_moment_our_eyes_meet;
 
+    //ItemBase.cs
     public ItemBase ItemBase;
 
     public GameObject pl;
 
     public GameObject itm;
+
+    //sound_Evect.cs
+    public Event eVent;
+
+    public GameObject se;
 
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
@@ -83,6 +89,9 @@ public class enemy_move : MonoBehaviour
         The_moment_our_eyes_meet = false;
 
         //item_drop = false;
+
+        se = GameObject.FindGameObjectWithTag("Sound_Event");
+        eVent = se.GetComponent<Event>();
     }
 
     // Update is called once per frame
@@ -97,6 +106,7 @@ public class enemy_move : MonoBehaviour
 
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
+
              
         /*
         //デバッグFキー入力
@@ -214,7 +224,7 @@ public class enemy_move : MonoBehaviour
         }
         if (collider.tag == "Testitem")
         {       
-            if (The_moment_our_eyes_meet || ItemBase.IsItemOnGround)
+            if (The_moment_our_eyes_meet && eVent.enemy_sound)
             {                
                     Debug.Log("アイテム");
 
