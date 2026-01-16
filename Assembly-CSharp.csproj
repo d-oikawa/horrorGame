@@ -66,6 +66,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Item\ItemBase.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Player\Day1_end_Day2_end.cs" />
     <Compile Include="Assets\Title\Title.cs" />
     <Compile Include="Assets\sound_pool.cs" />
     <Compile Include="Assets\enemy\se.cs" />

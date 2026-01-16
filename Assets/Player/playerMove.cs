@@ -193,7 +193,7 @@ public class PlayerMove:MonoBehaviour
 						}
                         break;
                         //逃げ道探し
-						case "Day2_Sturt":
+						case "Day2_Start":
 						{
 								Pointyecu(hitTag);
 						}
