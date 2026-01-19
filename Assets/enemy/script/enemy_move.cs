@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class enemy_move : MonoBehaviour
 {
+    //サブジェクト「sound_Event」から信号を受け取る
+    [SerializeField]
+    private Event Sound_Event;
+
     //移動する速度
     [SerializeField]
     public float speed;
@@ -92,6 +96,11 @@ public class enemy_move : MonoBehaviour
 
         se = GameObject.FindGameObjectWithTag("Sound_Event");
         eVent = se.GetComponent<Event>();
+
+        if (Sound_Event != null)
+        {
+            Sound_Event.TheSound += test;
+        }
     }
 
     // Update is called once per frame
@@ -294,5 +303,10 @@ public class enemy_move : MonoBehaviour
     public void TransitionGameOverScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+    }
+
+    private void test()
+    {
+        Debug.Log("もずく");
     }
 }

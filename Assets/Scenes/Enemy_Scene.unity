@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fa100d528f34f4590cd3fd6c2d2e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sound_Event: {fileID: 1394846905}
   speed: 0
   localAngle: {x: 0, y: 0, z: 0}
   rayDistance: 0
@@ -2440,6 +2441,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -9028115708954250909, guid: 1f8919cfa30a6d64fa25cd27fa02efee, type: 3}
+--- !u!114 &1394846905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5676032888418467519, guid: 0899ca206cd3ce8449ac39846842349c, type: 3}
+  m_PrefabInstance: {fileID: 3920690286301453738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e7a735a793160458369a912e44af61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1434002946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,6 +2764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fa100d528f34f4590cd3fd6c2d2e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sound_Event: {fileID: 0}
   speed: 0
   localAngle: {x: 0, y: 0, z: 0}
   rayDistance: 0
