@@ -29,6 +29,7 @@ public class Event : MonoBehaviour
         if(iitem.IsItemOnGround)
         {
             enemy_sound = true;
+            Debug.Log("‚«‚å‚¨‚¨‚¨");
         }
         TheSound?.Invoke();
     }

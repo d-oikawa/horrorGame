@@ -60,6 +60,17 @@ public class enemy_move : MonoBehaviour
 
     public GameObject se;
 
+    //つうじょう時鳴らす音
+    [SerializeField]
+    public AudioClip sound1;
+
+    //追跡時鳴らす音
+    [SerializeField]
+    public AudioClip sound2;
+
+
+    AudioSource AudioSource;
+
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
 
@@ -101,12 +112,13 @@ public class enemy_move : MonoBehaviour
         {
             Sound_Event.TheSound += test;
         }
+
+        AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         //エネミーの中心位置からレイを飛ばす
         origin = transform.position;
 
@@ -115,6 +127,7 @@ public class enemy_move : MonoBehaviour
 
         //レイを描画(デバッグ)
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
+
 
              
         /*
@@ -168,13 +181,24 @@ public class enemy_move : MonoBehaviour
         //通常時
         if (spline_System.spline_flg)
         {
-            return;
+            //return;
         }
         //音を聞いたら
         else
         {
             //normal_move();
         }
+
+        if (!player_Chase.chase_flg && !AudioSource.isPlaying)
+        {
+            AudioSource.PlayOneShot(sound1);
+        }
+
+        if (!player_Chase.stop && player_Chase.chase_flg && !AudioSource.isPlaying)
+        {
+            AudioSource.PlayOneShot(sound2);
+        }
+        Debug.Log(eVent.enemy_sound);
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -233,7 +257,7 @@ public class enemy_move : MonoBehaviour
         }
         if (collider.tag == "Testitem")
         {       
-            if (The_moment_our_eyes_meet && eVent.enemy_sound)
+            if (The_moment_our_eyes_meet)
             {                
                     Debug.Log("アイテム");
 

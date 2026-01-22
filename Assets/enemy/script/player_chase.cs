@@ -34,6 +34,8 @@ public class player_chase : MonoBehaviour
 
     public ItemBase item;
 
+    public bool stop;
+
 	//’ÇÕ’†‚¾‚ª’âŽ~‚µ‚Ä‚¢‚éflag
 	//public bool chase_stop;
 
@@ -69,6 +71,8 @@ public class player_chase : MonoBehaviour
         this_transform = this.transform.position;
 
         chase_flg = false;
+
+        stop = false;
 
        // chase_stop = false;
     }
@@ -120,13 +124,14 @@ public class player_chase : MonoBehaviour
             {                
                 stoping_time += 1f * Time.deltaTime;
                 Debug.Log("’âŽ~’†");
-                
+                stop = true;
             }
             //chase_stop = true;
             
            
             if (stoping_time >= stop_time)
             {
+                stop = false;
                 item.IsItemOnGround = false;
                 stoping_time = 0f;
                 chase_flg = false;                

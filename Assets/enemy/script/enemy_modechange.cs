@@ -26,7 +26,6 @@ public class enemy_modechange: MonoBehaviour
         {
             CKT.fetchedCheckpointTag = "Runaway";
         }
-        Debug.Log("‚Ì‚È‚©");
 
         if (CKT.fetchedCheckpointTag == "Runaway")
         {
