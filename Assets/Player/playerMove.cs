@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.UIElements;
@@ -51,6 +52,13 @@ public class PlayerMove:MonoBehaviour
     float timer1 = 0.0f;
     float timer2 = 0.0f;
 
+    //マップを開く時に使う変数
+    public GameObject map;
+    public int count;
+    public bool IsLook;
+    public RectTransform Mapobj;
+    private float speed = 100.0f;
+
     void Start()
     {
 		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -58,6 +66,9 @@ public class PlayerMove:MonoBehaviour
 
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
+
+        map.SetActive(false);
+
 
     }
 
@@ -127,7 +138,8 @@ public class PlayerMove:MonoBehaviour
 		
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
-        onSaund();
+        onSaund();      //音の処理
+        LookMap();
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -427,6 +439,28 @@ public class PlayerMove:MonoBehaviour
                     timer1 = 0.0f;
                 }
             }
+        }
+    }
+
+    void LookMap()
+    {
+
+      Mapobj = GetComponent<RectTransform>();
+
+        if (Input.GetKeyDown(KeyCode.M) && count!=1)
+        {
+            map.SetActive(IsLook);
+            count++;
+            Debug.Log("M押されたよ");
+            characterController.enabled = true;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.M) && count == 1)
+        {
+            map.SetActive(!IsLook);
+            count = 0;
+            Debug.Log("M押されたよ2");
+            characterController.enabled = false;
         }
     }
 }
