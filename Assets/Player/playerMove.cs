@@ -68,8 +68,6 @@ public class PlayerMove:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         map.SetActive(false);
-
-
     }
 
     void Update()
@@ -200,8 +198,7 @@ public class PlayerMove:MonoBehaviour
 						break;
                         case "Day1_end":
                         {
-								Pointyecu(hitTag);
-                                
+								Pointyecu(hitTag);                                
 						}
                         break;
                         //逃げ道探し
@@ -449,7 +446,7 @@ public class PlayerMove:MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M) && count!=1)
         {
-            map.SetActive(IsLook);
+            map.SetActive(!IsLook);
             count++;
             Debug.Log("M押されたよ");
             characterController.enabled = true;
@@ -457,7 +454,7 @@ public class PlayerMove:MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.M) && count == 1)
         {
-            map.SetActive(!IsLook);
+            map.SetActive(IsLook);
             count = 0;
             Debug.Log("M押されたよ2");
             characterController.enabled = false;

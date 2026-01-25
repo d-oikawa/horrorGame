@@ -6,7 +6,7 @@ public class CheckpointTag : MonoBehaviour
     public string[] chekepointTag =
         {
         "None",
-        "Start",
+        //"Start",
         "Day1_end",
         "Day2_Start",
         "Search_1",
@@ -40,8 +40,8 @@ public class CheckpointTag : MonoBehaviour
     void Start()
     {
         // ‰Šú’l‚ğİ’è
-        currentCheckpointTag = chekepointTag[1];
-        nextCheckpointTag = chekepointTag[2];
+        currentCheckpointTag = chekepointTag[2];
+        nextCheckpointTag = chekepointTag[3];
     }
 
     void Update()

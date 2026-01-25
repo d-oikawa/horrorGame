@@ -33,6 +33,7 @@ TagManager:
   - point
   - door
   - Sound_Event
+  - Map
   layers:
   - Default
   - TransparentFX
