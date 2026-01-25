@@ -24,10 +24,10 @@ public class enemy_modechange: MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K))
         {
-            CKT.currentCheckpointTag = "Runaway";
+            CKT.fetchedCheckpointTag = "Day2_Start";
         }
 
-        if (CKT.currentCheckpointTag == "Runaway")
+        if (CKT.fetchedCheckpointTag == "Day2_Start")
         {
             enemy_ob.SetActive(true);
         }

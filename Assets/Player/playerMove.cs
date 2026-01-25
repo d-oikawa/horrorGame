@@ -59,6 +59,19 @@ public class PlayerMove:MonoBehaviour
     public RectTransform Mapobj;
     private float speed = 100.0f;
 
+    //鍵を持っている(髙山)
+    public bool have_key;
+
+    //マップを持っている
+    public bool have_map;
+
+    //キャンバスそのもの(髙山)
+    [SerializeField]
+    public GameObject canvas;
+
+    //本棚を動かす判定(髙山)
+    public bool books_move;
+
     void Start()
     {
 		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -68,6 +81,10 @@ public class PlayerMove:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         map.SetActive(false);
+        //髙山作boolたち
+        have_key = false;
+        have_map = false;
+        books_move = false;
     }
 
     void Update()
@@ -91,7 +108,7 @@ public class PlayerMove:MonoBehaviour
         else if (Input.GetKey(KeyCode.S))
         {
             
-            orgspeed1 = 1.0f;
+            orgspeed1 = 2.0f;
         }
        //走る
         else if (Input.GetKey(KeyCode.LeftShift))
@@ -137,7 +154,10 @@ public class PlayerMove:MonoBehaviour
 		MoveCamera();   //カメラの上下左右の動き(視点)
         GetItem();      //Eを押したらアイテムを取得、投擲する処理
         onSaund();      //音の処理
-        LookMap();
+        if (have_map)
+        {
+            LookMap();
+        }
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -182,6 +202,33 @@ public class PlayerMove:MonoBehaviour
                         case "door":
                         {
                                 Endwarp(woldPos);
+                        }
+                        break;
+                        //鍵を取った際の処理(髙山)
+                        case "Key":
+                        {
+                                GetKey(hitTag);
+                        }
+                        break;
+                        //マップを取ったとき(髙山)
+                        case "Map":
+                        {
+                                GetMap();
+                        }
+                        break;
+                        //脱出口に触れたとき(髙山)
+                        case "Exit":
+                        {
+                                Exit();
+                        }
+                        break;
+                        //本棚をどかす
+                        case "bookstand":
+                        {
+                                if (!books_move)
+                                {
+                                    bookstand_move();
+                                }
                         }
                         break;
 
@@ -313,7 +360,7 @@ public class PlayerMove:MonoBehaviour
         //もし前のミッションクリアしていたら
         if (Ishide==false)
         {
-            for(int i=0; i<10; i++)
+            for(int i=0; i<4; i++)
             {
 				if (tag == checkpointtag.chekepointTag[i])
                 {
@@ -459,6 +506,43 @@ public class PlayerMove:MonoBehaviour
             Debug.Log("M押されたよ2");
             characterController.enabled = false;
         }
+    }
+
+    //鍵を持っているflag(髙山)
+    void GetKey(string tag)
+    {
+        GameObject Key = GameObject.FindGameObjectWithTag("Key");
+        //鍵を持っている事を判定
+        have_key = true;
+        //鍵を消す
+        Key.gameObject.SetActive(false);
+    }
+
+    void Exit()
+    {
+        UI uI = canvas.GetComponent<UI>();
+                
+        if (have_key)
+        {
+            Pointyecu("Exit_1");
+        }
+        else
+        {
+            uI.DontKey();
+        }
+    }
+    void GetMap()
+    {
+        GameObject Map = GameObject.FindGameObjectWithTag("Map");
+        //鍵を持っている事を判定
+        have_map = true;
+        //鍵を消す
+        Map.gameObject.SetActive(false);
+    }
+
+    void bookstand_move()
+    {
+        books_move = true;
     }
 }
 

@@ -6,16 +6,9 @@ public class CheckpointTag : MonoBehaviour
     public string[] chekepointTag =
         {
         "None",
-        //"Start",
-        "Day1_end",
         "Day2_Start",
         "Search_1",
-        "Runaway",
-        "Search_2",
-        "Day2_end",
-        "Day3_Start",
         "Exit_1",
-        "Exit_2"
     };
     // 現在のチェックポイントタグ
     public string currentCheckpointTag;
@@ -40,8 +33,8 @@ public class CheckpointTag : MonoBehaviour
     void Start()
     {
         // 初期値を設定
-        currentCheckpointTag = chekepointTag[2];
-        nextCheckpointTag = chekepointTag[3];
+        currentCheckpointTag = chekepointTag[1];
+        nextCheckpointTag = chekepointTag[2];
     }
 
     void Update()
@@ -62,7 +55,5 @@ public class CheckpointTag : MonoBehaviour
                 nextCheckpointTag = "None"; // 最後のチェックポイントに到達した場合
             }
         }
-
-
     }
 }
