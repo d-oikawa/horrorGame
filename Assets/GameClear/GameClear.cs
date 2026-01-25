@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameClear : MonoBehaviour
 {
 
-    public void onClickStartButton()
+    public void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Return))
         SceneManager.LoadScene("Title");//Ÿ‚És‚«‚½‚¢ƒV[ƒ“–¼‚ğ‘‚­
     }
 }

@@ -22,7 +22,7 @@ public class enemy_modechange: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             CKT.fetchedCheckpointTag = "Day2_Start";
         }
