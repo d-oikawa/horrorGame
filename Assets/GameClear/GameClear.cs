@@ -9,7 +9,9 @@ public class GameClear : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        Cursor.visible = true;//表示
+        Cursor.lockState = CursorLockMode.None; //マウスカーソルを自由に
+
         SceneManager.LoadScene("Title");//次に行きたいシーン名を書く
     }
 }

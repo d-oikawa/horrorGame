@@ -446,7 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63a642c6f147df488ddd73a7fdaaadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkpointtag: {fileID: 0}
+  tExt: {fileID: 0}
+  ti: 0
 --- !u!1 &276900004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5730989739279628345, guid: 1f8919cfa30a6d64fa25cd27fa02efee, type: 3}
@@ -2133,13 +2134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd15f4009d32d548adf5260a9cceea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointtag_ui: {fileID: 763002658}
-  UI_1: {fileID: 225536426}
-  UI_2: {fileID: 1459673514}
-  UI_3: {fileID: 187355988}
-  UI_4: {fileID: 697139574}
-  UI_5: {fileID: 1273350336}
-  UI_6: {fileID: 2114864141}
 --- !u!1 &1317701797
 GameObject:
   m_ObjectHideFlags: 0

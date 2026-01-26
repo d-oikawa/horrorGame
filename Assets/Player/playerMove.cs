@@ -57,7 +57,6 @@ public class PlayerMove:MonoBehaviour
     public int count;
     public bool IsLook;
     public RectTransform Mapobj;
-    private float speed = 100.0f;
 
     //鍵を持っている(髙山)
     public bool have_key;
@@ -74,17 +73,16 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
-		UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //マウスカーソルを中央に固定して非表示
-
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
-
         map.SetActive(false);
+
         //髙山作boolたち
-        have_key = false;
-        have_map = false;
-        books_move = false;
+        have_key = false;   //鍵
+        have_map = false;   //マップ
+        books_move = false; //本棚
     }
 
     void Update()
@@ -204,6 +202,7 @@ public class PlayerMove:MonoBehaviour
                                 Endwarp(woldPos);
                         }
                         break;
+                        //進行に必要なアイテムｚ
                         //鍵を取った際の処理(髙山)
                         case "Key":
                         {
@@ -238,16 +237,6 @@ public class PlayerMove:MonoBehaviour
 								Pointyecu(hitTag);
 						}
                         break;
-						case "Start":
-						{
-								Pointyecu(hitTag);
-						}
-						break;
-                        case "Day1_end":
-                        {
-								Pointyecu(hitTag);                                
-						}
-                        break;
                         //逃げ道探し
 						case "Day2_Start":
 						{
@@ -260,37 +249,11 @@ public class PlayerMove:MonoBehaviour
 								Pointyecu(hitTag);
 						}
 						break;
-						case "Runaway":
-						{
-								Pointyecu(hitTag);
-						}
-						break;
-						case "Search_2":
-						{
-								Pointyecu(hitTag);
-						}
-						break;
-						case "Day2_end":
-						{
-								Pointyecu(hitTag);
-						}
-						break;
-						case "Day3_start":
-						{
-								Pointyecu(hitTag);
-							}
-						break;
 						case "Exit_1":
 						{
 								Pointyecu(hitTag);
 						}
 						break;
-						case "Exit_2":
-						{
-                                Pointyecu(hitTag);
-						}
-						break;
-
 					}
                 }
             }
@@ -369,92 +332,12 @@ public class PlayerMove:MonoBehaviour
                     Debug.Log("チェックポイント通過"+i);
                 }
             }
-
-			//if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//             checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=1");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=2");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=3");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=4");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=5");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=6");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=7");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=8");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=9");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=10");
-			//}
-			//else if (tag == checkpointtag.chekepointTag[pointNum])
-			//{
-			//	++pointNum;
-			//	cleatag = false;
-			//	checkpointtag.SetfetchedCheckpointTag(checkpointtag.chekepointTag[pointNum]);
-			//	Debug.Log("=11");
-			//}
 		}
     }
 
     //SEを鳴らす処理(歩く、走る)
     void onSaund()
-    {
-
-        
+    { 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             //走る時の
@@ -486,9 +369,9 @@ public class PlayerMove:MonoBehaviour
         }
     }
 
+    //マップを見る処理
     void LookMap()
     {
-
       Mapobj = GetComponent<RectTransform>();
 
         if (Input.GetKeyDown(KeyCode.M) && count!=1)
@@ -507,8 +390,7 @@ public class PlayerMove:MonoBehaviour
             characterController.enabled = false;
         }
     }
-
-    //鍵を持っているflag(髙山)
+    //鍵を持っているか否か(髙山)
     void GetKey(string tag)
     {
         GameObject Key = GameObject.FindGameObjectWithTag("Key");
@@ -517,7 +399,7 @@ public class PlayerMove:MonoBehaviour
         //鍵を消す
         Key.gameObject.SetActive(false);
     }
-
+    //出口へ到達した時の処理
     void Exit()
     {
         UI uI = canvas.GetComponent<UI>();
@@ -531,15 +413,16 @@ public class PlayerMove:MonoBehaviour
             uI.DontKey();
         }
     }
+    //マップをゲットした時の処理
     void GetMap()
     {
         GameObject Map = GameObject.FindGameObjectWithTag("Map");
-        //鍵を持っている事を判定
+        //マップを持つ
         have_map = true;
-        //鍵を消す
+        //マップオブジェを消す
         Map.gameObject.SetActive(false);
     }
-
+    //本棚を移動する処理
     void bookstand_move()
     {
         books_move = true;
