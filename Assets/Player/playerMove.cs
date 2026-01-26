@@ -77,7 +77,7 @@ public class PlayerMove:MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
-        map.SetActive(false);
+       // map.SetActive(false);
 
         //髙山作boolたち
         have_key = false;   //鍵
