@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameClear : MonoBehaviour
 {
 
-    public void Update()
+    void Start()
     {
         Cursor.visible = true;//表示
         Cursor.lockState = CursorLockMode.None; //マウスカーソルを自由に
-
-        SceneManager.LoadScene("Title");//次に行きたいシーン名を書く
     }
+
+    public void onClickStartButton()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
 }
