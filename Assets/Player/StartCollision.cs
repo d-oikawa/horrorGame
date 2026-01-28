@@ -13,17 +13,30 @@ public class StartCollision : MonoBehaviour
     public GameObject playrobj;
     public PlayerMove playermove;
 
+    //タグを使う変数
+    public CheckpointTag checkpointtag;
+    public GameObject checTagobj;
+
+    public GameObject collesion;
+
     void Start()
     {
         //スクリプトを設定
         playermove=playermove.GetComponent<PlayerMove>();
         playrobj.GetComponent<PlayerMove>();
+
+        //スクリプトを設定
+        checkpointtag=checkpointtag.GetComponent<CheckpointTag>();
+        collesion.SetActive(true);
     }
 
     void Update()
     {
-        
-    }
+       if(checkpointtag.fetchedCheckpointTag=="Day2_Start")
+       {
+			collesion.SetActive(false);
+	   }
+	}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,14 +44,9 @@ public class StartCollision : MonoBehaviour
        string ObjName=other.gameObject.name;
         if(ObjName=="Player")
         {
-            // プレイヤーを操作不能に
-            playermove.characterController.enabled = false;
             //キャラクターの位置を確認
             Vector3 charPos=playermove.transform.position;
             Vector3 charposKeep = charPos;
-            
-           
-           
         }
     }
 }

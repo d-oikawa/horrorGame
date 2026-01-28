@@ -162,7 +162,7 @@ public class PlayerMove:MonoBehaviour
     void GetItem()
     {
         //Eを押したら
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
         {
             //レイを使っての選択
             Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
@@ -275,9 +275,10 @@ public class PlayerMove:MonoBehaviour
         transform.Rotate(Vector3.up *mauseX);
          mauseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
         xRotation -= mauseY;
+		
 
-        //振り向き制限
-        xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
+		//振り向き制限
+		xRotation = Mathf.Clamp(xRotation, -60.0f, 60.0f);
          cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         
         if(Ishide==true)
