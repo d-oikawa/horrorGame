@@ -379,7 +379,7 @@ public class PlayerMove:MonoBehaviour
             map.SetActive(!IsLook);
             count++;
             Debug.Log("M押されたよ");
-            characterController.enabled = true;
+            characterController.enabled = false;
 
         }
         else if (Input.GetKeyDown(KeyCode.M) && count == 1)
@@ -387,7 +387,7 @@ public class PlayerMove:MonoBehaviour
             map.SetActive(IsLook);
             count = 0;
             Debug.Log("M押されたよ2");
-            characterController.enabled = false;
+            characterController.enabled = true;
         }
     }
     //鍵を持っているか否か(髙山)

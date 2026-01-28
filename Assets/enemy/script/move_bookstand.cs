@@ -17,7 +17,7 @@ public class move_bookstand : MonoBehaviour
     {
         if (pm.books_move)
         {
-            this.gameObject.transform.rotation = new Quaternion(0, 90, 0, 0);
+            //this.gameObject.transform.rotation = new Quaternion(0, 90, 0, 0);
             this.gameObject.transform.position = new Vector3(-59.65f, 7.01f, 5.6f);
         }
     }
