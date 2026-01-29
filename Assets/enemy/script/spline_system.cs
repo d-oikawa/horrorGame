@@ -42,7 +42,7 @@ public class spline_system : MonoBehaviour
         change_splien = false;
         next_spuline = false;
         //Å‰‚ÌƒXƒvƒ‰ƒCƒ“‚ğİ’è
-		spline_change("Spline_A");        
+		spline_change("Spline_B");        
     }
 
     // Update is called once per frame

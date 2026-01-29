@@ -257,7 +257,7 @@ public class enemy_move : MonoBehaviour
         }
         if (collider.tag == "Testitem")
         {       
-            if (The_moment_our_eyes_meet)
+            if (The_moment_our_eyes_meet && ItemBase.IsItemOnGround)
             {                
                     Debug.Log("アイテム");
 
@@ -271,6 +271,7 @@ public class enemy_move : MonoBehaviour
                 if (collider != null)
                 {
                     player_Chase.target = collider.transform.position;
+                    collider.gameObject.SetActive(false);
                 }
               
                 //追跡を開始
