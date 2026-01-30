@@ -42,7 +42,7 @@ public class spline_system : MonoBehaviour
         change_splien = false;
         next_spuline = false;
         //最初のスプラインを設定
-		spline_change("Spline_B");        
+		spline_change("Spline_A");        
     }
 
     // Update is called once per frame
@@ -94,7 +94,7 @@ public class spline_system : MonoBehaviour
                 splines_Percentage = 0f;
                 //spline変更フラグ
                 change_splien = true;
-                spline_change("Spline_B");                
+                Next_Spline("Spline_B");                
             }
         }
 
@@ -288,5 +288,10 @@ public class spline_system : MonoBehaviour
         {
             spline_change("Spline_J");
         }
+    }
+
+    public void Next_Spline(string spli)
+    {
+
     }
 }

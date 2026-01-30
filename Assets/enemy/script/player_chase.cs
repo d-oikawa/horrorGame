@@ -195,5 +195,4 @@ public class player_chase : MonoBehaviour
 
     // ゲームオーバーシーンへ遷移する関数
     // 敵がプレイヤーと接触したときに呼び出してください おいかわ
-
 }
