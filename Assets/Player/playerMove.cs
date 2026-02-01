@@ -22,9 +22,11 @@ public class PlayerMove:MonoBehaviour
 
     //動く速さ変数
     public float runSpeed;  //走る
-    public float walkSpeed; //歩く
+    public float walkSpeed=4.0f; //歩く
     public float slowwalkSpeed;//ゆっくり歩く
     public float orgspeed1;    //スピードが入る
+    public float moveHorizontal;
+    public float moveVertical;
 
     //視点移動変数
     public float SensitivtiR; //向きを変えるスピード
@@ -93,8 +95,8 @@ public class PlayerMove:MonoBehaviour
     void Update()
     {
         //入力キーの判定
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+         moveHorizontal = Input.GetAxis("Horizontal");
+         moveVertical = Input.GetAxis("Vertical");
         //プレイヤーが向いている向きに併せて進む
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical)*Time.deltaTime;
         //移動するためのキーが押されているか
@@ -102,36 +104,36 @@ public class PlayerMove:MonoBehaviour
 
         //移動スピード
         //遅く歩く
-        if (Input.GetKey(KeyCode.LeftControl))    
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey("joystick button 4"))    
         {
             orgspeed1 = slowwalkSpeed;
             PlayerSound = false;
         }
+        //走る
+        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
+        {
+
+            orgspeed1 = runSpeed;
+        }
         //後ろ向きで移動
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || moveVertical<=0)
         {
             
             orgspeed1 = 2.0f;
         }
-       //走る
-        else if (Input.GetKey(KeyCode.LeftShift))
-        {
-           
-            orgspeed1 = runSpeed;
-        }
-       //横向きに移動
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            orgspeed1 = 2.0f;
-        }
         //歩く(通常)
-       else 
+        else if (moveVertical >= 0)
         {
             orgspeed1 = walkSpeed;
         }
+        //横向きに移動
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || moveHorizontal>=-1 || moveHorizontal <=1 && moveHorizontal!=0)
+        {
+            orgspeed1 = 3.0f;
+        }
        
         //歩く音の処理
-        if (!isMoving || orgspeed1==slowwalkSpeed)
+        if ( moveVertical==0 && moveHorizontal==0)
         {
             PlayerSound = false;
             Debug.Log("fff");
@@ -166,7 +168,7 @@ public class PlayerMove:MonoBehaviour
     //Eを押したらアイテムを取得、投擲する処理
     void GetItem()
     {
-        //Eを押したら
+        //Eを押したら　コントローラーならB
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
         {
             //レイを使っての選択
@@ -344,10 +346,10 @@ public class PlayerMove:MonoBehaviour
     //SEを鳴らす処理(歩く、走る)
     void onSaund()
     { 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if (moveVertical != 0 || moveHorizontal != 0)
         {
             //走る時の
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey("joystick button 5"))
             {
                 timer2 += Time.deltaTime;
                 if (timer2 > 1.2f)
@@ -358,7 +360,7 @@ public class PlayerMove:MonoBehaviour
 
             }
             //ゆっくり歩く時の
-            else if(Input.GetKey(KeyCode.LeftControl))
+            else if (Input.GetKey("joystick button 4"))
             {
                 audioSource.mute = false;
             }

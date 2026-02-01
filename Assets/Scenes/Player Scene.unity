@@ -5967,6 +5967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CKT: {fileID: 0}
   ckt: {fileID: 0}
+  Pm: {fileID: 0}
   enemy_ob: {fileID: 509855909}
 --- !u!1 &870448960
 GameObject:
@@ -10509,6 +10510,10 @@ PrefabInstance:
       propertyPath: checkpointtag
       value: 
       objectReference: {fileID: 1688237401}
+    - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
+      propertyPath: slowwalkSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
