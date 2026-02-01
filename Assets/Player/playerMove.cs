@@ -382,7 +382,7 @@ public class PlayerMove:MonoBehaviour
     {
       Mapobj = GetComponent<RectTransform>();
 
-        if (Input.GetKeyDown(KeyCode.M) && count!=1)
+        if ( Input.GetKeyDown("joystick button 0") && count != 1)
         {
             map.SetActive(!IsLook);
             count++;
@@ -390,7 +390,7 @@ public class PlayerMove:MonoBehaviour
             characterController.enabled = false;
 
         }
-        else if (Input.GetKeyDown(KeyCode.M) && count == 1)
+        else if ( Input.GetKeyDown("joystick button 0") && count == 1)
         {
             map.SetActive(IsLook);
             count = 0;
