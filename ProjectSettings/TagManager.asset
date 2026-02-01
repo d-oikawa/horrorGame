@@ -37,6 +37,10 @@ TagManager:
   - Key
   - Exit
   - bookstand
+  - Event
+  - Enemy_mode1
+  - Enemy_mode2
+  - Enemy_mode3
   layers:
   - Default
   - TransparentFX

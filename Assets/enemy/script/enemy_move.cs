@@ -71,6 +71,8 @@ public class enemy_move : MonoBehaviour
 
     AudioSource AudioSource;
 
+    private Renderer[] rnd;
+
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
 
@@ -105,7 +107,7 @@ public class enemy_move : MonoBehaviour
 
         //item_drop = false;
 
-        se = GameObject.FindGameObjectWithTag("Sound_Event");
+        se = GameObject.FindGameObjectWithTag("Event");
         eVent = se.GetComponent<Event>();
 
         if (Sound_Event != null)
@@ -114,91 +116,100 @@ public class enemy_move : MonoBehaviour
         }
 
         AudioSource = GetComponent<AudioSource>();
+
+        rnd = GetComponentsInChildren<Renderer>();
+        foreach (var r in rnd)
+        {
+            r.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //エネミーの中心位置からレイを飛ばす
-        origin = transform.position;
-
-        //レイの向きをエネミーが向いている向きに
-        direction = transform.forward;
-
-        //レイを描画(デバッグ)
-        Debug.DrawRay(origin, direction * rayDistance, Color.red);
-
-
-             
-        /*
-        //デバッグFキー入力
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!eVent.Event_scene)
         {
-            //スプライン上を移動していないとき
-            if (!spline_System.spline_flg)
-            {               
-                //spline上を移動するよう
-                spline_System.spline_flg = true;
-                //追跡をやめる
-                player_Chase.chase_flg = false;
+            //エネミーの中心位置からレイを飛ばす
+            origin = transform.position;
+
+            //レイの向きをエネミーが向いている向きに
+            direction = transform.forward;
+
+            //レイを描画(デバッグ)
+            Debug.DrawRay(origin, direction * rayDistance, Color.red);
+
+
+
+            /*
+            //デバッグFキー入力
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                //スプライン上を移動していないとき
+                if (!spline_System.spline_flg)
+                {               
+                    //spline上を移動するよう
+                    spline_System.spline_flg = true;
+                    //追跡をやめる
+                    player_Chase.chase_flg = false;
+                }
+                //移動しているとき
+                else
+                {
+                    player_Chase.target = new Vector3(-1f,4f,0.5f); 
+                    //移動前のポジションを保存
+                    start_pos = transform.position;
+                    //スプライン上の移動をやめる
+                    spline_System.spline_flg = false;
+                    //追跡を開始
+                    player_Chase.chase_flg = true;
+                }
+                Debug.Log(player_Chase.chase_flg);
             }
-            //移動しているとき
+
+            /*
+            //スプラインに沿って移動しておらず、音源を追ってもいない場合 
+            if(!spline_System.spline_flg && !player_Chase.chase_flg)
+            {
+                Debug.Log("元の場所に移動中");
+                //もとの位置に移動
+                this.transform.position = Vector3.MoveTowards(transform.position, start_pos, speed * Time.deltaTime);
+                if(this.transform.position == start_pos)
+                {
+                    spline_System.spline_flg = true;
+                }
+            }
+            */
+
+
+            /*
+            if (spline_System.spline_nextmove)
+            {
+                nextSplineMove();
+            }
+            */
+
+            //通常時
+            if (spline_System.spline_flg)
+            {
+                //return;
+            }
+            //音を聞いたら
             else
             {
-                player_Chase.target = new Vector3(-1f,4f,0.5f); 
-                //移動前のポジションを保存
-                start_pos = transform.position;
-                //スプライン上の移動をやめる
-                spline_System.spline_flg = false;
-                //追跡を開始
-                player_Chase.chase_flg = true;
+                //normal_move();
             }
-            Debug.Log(player_Chase.chase_flg);
-        }
 
-        /*
-        //スプラインに沿って移動しておらず、音源を追ってもいない場合 
-        if(!spline_System.spline_flg && !player_Chase.chase_flg)
-        {
-            Debug.Log("元の場所に移動中");
-            //もとの位置に移動
-            this.transform.position = Vector3.MoveTowards(transform.position, start_pos, speed * Time.deltaTime);
-            if(this.transform.position == start_pos)
+            if (!player_Chase.chase_flg && !AudioSource.isPlaying)
             {
-                spline_System.spline_flg = true;
+                AudioSource.PlayOneShot(sound1);
             }
-        }
-        */
 
-
-        /*
-        if (spline_System.spline_nextmove)
-        {
-            nextSplineMove();
+            if (!player_Chase.stop && player_Chase.chase_flg && !AudioSource.isPlaying)
+            {
+                AudioSource.PlayOneShot(sound2);
+            }
+            Debug.Log(eVent.enemy_sound);
         }
-        */
-
-        //通常時
-        if (spline_System.spline_flg)
-        {
-            //return;
-        }
-        //音を聞いたら
-        else
-        {
-            //normal_move();
-        }
-
-        if (!player_Chase.chase_flg && !AudioSource.isPlaying)
-        {
-            AudioSource.PlayOneShot(sound1);
-        }
-
-        if (!player_Chase.stop && player_Chase.chase_flg && !AudioSource.isPlaying)
-        {
-            AudioSource.PlayOneShot(sound2);
-        }
-        Debug.Log(eVent.enemy_sound);
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -253,6 +264,10 @@ public class enemy_move : MonoBehaviour
 
                 //}
                 Debug.Log("追跡" + player_Chase.chase_flg);
+                foreach (var r in rnd)
+                {
+                    r.enabled = true;
+                }
             }
         }
         if (collider.tag == "Testitem")
@@ -281,6 +296,10 @@ public class enemy_move : MonoBehaviour
                 spline_System.spline_flg = false;
                 //
                 Debug.Log("追跡" + player_Chase.chase_flg);
+                foreach (var r in rnd)
+                {
+                    r.enabled = true;
+                }
             }
         }
     }

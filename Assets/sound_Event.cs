@@ -1,8 +1,9 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 using static Unity.Burst.Intrinsics.X86.Avx;
-using System;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Event : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class Event : MonoBehaviour
 
     public bool enemy_sound;
 
+    //ƒCƒxƒ“ƒgscene‚©”Û‚©
+    public bool Event_scene;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         enemy_sound = false;
         itflg = GameObject.FindWithTag("Testitem");
         iitem = itflg.GetComponent<ItemBase>();
@@ -32,6 +37,8 @@ public class Event : MonoBehaviour
             Debug.Log("‚«‚å‚¨‚¨‚¨");
         }
         TheSound?.Invoke();
+
+
     }
 
     void detect_sound()
@@ -43,4 +50,5 @@ public class Event : MonoBehaviour
     {
         Debug.Log("‚µ‚å‚¤‚ä");
     }
+
 }
