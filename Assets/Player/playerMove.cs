@@ -27,7 +27,8 @@ public class PlayerMove:MonoBehaviour
     public float orgspeed1;    //スピードが入る
 
     //視点移動変数
-    public float mauseSensitivti; //マウスの感度
+    public float SensitivtiR; //向きを変えるスピード
+    public float SensitivtiUp; //向きを変えるスピード
     public Transform cam;
     private float xRotation;
     private bool PlayerSound;
@@ -73,11 +74,15 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
+        SensitivtiR = 100;
+        SensitivtiUp = 90;
+
+
         //マウスカーソルを中央に固定して非表示
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
-       // map.SetActive(false);
+        map.SetActive(false);
 
         //髙山作boolたち
         have_key = false;   //鍵
@@ -172,7 +177,7 @@ public class PlayerMove:MonoBehaviour
             if (!itembase.GetIsPlayerHaveItem())
             {
                 //レイの感知する範囲
-                if (Physics.Raycast(ray, out hit, 3.0f))
+                if (Physics.Raycast(ray, out hit, 5.0f))
                 {
                     //違うスクリプトの変数を使えるように
                     //アイテム
@@ -270,11 +275,11 @@ public class PlayerMove:MonoBehaviour
     //カメラの動き
     void MoveCamera()
     {
-        //カメラの動き
-         mauseX = Input.GetAxisRaw("Mouse X") * mauseSensitivti * Time.deltaTime; //X
+        //カメラの動き(コントローラー)
+         mauseX = Input.GetAxisRaw("Horizontal2") * SensitivtiR * Time.deltaTime; //X
         transform.Rotate(Vector3.up *mauseX);
-         mauseY = Input.GetAxisRaw("Mouse Y") * mauseSensitivti * Time.deltaTime; //Y
-        xRotation -= mauseY;
+         mauseY = Input.GetAxisRaw("Vertical2") * SensitivtiUp * Time.deltaTime; //Y
+        xRotation += mauseY;
 		
 
 		//振り向き制限
