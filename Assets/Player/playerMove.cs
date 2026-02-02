@@ -133,7 +133,7 @@ public class PlayerMove:MonoBehaviour
         }
        
         //歩く音の処理
-        if ( moveVertical==0 && moveHorizontal==0)
+        if ( moveVertical==0 && moveHorizontal==0 || Input.GetKey("joystick button 4"))
         {
             PlayerSound = false;
             Debug.Log("fff");
