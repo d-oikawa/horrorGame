@@ -3,7 +3,7 @@ using UnityEngine.Animations;
 
 public class modechange_Collider : MonoBehaviour
 {
-    public ParentConstraint parent;
+    public enemy_modechange parent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,10 +14,10 @@ public class modechange_Collider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SetParent(ParentConstraint p)
+    public void SetParent(enemy_modechange p)
     {
         parent = p;
     }
@@ -25,8 +25,7 @@ public class modechange_Collider : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //parent.OnHit(other, this);
+            parent.OnHit(other);
         }
     }
-
 }

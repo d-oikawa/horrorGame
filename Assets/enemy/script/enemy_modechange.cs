@@ -47,7 +47,7 @@ public class enemy_modechange: MonoBehaviour
         var mode = GetComponentsInChildren<modechange_Collider>(true);
         foreach (var h in mode)
         {
-            //h.SetParent(this);
+            h.SetParent(this);
         }
 
         mode1 = false;
@@ -67,14 +67,18 @@ public class enemy_modechange: MonoBehaviour
         }
     }
 
+    public void OnHit(Collider collider) {
 
+        mode1 = true;
+
+        Debug.Log("”nŽh‚µ");
+    }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player" ))
         {
-            mode1 = true;
-            Debug.Log("”nŽh‚µ");
+            //mode1 = true;
+            //Debug.Log("”nŽh‚µ");
         }
     }
-
 }
