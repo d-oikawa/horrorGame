@@ -76,8 +76,8 @@ public class PlayerMove:MonoBehaviour
 
     void Start()
     {
-        SensitivtiR = 100;
-        SensitivtiUp = 90;
+        SensitivtiR = 200;
+        SensitivtiUp = 180;
 
 
         //マウスカーソルを中央に固定して非表示
@@ -103,17 +103,18 @@ public class PlayerMove:MonoBehaviour
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
         //移動スピード
-        //遅く歩く
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey("joystick button 4"))    
-        {
-            orgspeed1 = slowwalkSpeed;
-            PlayerSound = false;
-        }
+       
         //走る
-        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
         {
 
             orgspeed1 = runSpeed;
+        }
+        //遅く歩く
+        else if(Input.GetKey(KeyCode.LeftControl) || Input.GetKey("joystick button 4"))
+        {
+            orgspeed1 = slowwalkSpeed;
+            PlayerSound = false;
         }
         //後ろ向きで移動
         else if (Input.GetKey(KeyCode.S) || moveVertical<=0)

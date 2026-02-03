@@ -418,10 +418,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 302}
-      m_SelectedIDs: fac10000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: f04c0000
       m_LastClickedID: 0
-      m_ExpandedIDs: f4a1feff8aa3feff5aa5feffa6b7feff
+      m_ExpandedIDs: 1efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1090,7 +1090,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Player/matelial
+    - Assets/Player
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1100,16 +1100,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Player/matelial
+  - Assets/Player
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\24cu0319\hh
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 170}
-    m_SelectedIDs: 362a0100
-    m_LastClickedID: 76342
-    m_ExpandedIDs: 00000000e8290100ea290100fc290100502a0100522a010000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 04d40000
+    m_LastClickedID: 54276
+    m_ExpandedIDs: 0000000058d3000004d4000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1138,7 +1138,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 0000000058d30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
