@@ -56,6 +56,7 @@ public class enemy_move : MonoBehaviour
     public GameObject itm;
 
     //sound_Evect.cs
+
     public Event eVent;
 
     public GameObject se;
@@ -72,6 +73,10 @@ public class enemy_move : MonoBehaviour
     AudioSource AudioSource;
 
     private Renderer[] rnd;
+
+    //プレイヤーとエネミーの距離を測る
+    public float distance;
+
 
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
@@ -122,6 +127,8 @@ public class enemy_move : MonoBehaviour
         {
             r.enabled = false;
         }
+
+        distance = 20;
     }
 
     // Update is called once per frame
@@ -137,8 +144,6 @@ public class enemy_move : MonoBehaviour
 
             //レイを描画(デバッグ)
             Debug.DrawRay(origin, direction * rayDistance, Color.red);
-
-
 
             /*
             //デバッグFキー入力
@@ -209,6 +214,8 @@ public class enemy_move : MonoBehaviour
                 AudioSource.PlayOneShot(sound2);
             }
             Debug.Log(eVent.enemy_sound);
+
+            distance_visible();
         }
     }
 
@@ -263,11 +270,7 @@ public class enemy_move : MonoBehaviour
                 spline_System.spline_flg = false;
 
                 //}
-                Debug.Log("追跡" + player_Chase.chase_flg);
-                foreach (var r in rnd)
-                {
-                    r.enabled = true;
-                }
+                Debug.Log("追跡" + player_Chase.chase_flg);                
             }
         }
         if (collider.tag == "Testitem")
@@ -300,7 +303,7 @@ public class enemy_move : MonoBehaviour
                 {
                     r.enabled = true;
                 }
-            }
+            }           
         }
     }
 
@@ -351,6 +354,38 @@ public class enemy_move : MonoBehaviour
 
     private void test()
     {
-        Debug.Log("もずく");
+        //Debug.Log("もずく");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Testitem")
+        {
+            foreach (var r in rnd)
+            {
+                r.enabled = false;
+            }
+        }
+    }
+
+    //敵とプレイヤーの距離が一定以下なら姿が見える
+    private void distance_visible()
+    {
+        float Distances;
+        Distances = Vector3.Distance(this.transform.position,pl.transform.position);
+        if(Distances <= distance)
+        {
+            foreach (var r in rnd)
+            {
+                r.enabled = true;
+            }
+        }
+        else
+        {
+            foreach (var r in rnd)
+            {
+                r.enabled = false;
+            }
+        }
     }
 }

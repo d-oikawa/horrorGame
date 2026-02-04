@@ -78,11 +78,6 @@ public class enemy_modechange: MonoBehaviour
                 spline.change_splien = false;
                 mode1 = false;
             }
-        //}
-        //else
-        //{
-        //    return;
-        //}
     }
 
     public void OnHit(Collider collider, modechange_Collider mode,bool modecen) {
@@ -100,20 +95,17 @@ public class enemy_modechange: MonoBehaviour
             case "Enemy_mode3":
             spline.Next_Spline("Spline_C");
 
-                //mode1 = modecen;
-                break;
+            //mode1 = modecen;
+            break;
 
         }
 
-
-
         mode.gameObject.SetActive(false);
-
 
         //if (mode == "Enemy_mode1")
         //mode1 = true;
 
-        Debug.Log("”nŽh‚µ");
+        //Debug.Log("”nŽh‚µ");
     }
     public void OnTriggerEnter(Collider other)
     {

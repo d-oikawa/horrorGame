@@ -292,6 +292,6 @@ public class spline_system : MonoBehaviour
     {
         spline_change(spli);
         change_splien = true;
-        //Debug.Log("ooo");
+        Debug.Log("ooo");
     }
 }
