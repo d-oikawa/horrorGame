@@ -19,8 +19,13 @@ public class enemy_modechange: MonoBehaviour
 
     public GameObject se;
 
+    //public bool end_move;
+
     public bool mode1;
 
+
+    public spline_system spline;
+   
 
     //子オブジェクトのColliderを全取得
     Collider[] colliders;
@@ -33,7 +38,6 @@ public class enemy_modechange: MonoBehaviour
     void Start()
     {
         ckt = GameObject.FindGameObjectWithTag("Player");
-
         Pm = ckt.GetComponent<PlayerMove>();
 
         CKT = ckt.GetComponent<CheckpointTag>();
@@ -41,6 +45,8 @@ public class enemy_modechange: MonoBehaviour
 
         se = GameObject.FindGameObjectWithTag("Event");
         eVent = se.GetComponent<Event>();
+
+        spline = enemy_ob.GetComponent<spline_system>();
 
         colliders = GetComponentsInChildren<Collider>();
 
@@ -65,11 +71,47 @@ public class enemy_modechange: MonoBehaviour
         {
             enemy_ob.SetActive(true);
         }
+        //if (enemy_ob != null) {
+            if (spline.change_splien)
+            {
+                enemy_ob.SetActive(false);
+                spline.change_splien = false;
+                mode1 = false;
+            }
+        //}
+        //else
+        //{
+        //    return;
+        //}
     }
 
-    public void OnHit(Collider collider) {
+    public void OnHit(Collider collider, modechange_Collider mode,bool modecen) {
 
-        mode1 = true;
+        switch (mode.gameObject.tag)
+        {
+            case "Enemy_mode1":
+            mode1 = modecen;
+            break;
+
+            case "Enemy_mode2":
+            mode1 = modecen;
+            break;
+
+            case "Enemy_mode3":
+            spline.Next_Spline("Spline_C");
+
+                //mode1 = modecen;
+                break;
+
+        }
+
+
+
+        mode.gameObject.SetActive(false);
+
+
+        //if (mode == "Enemy_mode1")
+        //mode1 = true;
 
         Debug.Log("馬刺し");
     }

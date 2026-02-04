@@ -1,4 +1,5 @@
 using NUnit.Framework.Constraints;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemBase : MonoBehaviour
@@ -25,6 +26,12 @@ public class ItemBase : MonoBehaviour
         m_IsActive = true;
 
         soundFlgRock = false;
+
+        timer = 0f;
+
+        AudioSource = GetComponent<AudioSource>();
+
+        rnd = GetComponent<Renderer>();
 
     }
 
@@ -118,6 +125,18 @@ public class ItemBase : MonoBehaviour
     // プレイヤーがアイテムを持っているかを取得
     public bool GetIsPlayerHaveItem() { return IsPlayerHaveItem; }
 
+    //タイマー
+    public float timer;
+
+    //sound    
+    AudioSource AudioSource;
+
+    //落下時鳴らす音
+    [SerializeField]
+    public AudioClip sound;
+
+    public Renderer rnd;
+
     // プレイヤーがアイテムをとった時の処理
     public virtual void GetItem()
     {
@@ -158,14 +177,38 @@ public class ItemBase : MonoBehaviour
     }
 
     // ゲームオブジェクト同士が接触したタイミングで実行
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
+        timer += Time.deltaTime;
         if((collision.gameObject.tag=="Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
-        { // enemyに判定を渡してこのオブジェクトの役目を終える
+        { // enemyに判定を渡してこのオブジェクトの役目を終える            
+
+            ItemRb.linearVelocity = Vector3.zero;
+
+
             IsItemOnGround = true;
-            //m_IsActive = false;
+
+            Debug.Log(timer);
+
+            if (timer > 2)
+            {
+                timer = 0f;
+                m_IsActive = false;
+            }
             //ItemRb.linearVelocity = Vector3.zero;
             //Debug.Log("ｷｴﾀﾖ!");
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
+        {
+
+                rnd.enabled = false;
+
+                AudioSource.PlayOneShot(sound);
+                sound = null;
         }
     }
 }

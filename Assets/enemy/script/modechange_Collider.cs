@@ -25,7 +25,7 @@ public class modechange_Collider : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            parent.OnHit(other);
+            parent.OnHit(other,this,true);
         }
     }
 }

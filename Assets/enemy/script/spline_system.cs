@@ -93,7 +93,6 @@ public class spline_system : MonoBehaviour
                 //splineパーセンテージを0に
                 splines_Percentage = 0f;
                 //spline変更フラグ
-                change_splien = true;
                 Next_Spline("Spline_B");                
             }
         }
@@ -104,8 +103,7 @@ public class spline_system : MonoBehaviour
             if (splines_Percentage > 1f)
 			{
 				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_C");
+				//change_splien = true;
 			}
 		}
 
@@ -186,7 +184,7 @@ public class spline_system : MonoBehaviour
         spuline_length = splineContainer.CalculateLength();
 
         //移動速度を設定
-        float move_speed = 3 / spuline_length;
+        float move_speed = 30 / spuline_length;
 
         //splineの割合で移動
         splines_Percentage += Time.deltaTime * move_speed;
@@ -205,7 +203,7 @@ public class spline_system : MonoBehaviour
     }    
 
     //スプラインを変更する処理
-    void spline_change(string tagName)
+    public void spline_change(string tagName)
     {
         GameObject spline_obj = GameObject.FindGameObjectWithTag(tagName);
 
@@ -292,6 +290,8 @@ public class spline_system : MonoBehaviour
 
     public void Next_Spline(string spli)
     {
-
+        spline_change(spli);
+        change_splien = true;
+        //Debug.Log("ooo");
     }
 }
