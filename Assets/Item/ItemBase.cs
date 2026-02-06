@@ -10,6 +10,8 @@ public class ItemBase : MonoBehaviour
     [SerializeField] GameObject GameObject;
     [SerializeField] Renderer ItemRenderer;
 
+    public Rigidbody rg;
+
     public bool soundFlgRock;
 
     // Rigidbody
@@ -29,10 +31,9 @@ public class ItemBase : MonoBehaviour
 
         timer = 0f;
 
+        rg = GetComponent<Rigidbody>();
+
         AudioSource = GetComponent<AudioSource>();
-
-        rnd = GetComponent<Renderer>();
-
     }
 
     // Update is called once per frame
@@ -40,34 +41,44 @@ public class ItemBase : MonoBehaviour
     {       
         // アイテムのアクティブ情報を更新
         GameObject.SetActive(m_IsActive);
-        ItemRenderer.enabled = m_IsActive;
+        //ItemRenderer.enabled = m_IsActive;
 
         // プレイヤーがアイテムを持っている間プレイヤーの位置にアイテムを追従させる
         if (IsPlayerHaveItem)
         {
-            // 視点の前方にアイテムを投げたいためプレイヤーカメラの位置を取得
+            //// 視点の前方にアイテムを投げたいためプレイヤーカメラの位置を取得
             GameObject player = GameObject.FindWithTag("PlayerCamera");
             m_Position = player.transform.position;
-            if (player != null)
-            {
-                
 
-                ItemRb = GetComponent<Rigidbody>();
+            // アイテムの位置をプレイヤーの位置に設定
+            transform.position = m_Position + transform.forward * 2f + transform.right * 0.5f + transform.up * -0.8f;
 
-                // アイテムの位置をプレイヤーの位置に設定
-                transform.position = m_Position + transform.forward * 2f + transform.right * -1f + transform.up * -0.8f;
+            rg.isKinematic = true;
 
-                //回転も追従させる
-                transform.rotation = player.transform.rotation;
+            this.transform.SetParent(player.transform);
 
-                IsItemOnGround = false;
-                ItemRb.linearVelocity = Vector3.zero;
-            }
+            //if (player != null)
+            //{
+            
+            //    ItemRb = GetComponent<Rigidbody>();
+
+            //    // アイテムの位置をプレイヤーの位置に設定
+            //    transform.position = m_Position + transform.forward * 2f + transform.right * -1f + transform.up * -0.8f;
+
+            //    //回転も追従させる
+            //    transform.rotation = player.transform.rotation;
+
+            //    IsItemOnGround = false;
+            //    ItemRb.linearVelocity = Vector3.zero;
+            //}
         }
 
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
-        {
+        {                  
+
+            rg.isKinematic = false;
+            
             //transform.position = transform.right / -1.2f + transform.up / -1f; ;
             // Rigidbodyを取得
             ItemRb = GetComponent<Rigidbody>();
@@ -82,6 +93,12 @@ public class ItemBase : MonoBehaviour
             }
         }
         // アイテムが地面に落ちているかどうか
+
+        if (!ItemRenderer.enabled)
+        {
+            Debug.Log("サラミ");
+        }
+
     }
     // アイテムの座標情報
     public Vector3 m_Position = new Vector3(0f, 0f, 0f);
@@ -135,7 +152,7 @@ public class ItemBase : MonoBehaviour
     [SerializeField]
     public AudioClip sound;
 
-    public Renderer rnd;
+    //public Renderer rnd;
 
     // プレイヤーがアイテムをとった時の処理
     public virtual void GetItem()
@@ -185,10 +202,9 @@ public class ItemBase : MonoBehaviour
 
             ItemRb.linearVelocity = Vector3.zero;
 
-
             IsItemOnGround = true;
 
-            Debug.Log(timer);
+            //Debug.Log(timer);
 
             if (timer > 2)
             {
@@ -204,9 +220,7 @@ public class ItemBase : MonoBehaviour
     {
         if ((collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
         {
-
-                rnd.enabled = false;
-
+                ItemRenderer.enabled = false;
                 AudioSource.PlayOneShot(sound);
                 sound = null;
         }

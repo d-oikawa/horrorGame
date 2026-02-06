@@ -25,11 +25,13 @@ public class move_bookstand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pm.books_move && time < 3)
+        Vector3 vec = this.gameObject.transform.position;
+        if (pm.books_move && vec.z >= 5.73f)
         {
-            time = Time.deltaTime;
+            time += Time.deltaTime;            
             //this.gameObject.transform.rotation = new Quaternion(0, 90, 0, 0);
-            this.gameObject.transform.position = new Vector3(-59.65f, 7.01f, 5.6f);
+            vec.z -= 0.03f;
+            this.transform.position = vec;
             Event.Event_scene = true; 
         }
         else

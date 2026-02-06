@@ -64,7 +64,7 @@ public class player_chase : MonoBehaviour
         item = itm.GetComponent<ItemBase>();
 
         //í«ê’Ç∑ÇÈÇ∑Ç“Å[Ç«
-        agent.speed = 7.0f;
+        agent.speed = 15.0f;
 
         stoping_time = 0f;
 
