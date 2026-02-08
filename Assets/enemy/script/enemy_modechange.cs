@@ -23,6 +23,8 @@ public class enemy_modechange: MonoBehaviour
 
     public bool mode1;
 
+    public bool mode33;
+
 
     public spline_system spline;
    
@@ -57,14 +59,17 @@ public class enemy_modechange: MonoBehaviour
         }
 
         mode1 = false;
+
+        mode33 = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Pm.orgspeed1 != 0f)
+        if (Pm.orgspeed1 != 0f && !mode33)
         {
             CKT.fetchedCheckpointTag = "Day2_Start";
+            mode33 = true;
         }
 
         if (CKT.fetchedCheckpointTag == "Day2_Start" && mode1)
@@ -100,7 +105,14 @@ public class enemy_modechange: MonoBehaviour
 
         }
 
-        mode.gameObject.SetActive(false);
+        if (mode.tag == "Enemy_mode2") 
+        { 
+
+        }
+        else
+        {
+            mode.gameObject.SetActive(false);
+        }
 
         //if (mode == "Enemy_mode1")
         //mode1 = true;

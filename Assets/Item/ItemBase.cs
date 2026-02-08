@@ -55,12 +55,14 @@ public class ItemBase : MonoBehaviour
             GameObject playerob = GameObject.FindWithTag("Player");
 
 
+
             // アイテムの位置をプレイヤーの位置に設定
-            transform.position = m_Position + transform.forward * 2f + transform.right * 0.5f + transform.up * -0.8f;
+            transform.position = playerob.transform.position + transform.forward * 2f + transform.right * 0.5f + transform.up * 0.8f;
+            this.transform.rotation = playerob.transform.rotation;
 
             rg.isKinematic = true;
 
-            this.transform.SetParent(player.transform);
+            this.transform.SetParent(playerob.transform);
 
             //if (player != null)
             //{
@@ -80,7 +82,10 @@ public class ItemBase : MonoBehaviour
 
         // プレイヤーがアイテムを投擲したらRigidbodyの力を加える
         if (IsPlayerThrowItem)
-        {                  
+        {
+
+            this.transform.parent = null;
+
 
             rg.isKinematic = false;
             
@@ -93,8 +98,10 @@ public class ItemBase : MonoBehaviour
                 // 力を加える
                 ItemRb.AddForce(transform.forward * 600, ForceMode.Acceleration);
 				ItemRb.AddForce(transform.up * 150, ForceMode.Acceleration);
-				// 投擲したフラグをfalseにする
-				IsPlayerThrowItem = false;
+                ItemRb.transform.Rotate(Vector3.up, 45f * Time.deltaTime);
+
+                // 投擲したフラグをfalseにする
+                IsPlayerThrowItem = false;
             }
         }
         // アイテムが地面に落ちているかどうか
