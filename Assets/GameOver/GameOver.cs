@@ -11,8 +11,13 @@ public class GameOver : MonoBehaviour
         Cursor.visible = true;//表示
         Cursor.lockState = CursorLockMode.None; //マウスカーソルを自由に
     }
-    public void onClickStartButton()
+    public void Update()
     {
-        SceneManager.LoadScene("Title");//次に行きたいシーン名を書く
+        //Bボタン押したら進む場所
+        if ( Input.GetKeyDown("joystick button 1"))
+        {
+            SceneManager.LoadScene("Title");//次に行きたいシーン名を書く
+        }
+        
     }
 }

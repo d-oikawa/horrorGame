@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public void onClickStartButton()
+    public void Update()
     {
-        SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
+        }  
     }
 }

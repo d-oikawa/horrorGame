@@ -7,7 +7,7 @@ public class CheckpointTag : MonoBehaviour
         {
         "None",
         "Day2_Start",
-        "Search_1",
+        "Map",
         "Exit_1",
     };
     // 現在のチェックポイントタグ
