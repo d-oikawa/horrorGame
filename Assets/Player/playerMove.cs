@@ -79,9 +79,6 @@ public class PlayerMove:MonoBehaviour
         SensitivtiR = 200;
         SensitivtiUp = 180;
 
-
-        //マウスカーソルを中央に固定して非表示
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
         map.SetActive(false);
@@ -94,8 +91,11 @@ public class PlayerMove:MonoBehaviour
 
     void Update()
     {
+        //マウスカーソルを中央に固定して非表示
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
         //入力キーの判定
-         moveHorizontal = Input.GetAxis("Horizontal");
+        moveHorizontal = Input.GetAxis("Horizontal");
          moveVertical = Input.GetAxis("Vertical");
         //プレイヤーが向いている向きに併せて進む
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical)*Time.deltaTime;
