@@ -221,6 +221,7 @@ public class PlayerMove:MonoBehaviour
                         case "Map":
                         {
                                 GetMap();
+                                Pointyecu(hitTag);
                         }
                         break;
                         //脱出口に触れたとき(髙山)
