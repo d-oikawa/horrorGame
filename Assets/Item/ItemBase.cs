@@ -10,6 +10,8 @@ public class ItemBase : MonoBehaviour
     [SerializeField] GameObject GameObject;
     [SerializeField] Renderer ItemRenderer;
 
+
+
     public Rigidbody rg;
 
     public bool soundFlgRock;
@@ -49,6 +51,9 @@ public class ItemBase : MonoBehaviour
             //// 視点の前方にアイテムを投げたいためプレイヤーカメラの位置を取得
             GameObject player = GameObject.FindWithTag("PlayerCamera");
             m_Position = player.transform.position;
+
+            GameObject playerob = GameObject.FindWithTag("Player");
+
 
             // アイテムの位置をプレイヤーの位置に設定
             transform.position = m_Position + transform.forward * 2f + transform.right * 0.5f + transform.up * -0.8f;
