@@ -74,7 +74,10 @@ public class PlayerMove:MonoBehaviour
     //本棚を動かす判定(髙山)
     public bool books_move;
 
-    void Start()
+	public GameObject dotPrefab; // 先ほど作ったSphereのプレハブ
+	private GameObject _dotInstance;
+
+	void Start()
     {
         SensitivtiR = 200;
         SensitivtiUp = 180;
@@ -83,8 +86,8 @@ public class PlayerMove:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         map.SetActive(false);
 
-        //髙山作boolたち
-        have_key = false;   //鍵
+		//髙山作boolたち
+		have_key = false;   //鍵
         have_map = false;   //マップ
         books_move = false; //本棚
     }
@@ -132,9 +135,14 @@ public class PlayerMove:MonoBehaviour
         {
             orgspeed1 = 3.0f;
         }
-       
-        //歩く音の処理
-        if ( moveVertical==0 && moveHorizontal==0 || Input.GetKey("joystick button 4"))
+
+		//歩く音の処理
+        if(Input.GetKey("joystick button 5"))
+        {
+			PlayerSound = true;
+			Debug.Log("ttt");
+		}
+		else if ( moveVertical==0 && moveHorizontal==0 || Input.GetKey("joystick button 4"))
         {
             PlayerSound = false;
             Debug.Log("fff");
@@ -182,8 +190,9 @@ public class PlayerMove:MonoBehaviour
                 //レイの感知する範囲
                 if (Physics.Raycast(ray, out hit, 5.0f))
                 {
-                    //違うスクリプトの変数を使えるように
-                    //アイテム
+
+					//違うスクリプトの変数を使えるように
+					//アイテム
 					itembase = itembase.GetComponent<ItemBase>();
                     gameObject.GetComponent<ItemBase>();
 
@@ -265,15 +274,15 @@ public class PlayerMove:MonoBehaviour
 						break;
 					}
                 }
-            }
+			}
             else
             {
                 //アイテムを投げる
                 itembase.ThrowItem();
                 itembase.SetPlayerHaveItem(false);
                 Debug.Log("投擲！！");
-            }
-        }
+			}
+		}
     }
 
     //カメラの動き
