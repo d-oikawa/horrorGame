@@ -39,7 +39,7 @@ public class new_UI : MonoBehaviour
             se.SetActive(true);
             Timer += Time.deltaTime;
         }
-        else if(chekTag.fetchedCheckpointTag == "Search_1" && Timer <= 3.0f)
+        else if(chekTag.fetchedCheckpointTag == "Map" && Timer <= 6.0f)
         {
             Timer = 0;
             ui2.SetActive(true);
