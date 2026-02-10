@@ -36,20 +36,22 @@ public class player_chase : MonoBehaviour
 
     public bool stop;
 
-	//追跡中だが停止しているflag
-	//public bool chase_stop;
+    public GameObject itm;
 
-	//追跡するオブジェクトの座標
-	//private Vector3 target_pos;
+    //追跡中だが停止しているflag
+    //public bool chase_stop;
 
-	//距離
-	//Vector3 Distance;
+    //追跡するオブジェクトの座標
+    //private Vector3 target_pos;
 
-	//vector
-	//Vector3 chase_vector;　
+    //距離
+    //Vector3 Distance;
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+    //vector
+    //Vector3 chase_vector;　
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         //追跡するオブジェクトの座標を取得
         //target_pos =  target.transform.position;
@@ -60,7 +62,7 @@ public class player_chase : MonoBehaviour
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
-        GameObject itm = GameObject.FindGameObjectWithTag("Testitem");
+        itm = GameObject.FindGameObjectWithTag("Testitem");
         item = itm.GetComponent<ItemBase>();
 
         //追跡するすぴーど

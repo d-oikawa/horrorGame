@@ -41,6 +41,7 @@ TagManager:
   - Enemy_mode1
   - Enemy_mode2
   - Enemy_mode3
+  - fadeout
   layers:
   - Default
   - TransparentFX
