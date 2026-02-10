@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354284406896529358, guid: 0899ca206cd3ce8449ac39846842349c, type: 3}
       propertyPath: m_Name
-      value: Sound_Event
+      value: Event
       objectReference: {fileID: 0}
     - target: {fileID: 8354284406896529358, guid: 0899ca206cd3ce8449ac39846842349c, type: 3}
       propertyPath: m_TagString
@@ -2130,7 +2130,7 @@ MonoBehaviour:
   Count: 0
   se: {fileID: 1469155019}
   checkTag: {fileID: 1688237407}
-  playermove: {fileID: 0}
+  playermove: {fileID: 1688237404}
 --- !u!1001 &382217865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4118,6 +4118,7 @@ MonoBehaviour:
   this_transform: {x: 0, y: 0, z: 0}
   item: {fileID: 0}
   stop: 0
+  itm: {fileID: 0}
 --- !u!54 &509855915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10598,7 +10599,7 @@ GameObject:
   - component: {fileID: 1497056933}
   - component: {fileID: 1497056932}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10787,11 +10788,15 @@ PrefabInstance:
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: dotPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1294570087}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1688237403}
+    - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
+      propertyPath: sound_Event1
+      value: 
+      objectReference: {fileID: 1321286167}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: checkpointtag
       value: 

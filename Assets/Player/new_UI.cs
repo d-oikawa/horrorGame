@@ -72,7 +72,7 @@ public class new_UI : MonoBehaviour
             Count = 2;
         }
         //セリフ３
-        if(playermove.hitTag=="bookstand")
+        if(playermove.hitTag=="bookstand" )
         {
             ui3.SetActive(true);
             se.SetActive(true);
@@ -80,7 +80,7 @@ public class new_UI : MonoBehaviour
             Count = 3;
         }
         //セリフ4
-        if (playermove.hitTag == "Exit")
+        if (playermove.hitTag == "Exit" )
         {
             ui4.SetActive(true);
             se.SetActive(true);
