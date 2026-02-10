@@ -56,7 +56,6 @@ public class enemy_move : MonoBehaviour
     public GameObject itm;
 
     //sound_Evect.cs
-
     public Event eVent;
 
     public GameObject se;
@@ -346,7 +345,6 @@ public class enemy_move : MonoBehaviour
     }
     */
 
-    
     public void TransitionGameOverScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");

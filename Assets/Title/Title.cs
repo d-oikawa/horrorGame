@@ -9,32 +9,55 @@ public class Title : MonoBehaviour
 {
     [SerializeField]
     private GameObject fade_out;
+
     private fade fd;
 
-    Action on_completed;
+    public Action on_completed;
 
+    public Action on_completede;
+
+    public bool dontketdown;
 
     public void Start()
     {
+        dontketdown = true;
+            
         on_completed = () =>
         {
             StartCoroutine(Wait3SecondsAndFadeOut());
         };
+
+        on_completede = () =>
+        {
+            StartCoroutine(Wait3SecondsAndFadeInt());
+        };
+
         fd = fade_out.GetComponent<fade>();
+        fd.FadeIn(5.0f, on_completede);
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown("joystick button 1"))
+        if (!dontketdown)
         {
-            fd.FadeIn(2.0f, on_completed);
-            SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
-        }  
+            if (Input.GetKeyDown("joystick button 1"))
+            {
+                fd.FadeOut(5.0f, on_completed);
+                dontketdown = true;
+            }
+        }
     }
 
     private IEnumerator Wait3SecondsAndFadeOut()
     {
-        yield return new WaitForSeconds(3.0f);
-        fd.FadeOut(2.0f);
+        yield return new WaitForSeconds(0f);
+        SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
+    }
+
+    private IEnumerator Wait3SecondsAndFadeInt()
+    {
+        yield return new WaitForSeconds(0f);
+        dontketdown = false;
+        //SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
     }
 }

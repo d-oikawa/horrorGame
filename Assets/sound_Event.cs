@@ -18,8 +18,6 @@ public class Event : MonoBehaviour
     //ƒCƒxƒ“ƒgscene‚©”Û‚©
     public bool Event_scene;
 
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
