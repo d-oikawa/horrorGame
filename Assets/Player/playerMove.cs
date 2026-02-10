@@ -77,6 +77,10 @@ public class PlayerMove:MonoBehaviour
 	public GameObject dotPrefab; // 先ほど作ったSphereのプレハブ
 	private GameObject _dotInstance;
 
+    //イベントシーン
+    //Event_sceneを呼ぶと制御出来る
+    public Event sound_Event1;
+
 	void Start()
     {
         SensitivtiR = 200;
@@ -85,6 +89,8 @@ public class PlayerMove:MonoBehaviour
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
         map.SetActive(false);
+
+        sound_Event1 = sound_Event1.GetComponent<Event>();
 
 		//髙山作boolたち
 		have_key = false;   //鍵
@@ -106,71 +112,74 @@ public class PlayerMove:MonoBehaviour
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
         //移動スピード
-       
-        //走る
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
+        if (sound_Event1.Event_scene == false)
         {
+            //走る
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
+            {
 
-            orgspeed1 = runSpeed;
-        }
-        //遅く歩く
-        else if(Input.GetKey(KeyCode.LeftControl) || Input.GetKey("joystick button 4"))
-        {
-            orgspeed1 = slowwalkSpeed;
-            PlayerSound = false;
-        }
-        //後ろ向きで移動
-        else if (Input.GetKey(KeyCode.S) || moveVertical<=0)
-        {
-            
-            orgspeed1 = 2.0f;
-        }
-        //歩く(通常)
-        else if (moveVertical >= 0)
-        {
-            orgspeed1 = walkSpeed;
-        }
-        //横向きに移動
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || moveHorizontal>=-1 || moveHorizontal <=1 && moveHorizontal!=0)
-        {
-            orgspeed1 = 3.0f;
-        }
+                orgspeed1 = runSpeed;
+            }
+            //遅く歩く
+            else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey("joystick button 4"))
+            {
+                orgspeed1 = slowwalkSpeed;
+                PlayerSound = false;
+            }
+            //後ろ向きで移動
+            else if (Input.GetKey(KeyCode.S) || moveVertical <= 0)
+            {
 
-		//歩く音の処理
-        if(Input.GetKey("joystick button 5"))
-        {
-			PlayerSound = true;
-			Debug.Log("ttt");
-		}
-		else if ( moveVertical==0 && moveHorizontal==0 || Input.GetKey("joystick button 4"))
-        {
-            PlayerSound = false;
-            Debug.Log("fff");
-        }
-        else
-        {
-            PlayerSound = true;
-            Debug.Log("ttt");
-        }
+                orgspeed1 = 2.0f;
+            }
+            //歩く(通常)
+            else if (moveVertical >= 0)
+            {
+                orgspeed1 = walkSpeed;
+            }
+            //横向きに移動
+            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || moveHorizontal >= -1 || moveHorizontal <= 1 && moveHorizontal != 0)
+            {
+                orgspeed1 = 3.0f;
+            }
 
-        //移動する処理
-        movement = transform.rotation * movement * orgspeed1;
-        if(characterController.enabled==true)
-        {
-			characterController.Move(movement);
-		}
+            //歩く音の処理
+            if (Input.GetKey("joystick button 5"))
+            {
+                PlayerSound = true;
+                Debug.Log("ttt");
+            }
+            else if (moveVertical == 0 && moveHorizontal == 0 || Input.GetKey("joystick button 4"))
+            {
+                PlayerSound = false;
+                Debug.Log("fff");
+            }
+            else
+            {
+                PlayerSound = true;
+                Debug.Log("ttt");
+            }
 
-		if (Input.GetKey(KeyCode.N))
-        {
-			transform.position = woldPos;
-		}
-		
-		MoveCamera();   //カメラの上下左右の動き(視点)
-        GetItem();      //Eを押したらアイテムを取得、投擲する処理
-        onSaund();      //音の処理
-        if (have_map)
-        {
-            LookMap();
+            //移動する処理
+            movement = transform.rotation * movement * orgspeed1;
+            if (characterController.enabled == true)
+            {
+                characterController.Move(movement);
+            }
+
+            if (Input.GetKey(KeyCode.N))
+            {
+                transform.position = woldPos;
+            }
+
+            MoveCamera();   //カメラの上下左右の動き(視点)
+            GetItem();      //Eを押したらアイテムを取得、投擲する処理
+
+            onSaund();      //音の処理
+            if (have_map)
+            {
+                LookMap();
+            }
         }
     }
 
