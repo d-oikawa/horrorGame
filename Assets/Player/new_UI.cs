@@ -22,6 +22,13 @@ public class new_UI : MonoBehaviour
     //4
     public GameObject ui4;
     public float Timer4;
+    //5
+
+
+    //6
+
+
+    //7
 
     //吹き出しをどこでも使うために必要な数字
     public int Count;
