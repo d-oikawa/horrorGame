@@ -36,6 +36,7 @@ public class PlayerMove:MonoBehaviour
     private bool PlayerSound;
     float mauseX;
     float mauseY;
+    float vvv;
 
 	//レイで使う変数
 	public Camera Camera;
@@ -86,6 +87,7 @@ public class PlayerMove:MonoBehaviour
     //Event_sceneを呼ぶと制御出来る
     public Event sound_Event1;
     public GameObject se;
+    int ctEv;
 
 	void Start()
     {
@@ -192,6 +194,8 @@ public class PlayerMove:MonoBehaviour
                 LookMap();
             }
         }
+        Event1();
+       
     }
 
     //Eを押したらアイテムを取得、投擲する処理
@@ -489,6 +493,24 @@ public class PlayerMove:MonoBehaviour
     void bookstand_move()
     {
         books_move = true;
+    }
+    
+    void Event1()
+    {
+        if(hitTag=="Day2_Start")
+        {
+            sound_Event1.Event_scene = true;
+            sound_Event1.start_soene = true;
+        }
+        if(sound_Event1.Event_scene==true && sound_Event1.start_soene==true)
+        {
+            if(xRotation<515)
+            {
+                //vvv += Time.deltaTime;
+                // 回転を(30, 0, 0)に設定
+                cam.transform.rotation = Quaternion.Euler(1, 140, 1);
+            }  
+        }
     }
 }
 
