@@ -43,6 +43,7 @@ public class new_UI : MonoBehaviour
     //プレイヤーのタグチェック機能を参照するために必要な変数
     public CheckpointTag checkTag;
     public PlayerMove playermove;
+    public Event events;
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class new_UI : MonoBehaviour
             playermove.ct = 2;
         }
         //セリフ１
-        if (playermove.hitTag == "Day2_Start" && Timer1 <= 3.0f)
+        if (playermove.hitTag == "Day2_Start" && Timer1 <= 3.0f && events.start_soene == false)
         {
             ui1.SetActive(true);
             se.SetActive(true);

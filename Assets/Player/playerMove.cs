@@ -37,6 +37,7 @@ public class PlayerMove:MonoBehaviour
     float mauseX;
     float mauseY;
     float vvv;
+    float timEv;
 
 	//レイで使う変数
 	public Camera Camera;
@@ -60,6 +61,7 @@ public class PlayerMove:MonoBehaviour
     float timer3 = 0.0f;
    public float timer4 = 0.0f;
     public int ct = 0;
+    public int ct2 = 0;
 
     //マップを開く時に使う変数
     public GameObject map;
@@ -87,7 +89,7 @@ public class PlayerMove:MonoBehaviour
     //Event_sceneを呼ぶと制御出来る
     public Event sound_Event1;
     public GameObject se;
-    int ctEv;
+    public int ctEv;
 
 	void Start()
     {
@@ -420,6 +422,7 @@ public class PlayerMove:MonoBehaviour
             {
                 audioSource.PlayOneShot(sound3);
                 timer3 = 0.0f;
+               
             }
         }
         
@@ -497,18 +500,19 @@ public class PlayerMove:MonoBehaviour
     
     void Event1()
     {
-        if(hitTag=="Day2_Start")
+        if(hitTag=="Day2_Start" && ctEv==0)
         {
             sound_Event1.Event_scene = true;
             sound_Event1.start_soene = true;
         }
         if(sound_Event1.Event_scene==true && sound_Event1.start_soene==true)
         {
-            if(xRotation<515)
+            timEv+= Time.deltaTime;
+            if (timEv<=0.7f)
             {
-                //vvv += Time.deltaTime;
-                // 回転を(30, 0, 0)に設定
-                cam.transform.rotation = Quaternion.Euler(1, 140, 1);
+                vvv += Time.deltaTime;
+                transform.Rotate(Vector3.up * vvv);
+                ctEv = 1;
             }  
         }
     }
