@@ -89,8 +89,9 @@ public class enemy_modechange: MonoBehaviour
 
         switch (mode.gameObject.tag)
         {
-            case "Enemy_mode1":
+            case "Enemy_mode1":            
             mode1 = modecen;
+            //spline.spline_change("Spline_A");
             break;
 
             case "Enemy_mode2":

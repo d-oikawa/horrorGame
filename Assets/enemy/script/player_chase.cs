@@ -6,7 +6,7 @@ using static UnityEngine.UI.Image;
 
 public class player_chase : MonoBehaviour
 {
-    enemy_move en;
+    //enemy_move en;
 
     //追跡するオブジェクトの座標
     [SerializeField]
@@ -66,7 +66,7 @@ public class player_chase : MonoBehaviour
         item = itm.GetComponent<ItemBase>();
 
         //追跡するすぴーど
-        agent.speed = 15.0f;
+        //agent.speed = 15.0f;
 
         stoping_time = 0f;
 

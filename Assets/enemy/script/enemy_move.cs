@@ -76,7 +76,6 @@ public class enemy_move : MonoBehaviour
     //プレイヤーとエネミーの距離を測る
     public float distance;
 
-
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
 
@@ -212,10 +211,9 @@ public class enemy_move : MonoBehaviour
             {
                 AudioSource.PlayOneShot(sound2);
             }
-            Debug.Log(eVent.enemy_sound);
-
-            distance_visible();
+            Debug.Log(eVent.enemy_sound);           
         }
+        distance_visible();
     }
 
     public void OnTriggerEnter(Collider collider)
