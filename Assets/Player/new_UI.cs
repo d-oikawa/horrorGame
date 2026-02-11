@@ -23,12 +23,16 @@ public class new_UI : MonoBehaviour
     public GameObject ui4;
     public float Timer4;
     //5
-
+    public GameObject ui5;
+    public float Timer5;
 
     //6
-
+    public GameObject ui6;
+    public float Timer6;
 
     //7
+    public GameObject ui7;
+    public float Timer7;
 
     //吹き出しをどこでも使うために必要な数字
     public int Count;
@@ -50,6 +54,7 @@ public class new_UI : MonoBehaviour
         ui2.SetActive(false);
         ui3.SetActive(false);
         ui4.SetActive(false);
+        ui5.SetActive(false);
 
         se.SetActive(false);
     }
@@ -62,8 +67,17 @@ public class new_UI : MonoBehaviour
 
     void WordUp()
     {
+        //セリフ5
+        if (playermove.ct == 1 || playermove.timer4 > 1.0f && Timer5 <= 3.0f)
+        {
+            ui5.SetActive(true);
+            se.SetActive(true);
+            Timer5 += Time.deltaTime;
+            Count = 5;
+            playermove.ct = 2;
+        }
         //セリフ１
-        if (checkTag.fetchedCheckpointTag == "Day2_Start" && Timer1 <= 3.0f)
+        if (playermove.hitTag == "Day2_Start" && Timer1 <= 3.0f)
         {
             ui1.SetActive(true);
             se.SetActive(true);
@@ -94,10 +108,17 @@ public class new_UI : MonoBehaviour
             Timer4 += Time.deltaTime;
             Count = 4;
         }
+       
     }
 
     void WordDelete()
     {
+         //セリフ5
+        if (Timer5 >= 3.0f && Count == 5)
+        {
+            ui5.SetActive(false);
+            se.SetActive(false);
+        }
         //セリフ１
         if (Timer1 >= 3.0f && Count==1)
         {
@@ -123,6 +144,7 @@ public class new_UI : MonoBehaviour
             ui4.SetActive(false);
             se.SetActive(false);
         }
+       
     }
 }
    

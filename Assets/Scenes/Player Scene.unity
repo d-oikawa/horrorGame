@@ -2127,6 +2127,12 @@ MonoBehaviour:
   Timer3: 0
   ui4: {fileID: 346822752}
   Timer4: 0
+  ui5: {fileID: 1066281408}
+  Timer5: 0
+  ui6: {fileID: 0}
+  Timer6: 0
+  ui7: {fileID: 0}
+  Timer7: 0
   Count: 0
   se: {fileID: 1469155019}
   checkTag: {fileID: 1688237407}
@@ -7316,8 +7322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -678, y: 457}
-  m_SizeDelta: {x: 545.7022, y: 85.9489}
+  m_AnchoredPosition: {x: -100, y: -360}
+  m_SizeDelta: {x: 1600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066281410
 MonoBehaviour:
@@ -7326,13 +7332,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066281408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.9033892, b: 0.023139905, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7340,8 +7346,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 66
+    m_Font: {fileID: 12800000, guid: 40bc91f950a4d3e478ffb6be24761134, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7352,7 +7358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F55\u304B\u304B\u3089\u9003\u3052\u308B"
+  m_Text: "\u4F55\u306E\u97F3\u3060...\u30C9\u30A2\u306E\u65B9\u304B\u3089\u805E\u3053\u3048\u305F\u305E...?"
 --- !u!222 &1066281411
 CanvasRenderer:
   m_ObjectHideFlags: 0
