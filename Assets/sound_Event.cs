@@ -55,7 +55,7 @@ public class Event : MonoBehaviour
             start_soene = true;
         }
 
-        if (Event_scene)
+        if (start_soene)
         {
             enemy_ob.gameObject.SetActive(true);
         }

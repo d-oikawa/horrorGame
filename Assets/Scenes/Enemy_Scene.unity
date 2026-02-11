@@ -1344,6 +1344,7 @@ MonoBehaviour:
   Event: {fileID: 0}
   ev: {fileID: 0}
   time: 0
+  si: 0
 --- !u!65 &166482961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2981,7 +2982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 31.9
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2989,7 +2990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.1
+      value: 10.2
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6314,7 +6315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e44283ee3fad5db4197cace693a3c1c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1701301799562459933, guid: e44283ee3fad5db4197cace693a3c1c8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -7448,10 +7449,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 45.8
+  MinDistance: 0
+  MaxDistance: 36.52
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7459,41 +7460,68 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.021834062
       value: 1
-      inSlope: -13.691099
-      outSlope: -13.691099
+      inSlope: -45.818245
+      outSlope: -45.818245
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.18415216
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.022779912
-      value: 0.66847026
-      inSlope: -4.3146105
-      outSlope: -4.3146105
+      time: 0.043668125
+      value: 0.5
+      inSlope: -11.454561
+      outSlope: -11.454561
       tangentMode: 0
       weightedMode: 0
-      inWeight: 1
-      outWeight: 0.2641566
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.08684844
-      value: 0.23785067
-      inSlope: -0.55222124
-      outSlope: -0.55222124
+      time: 0.08733625
+      value: 0.25
+      inSlope: -2.8636403
+      outSlope: -2.8636403
       tangentMode: 0
       weightedMode: 0
-      inWeight: 1
-      outWeight: 0.14555633
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.913147
-      value: 0
-      inSlope: -0.05752053
-      outSlope: -0.05752053
+      time: 0.1746725
+      value: 0.125
+      inSlope: -0.7159101
+      outSlope: -0.7159101
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.18151923
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.33202627
+      value: 0.043319702
+      inSlope: -0.17897752
+      outSlope: -0.17897752
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6813713
+      value: 0.012069702
+      inSlope: -0.04474438
+      outSlope: -0.04474438
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9826813
+      value: 0.0026537646
+      inSlope: -0.021842774
+      outSlope: -0.021842774
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -7502,7 +7530,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

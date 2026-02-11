@@ -10,6 +10,9 @@ public class move_bookstand : MonoBehaviour
 
     public float time;
 
+    //‰i‰“‚É“®‚©‚³‚È‚¢‚½‚ß‚Ìflag
+    public bool si;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,13 +33,13 @@ public class move_bookstand : MonoBehaviour
         {
             time += Time.deltaTime;            
             //this.gameObject.transform.rotation = new Quaternion(0, 90, 0, 0);
-            vec.z -= 0.03f;
+            vec.z -= 0.005f;
             this.transform.position = vec;
             Event.Event_scene = true; 
         }
-        else
+        if (pm.books_move && vec.z < 5.73f)
         {
-            //Event.Event_scene = false;
+            Event.Event_scene = false;
         }
     }
 }
