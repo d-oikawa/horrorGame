@@ -24,6 +24,10 @@ public class spline_system : MonoBehaviour
     //アタッチされているスプラインのタグ
     public string spline_tag;
 
+    //ひとつ前のスプラインの名前
+    public string before_spline;
+
+
     //次のスプライトに移るまでの動き
     public bool spline_nextmove;
 
@@ -32,13 +36,15 @@ public class spline_system : MonoBehaviour
 
     public bool next_spuline;
 
+    public float tim;
+
 
     //sound_Evect.cs
     public Event eVent;
 
     public GameObject se;
 
-
+    public bool event_chane_splien;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,8 +54,12 @@ public class spline_system : MonoBehaviour
         splines_Percentage = 0;
         change_splien = false;
         next_spuline = false;
+        before_spline = null;
+        tim = 0;
         //最初のスプラインを設定
-		spline_change("Spline_A");
+        //spline_change("Spline_A");
+
+        event_chane_splien = false;
 
         se = GameObject.FindGameObjectWithTag("Event");
         eVent = se.GetComponent<Event>();
@@ -59,9 +69,13 @@ public class spline_system : MonoBehaviour
 
     // Update is called once per frame
     void Update()    {
-                
+
+
         //splineのタグを取得
+        if (splineContainer != null)
+        {
         spline_tag = splineContainer.gameObject.tag;
+        }
 
         //splineに沿って移動していないとき
         if (!spline_flg)
@@ -114,6 +128,8 @@ public class spline_system : MonoBehaviour
             //以下同文
             else if (splineContainer.tag == "Spline_B")
             {
+                spuline_length = splineContainer.CalculateLength();
+
                 if (splines_Percentage > 1f)
                 {
                     splines_Percentage = 0f;
@@ -123,6 +139,8 @@ public class spline_system : MonoBehaviour
 
             else if (splineContainer.tag == "Spline_C")
             {
+                spuline_length = splineContainer.CalculateLength();
+
                 if (splines_Percentage > 1f)
                 {
                     splines_Percentage = 0f;
@@ -197,6 +215,9 @@ public class spline_system : MonoBehaviour
             //splineの長さを取得
             spuline_length = splineContainer.CalculateLength();
 
+            Debug.Log("スプラインの長さ" + spuline_length);
+
+
             //移動速度を設定
             float move_speed = 3 / spuline_length;
 
@@ -236,6 +257,7 @@ public class spline_system : MonoBehaviour
             Debug.Log("Splineが見つかりませんでした。2");
             return;
         }
+
 
         //スプラインを変更
         splineContainer = sc;
@@ -308,5 +330,102 @@ public class spline_system : MonoBehaviour
         spline_change(spli);
         change_splien = true;
         Debug.Log("ooo");
+    }
+
+
+    public void Event_Spline(int stopd_time, string spli, bool eve)
+    {
+        if (eVent.Event_scene)
+        {
+            //splineの長さ
+            float spuline_length;
+
+            ////現在のスプラインタグを判別
+            //if (splineContainer.tag == "Spline_A")
+            //{
+            //    //splineの長さを取得
+            //    spuline_length = splineContainer.CalculateLength();
+            //    //splineの終点に到達したら
+            //    if (splines_Percentage > 1f)
+            //    {
+            //        //splineパーセンテージを0に
+            //        splines_Percentage = 0f;
+            //        //spline変更フラグ
+            //        Next_Spline("Spline_B");
+            //    }
+            //}
+
+            if ((before_spline != spli || before_spline == null)&& !event_chane_splien) 
+            {
+                spline_change(spli);
+                event_chane_splien = eve;
+
+                before_spline = spli;
+            }
+
+            
+                //splineの長さを取得
+                spuline_length = splineContainer.CalculateLength();
+
+                Debug.Log("スプラインの長さ" + spuline_length);
+
+                //移動速度を設定
+                float move_speed = 3 / spuline_length;
+
+            if (tim < stopd_time && splines_Percentage < 1)
+            {
+                //splineの割合で移動
+                splines_Percentage += Time.deltaTime * move_speed;
+
+                //Debug.Log("splineの長さ" + spuline_length);
+
+                //位置を更新
+                Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
+                enemy.position = pos;
+
+                //回転を更新
+                Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
+                Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
+                enemy.rotation = Quaternion.LookRotation(tangent, up);
+                Debug.Log("イベントのスプラインにそって移動している");
+            }
+
+            if(tim > stopd_time)
+            {
+                //splineの割合で移動
+                splines_Percentage -= Time.deltaTime * move_speed;
+
+                //Debug.Log("splineの長さ" + spuline_length);
+
+                //位置を更新
+                Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
+                enemy.position = pos;
+
+                //回転を更新
+                //Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
+                //Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
+                //enemy.rotation = Quaternion.LookRotation(tangent, up);
+                Debug.Log("イベントのスプラインにそって移動している");
+            }
+
+
+            if (splines_Percentage >= 1 && tim < stopd_time)
+            {
+                splines_Percentage = 1.1f;
+                enemy.transform.Rotate(0, 60 * Time.deltaTime, 0);
+                tim += Time.deltaTime;
+            } 
+
+            if(splines_Percentage < 0)
+            {
+                Next_Spline("Spline_A");
+                splines_Percentage = 0f;
+                tim = 0f;
+                eVent.Event_scene = false;
+                eVent.start_soene = false;
+
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 }

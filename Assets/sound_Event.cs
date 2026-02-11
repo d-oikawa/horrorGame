@@ -48,10 +48,11 @@ public class Event : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             enemy_ob.SetActive(true);
-
-            Debug.Log("バルサミコ酢");
+                   
+            //現在がイベントsceneかどうか
             Event_scene = true;
 
+            //最初のイベントsceneのフラグ(これをつかってイベントsceneの処理をしてください。)
             start_soene = true;
         }
 

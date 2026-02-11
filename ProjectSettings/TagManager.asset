@@ -42,6 +42,7 @@ TagManager:
   - Enemy_mode2
   - Enemy_mode3
   - fadeout
+  - StarEvent_Spline
   layers:
   - Default
   - TransparentFX
