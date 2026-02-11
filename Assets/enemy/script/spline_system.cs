@@ -57,7 +57,7 @@ public class spline_system : MonoBehaviour
         before_spline = null;
         tim = 0;
         //Å‰‚ÌƒXƒvƒ‰ƒCƒ“‚ğİ’è
-        //spline_change("Spline_A");
+        spline_change("Spline_A");
 
         event_chane_splien = false;
 
