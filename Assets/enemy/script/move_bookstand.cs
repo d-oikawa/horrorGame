@@ -36,7 +36,7 @@ public class move_bookstand : MonoBehaviour
         }
         else
         {
-            Event.Event_scene = false;
+            //Event.Event_scene = false;
         }
     }
 }

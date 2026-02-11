@@ -220,98 +220,107 @@ public class enemy_move : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if ((collider.tag == "Player" || collider.tag == "Testitem"))
+        if (!eVent.Event_scene)
         {
-            The_moment_our_eyes_meet = true;
-
-            Debug.Log("目と目が合う");
-        }
-        /*
-        if (collider.tag == "Testitem" || collider.tag == "Player")
-        {
-            if (PlayerMove.IsPlayerSound())
+            if ((collider.tag == "Player" || collider.tag == "Testitem"))
             {
-                Debug.Log(spline_System.spline_flg);
+                The_moment_our_eyes_meet = true;
 
-                if (spline_System.spline_flg)
+                Debug.Log("目と目が合う");
+            }
+            /*
+            if (collider.tag == "Testitem" || collider.tag == "Player")
+            {
+                if (PlayerMove.IsPlayerSound())
                 {
-                    //移動前のポジションを保存
-                    start_pos = transform.position;
+                    Debug.Log(spline_System.spline_flg);
+
+                    if (spline_System.spline_flg)
+                    {
+                        //移動前のポジションを保存
+                        start_pos = transform.position;
+                    }
                 }
             }
+            */
         }
-        */
     }
 
     //プレイヤーもしくはアイテムが出す音を感知したらその音をターゲットにする
     public void OnTriggerStay(Collider collider)
     {
-        //感知範囲内のオブジェクトを判別
-        if (collider.tag == "Player")
+        if (!eVent.Event_scene)
         {
-            //プレイヤー、もしくは落としたアイテムの音を検知
-            if (PlayerMove.IsPlayerSound())
+            //感知範囲内のオブジェクトを判別
+            if (collider.tag == "Player")
             {
-                if (!player_Chase.chase_flg)
+                //プレイヤー、もしくは落としたアイテムの音を検知
+                if (PlayerMove.IsPlayerSound())
                 {
-                    //移動前のポジションを保存
-                    start_pos = transform.position;
-                    //The_moment_our_eyes_meet = false;
-                }
+                    if (!player_Chase.chase_flg)
+                    {
+                        //移動前のポジションを保存
+                        start_pos = transform.position;
+                        //The_moment_our_eyes_meet = false;
+                    }
 
-                if (collider != null)
-                {
-                    player_Chase.target = pl.transform.position;
-                }
-                //追跡を開始
-                player_Chase.chase_flg = true;
-                //スプライン上の移動をやめる
-                spline_System.spline_flg = false;
+                    if (collider != null)
+                    {
+                        player_Chase.target = pl.transform.position;
+                    }
+                    //追跡を開始
+                    player_Chase.chase_flg = true;
+                    //スプライン上の移動をやめる
+                    spline_System.spline_flg = false;
 
-                //}
-                Debug.Log("追跡" + player_Chase.chase_flg);                
+                    //}
+                    Debug.Log("追跡" + player_Chase.chase_flg);
+                }
             }
-        }
-        if (collider.tag == "Testitem")
-        {       
-            if (The_moment_our_eyes_meet && ItemBase.IsItemOnGround)
-            {                
+            if (collider.tag == "Testitem")
+            {
+                if (The_moment_our_eyes_meet && ItemBase.IsItemOnGround)
+                {
                     Debug.Log("アイテム");
 
-                if (!player_Chase.chase_flg)
-                {
-                    //移動前のポジションを保存
-                    start_pos = transform.position;
-                    //The_moment_our_eyes_meet = false;
-                }
+                    if (!player_Chase.chase_flg)
+                    {
+                        //移動前のポジションを保存
+                        start_pos = transform.position;
+                        //The_moment_our_eyes_meet = false;
+                    }
 
-                if (collider != null)
-                {
-                    player_Chase.target = collider.transform.position;
-                    collider.gameObject.SetActive(false);
-                }
-              
-                //追跡を開始
-                player_Chase.chase_flg = true;
+                    if (collider != null)
+                    {
+                        player_Chase.target = collider.transform.position;
+                        collider.gameObject.SetActive(false);
+                    }
 
-                //スプライン上の移動をやめる
-                spline_System.spline_flg = false;
-                //
-                Debug.Log("追跡" + player_Chase.chase_flg);
-                foreach (var r in rnd)
-                {
-                    r.enabled = true;
+                    //追跡を開始
+                    player_Chase.chase_flg = true;
+
+                    //スプライン上の移動をやめる
+                    spline_System.spline_flg = false;
+                    //
+                    Debug.Log("追跡" + player_Chase.chase_flg);
+                    foreach (var r in rnd)
+                    {
+                        r.enabled = true;
+                    }
                 }
-            }           
+            }
         }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (!eVent.Event_scene)
         {
-            TransitionGameOverScene();
-            Debug.Log("死亡");
+            if (collision.gameObject.tag == "Player")
+            {
+                TransitionGameOverScene();
+                Debug.Log("死亡");
+            }
         }
     }
 
@@ -357,11 +366,14 @@ public class enemy_move : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Testitem")
+        if (!eVent.Event_scene)
         {
-            foreach (var r in rnd)
+            if (other.gameObject.tag == "Testitem")
             {
-                r.enabled = false;
+                foreach (var r in rnd)
+                {
+                    r.enabled = false;
+                }
             }
         }
     }

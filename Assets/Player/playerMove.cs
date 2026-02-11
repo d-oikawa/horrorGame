@@ -81,6 +81,8 @@ public class PlayerMove:MonoBehaviour
     //Event_sceneを呼ぶと制御出来る
     public Event sound_Event1;
 
+    public GameObject se;
+
 	void Start()
     {
         SensitivtiR = 200;
@@ -90,7 +92,9 @@ public class PlayerMove:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         map.SetActive(false);
 
-        sound_Event1 = sound_Event1.GetComponent<Event>();
+
+        se = GameObject.FindGameObjectWithTag("Event");
+        sound_Event1 = se.GetComponent<Event>();
 
 		//髙山作boolたち
 		have_key = false;   //鍵

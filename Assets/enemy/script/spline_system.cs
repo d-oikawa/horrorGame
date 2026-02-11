@@ -33,6 +33,13 @@ public class spline_system : MonoBehaviour
     public bool next_spuline;
 
 
+    //sound_Evect.cs
+    public Event eVent;
+
+    public GameObject se;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -42,8 +49,13 @@ public class spline_system : MonoBehaviour
         change_splien = false;
         next_spuline = false;
         //最初のスプラインを設定
-		spline_change("Spline_A");        
+		spline_change("Spline_A");
+
+        se = GameObject.FindGameObjectWithTag("Event");
+        eVent = se.GetComponent<Event>();
+
     }
+
 
     // Update is called once per frame
     void Update()    {
@@ -78,128 +90,131 @@ public class spline_system : MonoBehaviour
 
     //スプイランに沿って移動する処理(ごり押し)
     void spline_move()
-    {        
-        //splineの長さ
-        float spuline_length = 0f;
-
-        //現在のスプラインタグを判別
-        if (splineContainer.tag == "Spline_A")
+    {
+        if (!eVent.Event_scene)
         {
+            //splineの長さ
+            float spuline_length = 0f;
+
+            //現在のスプラインタグを判別
+            if (splineContainer.tag == "Spline_A")
+            {
+                //splineの長さを取得
+                spuline_length = splineContainer.CalculateLength();
+                //splineの終点に到達したら
+                if (splines_Percentage > 1f)
+                {
+                    //splineパーセンテージを0に
+                    splines_Percentage = 0f;
+                    //spline変更フラグ
+                    Next_Spline("Spline_B");
+                }
+            }
+
+            //以下同文
+            else if (splineContainer.tag == "Spline_B")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    //change_splien = true;
+                }
+            }
+
+            else if (splineContainer.tag == "Spline_C")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_D");
+                }
+            }
+            else if (splineContainer.tag == "Spline_D")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_E");
+                }
+            }
+            else if (splineContainer.tag == "Spline_E")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_F");
+                }
+            }
+            else if (splineContainer.tag == "Spline_F")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_G");
+                }
+            }
+            else if (splineContainer.tag == "Spline_G")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_H");
+                }
+            }
+            else if (splineContainer.tag == "Spline_H")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_I");
+                }
+            }
+            else if (splineContainer.tag == "Spline_I")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_J");
+                }
+            }
+            else if (splineContainer.tag == "Spline_J")
+            {
+                if (splines_Percentage > 1f)
+                {
+                    splines_Percentage = 0f;
+                    change_splien = true;
+                    spline_change("Spline_A");
+                }
+            }
+
             //splineの長さを取得
             spuline_length = splineContainer.CalculateLength();
-            //splineの終点に到達したら
-            if (splines_Percentage > 1f)
-            {
-                //splineパーセンテージを0に
-                splines_Percentage = 0f;
-                //spline変更フラグ
-                Next_Spline("Spline_B");                
-            }
+
+            //移動速度を設定
+            float move_speed = 3 / spuline_length;
+
+            //splineの割合で移動
+            splines_Percentage += Time.deltaTime * move_speed;
+
+            //Debug.Log("splineの長さ" + spuline_length);
+
+            //位置を更新
+            Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
+            enemy.position = pos;
+
+            //回転を更新
+            Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
+            Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
+            enemy.rotation = Quaternion.LookRotation(tangent, up);
+            Debug.Log("スプラインにそって移動している");
         }
-
-        //以下同文
-        else if (splineContainer.tag == "Spline_B")
-		{            
-            if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				//change_splien = true;
-			}
-		}
-
-		else if (splineContainer.tag == "Spline_C")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_D");
-			}
-		}
-		else if (splineContainer.tag == "Spline_D")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_E");
-			}
-		}
-		else if (splineContainer.tag == "Spline_E")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_F");
-			}
-		}
-		else if (splineContainer.tag == "Spline_F")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_G");
-			}
-		}
-		else if (splineContainer.tag == "Spline_G")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_H");
-			}
-		}
-		else if (splineContainer.tag == "Spline_H")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_I");
-			}
-		}
-		else if (splineContainer.tag == "Spline_I")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_J");
-			}
-		}
-		else if (splineContainer.tag == "Spline_J")
-		{
-			if (splines_Percentage > 1f)
-			{
-				splines_Percentage = 0f;
-				change_splien = true;
-				spline_change("Spline_A");
-			}
-		}
-
-        //splineの長さを取得
-        spuline_length = splineContainer.CalculateLength();
-
-        //移動速度を設定
-        float move_speed = 3 / spuline_length;
-
-        //splineの割合で移動
-        splines_Percentage += Time.deltaTime * move_speed;
-
-        //Debug.Log("splineの長さ" + spuline_length);
-
-        //位置を更新
-        Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
-        enemy.position = pos;
-
-        //回転を更新
-        Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
-        Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
-        enemy.rotation = Quaternion.LookRotation(tangent, up);
-        Debug.Log("スプラインにそって移動している");
     }    
 
     //スプラインを変更する処理
@@ -236,56 +251,56 @@ public class spline_system : MonoBehaviour
         //(現在のスプラインと変更後スプラインが一致しない場合処理)
         spline_move();
 
-        //スプラインを変更
-        if (Input.GetKeyDown(KeyCode.Alpha1) && spline_tag != "Spline_A")
-        {
-            spline_change("Spline_A");
-        }
+        ////スプラインを変更
+        //if (Input.GetKeyDown(KeyCode.Alpha1) && spline_tag != "Spline_A")
+        //{
+        //    spline_change("Spline_A");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && spline_tag != "Spline_B")
-        {
-            spline_change("Spline_B");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha2) && spline_tag != "Spline_B")
+        //{
+        //    spline_change("Spline_B");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && spline_tag != "Spline_C")
-        {
-            spline_change("Spline_C");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha3) && spline_tag != "Spline_C")
+        //{
+        //    spline_change("Spline_C");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha4) && spline_tag != "Spline_D")
-        {
-            spline_change("Spline_D");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha4) && spline_tag != "Spline_D")
+        //{
+        //    spline_change("Spline_D");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha5) && spline_tag != "Spline_E")
-        {
-            spline_change("Spline_E");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha5) && spline_tag != "Spline_E")
+        //{
+        //    spline_change("Spline_E");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha6) && spline_tag != "Spline_F")
-        {
-            spline_change("Spline_F");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha6) && spline_tag != "Spline_F")
+        //{
+        //    spline_change("Spline_F");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha7) && spline_tag != "Spline_G")
-        {
-            spline_change("Spline_G");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha7) && spline_tag != "Spline_G")
+        //{
+        //    spline_change("Spline_G");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha8) && spline_tag != "Spline_H")
-        {
-            spline_change("Spline_H");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha8) && spline_tag != "Spline_H")
+        //{
+        //    spline_change("Spline_H");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha9) && spline_tag != "Spline_I")
-        {
-            spline_change("Spline_I");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha9) && spline_tag != "Spline_I")
+        //{
+        //    spline_change("Spline_I");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha0) && spline_tag != "Spline_J")
-        {
-            spline_change("Spline_J");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha0) && spline_tag != "Spline_J")
+        //{
+        //    spline_change("Spline_J");
+        //}
     }
 
     public void Next_Spline(string spli)

@@ -18,10 +18,19 @@ public class Event : MonoBehaviour
     //イベントsceneか否か
     public bool Event_scene;
 
+    public bool start_soene;
+
+    //エネミーオブジェクト
+    [SerializeField]
+    public GameObject enemy_ob;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Event_scene = false;
         enemy_sound = false;
+        start_soene = false;
         itflg = GameObject.FindWithTag("Testitem");
         iitem = itflg.GetComponent<ItemBase>();
     }
@@ -36,7 +45,18 @@ public class Event : MonoBehaviour
         }
         TheSound?.Invoke();
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            enemy_ob.SetActive(true);
 
+            Debug.Log("バルサミコ酢");
+            Event_scene = true;
+
+            start_soene = true;
+        }
+
+        //Debug.Log("Event_scene" + Event_scene);
+        //Debug.Log("start_soene" + start_soene);
     }
 
     void detect_sound()
