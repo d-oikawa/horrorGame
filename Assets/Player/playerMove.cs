@@ -57,8 +57,8 @@ public class PlayerMove:MonoBehaviour
     float timer1 = 0.0f;
     float timer2 = 0.0f;
     float timer3 = 0.0f;
-    float timer4 = 0.0f;
-    int ct = 0;
+   public float timer4 = 0.0f;
+    public int ct = 0;
 
     //マップを開く時に使う変数
     public GameObject map;
@@ -426,8 +426,8 @@ public class PlayerMove:MonoBehaviour
             if( timer4 > 1.0f && ct==0)
             {
                 audioSource.PlayOneShot(sound4);
-                ct = 1;
                 timer4 = 0.0f;
+                ct = 1;
             }
         }
     }
