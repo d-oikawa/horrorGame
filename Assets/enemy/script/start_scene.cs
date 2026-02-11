@@ -40,7 +40,6 @@ public class enemy_eventscene : MonoBehaviour
     {
         if (eVent.Event_scene && eVent.start_soene)
         {
-
             spline.Event_Spline(3, "StarEvent_Spline",true);
 
             agent.enabled = false;

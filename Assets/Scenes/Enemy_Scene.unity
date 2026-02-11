@@ -1486,59 +1486,59 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0.69003296
+        x: 1.5400314
         y: 0
-        z: -4.2531796
+        z: 18.57682
       TangentIn:
         x: -0
         y: -0
-        z: -1.2725856
+        z: -0.7541094
       TangentOut:
         x: 0
         y: 0
-        z: 1.2725856
+        z: 0.7541094
       Rotation:
         value:
-          x: 2.7473336e-13
-          y: -0.121521175
-          z: -2.244031e-12
-          w: 0.9925888
+          x: -1.611111e-12
+          y: 0.7699511
+          z: 1.3352207e-12
+          w: -0.6381029
     - Position:
-        x: -2.3799667
+        x: -5.8699684
         y: 0
-        z: 8.096821
+        z: 17.17682
       TangentIn:
         x: -0
         y: -0
-        z: -3.9927282
+        z: -2.8825226
       TangentOut:
         x: 0
         y: 0
-        z: 3.7830923
+        z: 4.003092
       Rotation:
         value:
-          x: -0.00000039637692
-          y: -0.24739158
-          z: 0.0000015524204
-          w: 0.9689155
+          x: 0.0000011251592
+          y: 0.714342
+          z: -0.0000011022491
+          w: -0.69979686
     - Position:
-        x: -10.219969
+        x: -20.259968
         y: 0
-        z: 16.40682
+        z: 19.28682
       TangentIn:
         x: -0
         y: -0
-        z: -4.229504
+        z: -4.7584677
       TangentOut:
         x: 0
         y: 0
-        z: 6.113303
+        z: 4.6133122
       Rotation:
         value:
-          x: -0.000000002947308
-          y: -0.5252005
-          z: 0.0000000047755013
-          w: 0.85097855
+          x: -0.000000003820223
+          y: -0.6827018
+          z: 0.000000004088791
+          w: 0.73069704
     - Position:
         x: -33.929405
         y: 0
@@ -1546,17 +1546,17 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -2.3867908
+        z: -1.3670095
       TangentOut:
         x: 0
         y: 0
-        z: 2.3867908
+        z: 1.3670095
       Rotation:
         value:
-          x: 7.20348e-12
-          y: -0.6651907
-          z: -8.085874e-12
-          w: 0.7466735
+          x: -7.690812e-12
+          y: 0.71056837
+          z: 7.615695e-12
+          w: -0.70362806
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -13860,7 +13860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1608081636341361962, guid: 6c0866ea04e7d084dbb22101ff231dd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.1
+      value: 47.2
       objectReference: {fileID: 0}
     - target: {fileID: 1608081636341361962, guid: 6c0866ea04e7d084dbb22101ff231dd8, type: 3}
       propertyPath: m_LocalPosition.y

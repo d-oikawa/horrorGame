@@ -47,13 +47,17 @@ public class Event : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            enemy_ob.SetActive(true);
-                   
+
             //現在がイベントsceneかどうか
             Event_scene = true;
 
             //最初のイベントsceneのフラグ(これをつかってイベントsceneの処理をしてください。)
             start_soene = true;
+        }
+
+        if (Event_scene)
+        {
+            enemy_ob.gameObject.SetActive(true);
         }
 
         //Debug.Log("Event_scene" + Event_scene);
