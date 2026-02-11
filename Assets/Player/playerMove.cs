@@ -52,8 +52,13 @@ public class PlayerMove:MonoBehaviour
     public AudioSource audioSource;
     public AudioClip sound1;
     public AudioClip sound2;
+    public AudioClip sound3;
+    public AudioClip sound4;
     float timer1 = 0.0f;
     float timer2 = 0.0f;
+    float timer3 = 0.0f;
+    float timer4 = 0.0f;
+    int ct = 0;
 
     //マップを開く時に使う変数
     public GameObject map;
@@ -80,7 +85,6 @@ public class PlayerMove:MonoBehaviour
     //イベントシーン
     //Event_sceneを呼ぶと制御出来る
     public Event sound_Event1;
-
     public GameObject se;
 
 	void Start()
@@ -92,6 +96,8 @@ public class PlayerMove:MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         map.SetActive(false);
 
+        //チェックポイント
+        checkpointtag = checkpointtag.GetComponent<CheckpointTag>();
 
         se = GameObject.FindGameObjectWithTag("Event");
         sound_Event1 = se.GetComponent<Event>();
@@ -115,9 +121,10 @@ public class PlayerMove:MonoBehaviour
         //移動するためのキーが押されているか
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
-        //移動スピード
+        //イベントの時動かない
         if (sound_Event1.Event_scene == false)
         {
+            //移動スピード
             //走る
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 5"))
             {
@@ -348,8 +355,7 @@ public class PlayerMove:MonoBehaviour
     //チェックポイントの処理
     public void Pointyecu(string tag)
     {
-		//チェックポイント
-		checkpointtag = checkpointtag.GetComponent<CheckpointTag>();
+		
         //checkpointtagobj.GetComponent<CheckpointTag>();
        
         //もし前のミッションクリアしていたら
@@ -370,6 +376,8 @@ public class PlayerMove:MonoBehaviour
     //SEを鳴らす処理(歩く、走る)
     void onSaund()
     { 
+        //タイマーは発動する時の時間temer秒たったら発動
+
         if (moveVertical != 0 || moveHorizontal != 0)
         {
             //走る時の
@@ -397,6 +405,29 @@ public class PlayerMove:MonoBehaviour
                     audioSource.PlayOneShot(sound1);
                     timer1 = 0.0f;
                 }
+            }
+        }
+
+        //ドアをガチャする音
+        if (Input.GetKey("joystick button 1"))
+        {
+            timer3 += Time.deltaTime;
+            if ((hitTag == "Day2_Start" || hitTag == "Exit") && timer3>=0.1f)
+            {
+                audioSource.PlayOneShot(sound3);
+                timer3 = 0.0f;
+            }
+        }
+        
+        if(checkpointtag.fetchedCheckpointTag=="Day2_Start")
+        {
+            Debug.Log("www");
+            timer4 += Time.deltaTime;
+            if( timer4 > 1.0f && ct==0)
+            {
+                audioSource.PlayOneShot(sound4);
+                ct = 1;
+                timer4 = 0.0f;
             }
         }
     }
