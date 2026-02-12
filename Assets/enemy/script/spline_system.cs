@@ -224,7 +224,7 @@ public class spline_system : MonoBehaviour
 
 
             //ˆÚ“®‘¬“x‚ğİ’è
-            float move_speed = 30 / spuline_length;
+            float move_speed = 3 / spuline_length;
 
             //spline‚ÌŠ„‡‚ÅˆÚ“®
             splines_Percentage += Time.deltaTime * move_speed;
