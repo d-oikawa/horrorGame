@@ -40,6 +40,8 @@ public class move_bookstand : MonoBehaviour
         if (pm.books_move && vec.z < 5.73f)
         {
             Event.Event_scene = false;
+            Event.Event_scene = true;
+            Event.bookstand_conen = true;
         }
     }
 }

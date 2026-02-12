@@ -19,7 +19,11 @@ public class Event : MonoBehaviour
     //イベントsceneか否か
     public bool Event_scene;
 
+    //ドアガチャガチャのシーン
     public bool start_soene;
+
+    //書斎でのscene
+    public bool bookstand_conen;
 
     //エネミーオブジェクト
     [SerializeField]
@@ -32,6 +36,7 @@ public class Event : MonoBehaviour
         Event_scene = false;
         enemy_sound = false;
         start_soene = false;
+        bookstand_conen = false;
         itflg = GameObject.FindWithTag("Testitem");
         iitem = itflg.GetComponent<ItemBase>();
     }
@@ -56,7 +61,7 @@ public class Event : MonoBehaviour
         //    start_soene = true;
         //}
 
-        if (start_soene)
+        if (start_soene || bookstand_conen)
         {
             enemy_ob.gameObject.SetActive(true);
         }
@@ -64,7 +69,6 @@ public class Event : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene("Title");
-
         }
 
         //Debug.Log("Event_scene" + Event_scene);

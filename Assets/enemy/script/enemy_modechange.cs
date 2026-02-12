@@ -105,8 +105,7 @@ public class enemy_modechange: MonoBehaviour
             break;
 
         }
-
-        
+                
             mode.gameObject.SetActive(false);
 
         //if (mode == "Enemy_mode1")

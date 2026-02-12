@@ -40,16 +40,30 @@ public class enemy_eventscene : MonoBehaviour
     {
         if (eVent.Event_scene && eVent.start_soene)
         {
-            spline.Event_Spline(3, "StarEvent_Spline",true);
+            Start_Coene();
+        }
 
-            agent.enabled = false;
-
-            Debug.Log("h–¡‘X");
-
+        if(eVent.Event_scene && eVent.bookstand_conen)
+        {
+            Bookstand_Conen();
         }
     }
 
+    public void Start_Coene()
+    {
+        spline.Event_Spline(3, "StarEvent_Spline", true);
 
+        agent.enabled = false;
+
+        //Debug.Log("h–¡‘X");
+    }
+
+    public void Bookstand_Conen()
+    {
+        spline.Event_Spline(3, "Spline_G", true);
+        agent.enabled = false;
+        //Debug.Log("|–¡‘X");
+    }
 
     //public static bool Areerror(Vector3 v1, Vector3 v2, float tolerance)
     //{

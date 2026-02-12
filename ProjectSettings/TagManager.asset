@@ -43,6 +43,7 @@ TagManager:
   - Enemy_mode3
   - fadeout
   - StarEvent_Spline
+  - cashcase
   layers:
   - Default
   - TransparentFX
