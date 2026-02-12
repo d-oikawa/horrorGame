@@ -44,6 +44,8 @@ public class enemy_eventscene : MonoBehaviour
 
             agent.enabled = false;
 
+            Debug.Log("h–¡‘X");
+
         }
     }
 
