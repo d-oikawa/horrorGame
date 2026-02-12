@@ -144,9 +144,9 @@ public class spline_system : MonoBehaviour
 
                 if (splines_Percentage > 1f)
                 {
-                    splines_Percentage = 0f;
-                    change_splien = true;
-                    spline_change("Spline_D");
+                    splines_Percentage = 1f;
+                    //change_splien = true;
+                    //spline_change("Spline_D");
                 }
             }
             else if (splineContainer.tag == "Spline_D")

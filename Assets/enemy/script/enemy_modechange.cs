@@ -72,7 +72,7 @@ public class enemy_modechange: MonoBehaviour
             mode33 = true;
         }
 
-        if (CKT.fetchedCheckpointTag == "Day2_Start" && mode1)
+        if (CKT.fetchedCheckpointTag == "Day2_Start" && (mode1))
         {
             enemy_ob.SetActive(true);
         }
@@ -95,21 +95,39 @@ public class enemy_modechange: MonoBehaviour
             break;
 
             case "Enemy_mode2":
-            mode1 = modecen;
+                if (Pm.have_map)
+                {
+                    mode1 = modecen;
+                }
             break;
 
             case "Enemy_mode3":
-            spline.Next_Spline("Spline_C");
+                if (Pm.have_map)
+                {
+                    spline.Next_Spline("Spline_C");
+                }
 
-            //mode1 = modecen;
-            break;
+                //mode1 = modecen;
+                break;
 
         }
                 
-            mode.gameObject.SetActive(false);
 
-        //if (mode == "Enemy_mode1")
-        //mode1 = true;
+
+        if (mode.gameObject.tag == "Enemy_mode2" || mode.gameObject.tag == "Enemy_mode3")
+        {
+            if (Pm.have_map)
+            {
+                mode.gameObject.SetActive(false);
+            }
+            return;
+        }
+        else
+        {
+
+            mode.gameObject.SetActive(false);
+        }
+
 
         //Debug.Log("”nŽh‚µ");
     }

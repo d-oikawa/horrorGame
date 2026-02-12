@@ -10,6 +10,8 @@ public class move_bookstand : MonoBehaviour
 
     public float time;
 
+    public GameObject mv;
+
     //‰i‰“‚É“®‚©‚³‚È‚¢‚½‚ß‚Ìflag
     public bool si;
 
@@ -21,6 +23,10 @@ public class move_bookstand : MonoBehaviour
 
         ev = GameObject.FindWithTag("Event");
         Event = ev.GetComponent<Event>();
+
+        mv = GameObject.FindWithTag("enemy");
+
+        si = false;
 
         time = 0;
     }
@@ -37,11 +43,11 @@ public class move_bookstand : MonoBehaviour
             this.transform.position = vec;
             Event.Event_scene = true; 
         }
-        if (pm.books_move && vec.z < 5.73f)
+        if (pm.books_move && vec.z < 5.73f && !si)
         {
             Event.Event_scene = false;
-            Event.Event_scene = true;
-            Event.bookstand_conen = true;
+            mv.SetActive(true);
+            si = true;
         }
     }
 }

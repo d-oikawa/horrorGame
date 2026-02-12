@@ -76,6 +76,9 @@ public class enemy_move : MonoBehaviour
     //プレイヤーとエネミーの距離を測る
     public float distance;
 
+    private Vector3 v;
+
+
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
 
@@ -85,6 +88,8 @@ public class enemy_move : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        v = Vector3.zero;
+         
         //角度を初期化
         //localAngle = this.transform.localEulerAngles;
 
@@ -201,10 +206,10 @@ public class enemy_move : MonoBehaviour
             {
                 //normal_move();
             }
-
-            if (!player_Chase.chase_flg && !AudioSource.isPlaying)
+            if (!player_Chase.chase_flg && !AudioSource.isPlaying && v != this.transform.position)
             {
                 AudioSource.PlayOneShot(sound1);
+                v = this.transform.position;
             }
 
             if (!player_Chase.stop && player_Chase.chase_flg && !AudioSource.isPlaying)
