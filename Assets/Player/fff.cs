@@ -22,11 +22,10 @@ public class fff : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 5.0f))
 		{
-			if (eee.Event_scene==false)
-			{
-				_dotInstance.SetActive(true);
-				_dotInstance.transform.position = hit.point; // 点を衝突地点へ移動
-			}
+			
+		   _dotInstance.SetActive(true);
+		   _dotInstance.transform.position = hit.point; // 点を衝突地点へ移動
+			
 		}
 		else
 		{

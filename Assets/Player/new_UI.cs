@@ -43,7 +43,7 @@ public class new_UI : MonoBehaviour
     //吹き出しをどこでも使うために必要な数字
     public int Count;
 
-    //吹き出しの画像を入れる
+    //吹き出しの画像を入れる       
     public GameObject se;
 
     //プレイヤーのタグチェック機能を参照するために必要な変数
@@ -86,7 +86,7 @@ public class new_UI : MonoBehaviour
             playermove.ct = 2;
         }
         //セリフ１
-        if (playermove.hitTag == "Day2_Start" && Timer1 <= 3.0f && events.start_soene == false)
+        if (playermove.hitTag == "Day2_Start" && Timer1 <= 3.0f)
         {
             ui1.SetActive(true);
             se.SetActive(true);
@@ -119,7 +119,7 @@ public class new_UI : MonoBehaviour
         }
 
         //Up,Down
-        if(events.Event_scene== true)
+        if(events.Event_scene== true && playermove.TTEv >= 2.0f)
         {
             Up.SetActive(true);
             Down.SetActive(true);
@@ -139,7 +139,8 @@ public class new_UI : MonoBehaviour
         {
             ui1.SetActive(false);
             se.SetActive(false);
-            Count = 0;
+            Count = 10;
+           
         }
         //セリフ２
         if (Timer2 >= 3.0f && Count==2)

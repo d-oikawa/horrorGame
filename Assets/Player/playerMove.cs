@@ -90,10 +90,13 @@ public class PlayerMove:MonoBehaviour
     public Event sound_Event1;
     public GameObject se;
     public int ctEv;
+    public float TTEv;
+
+    //UIマネージャ
+    public new_UI new_ui;
 
 
     //カメラ回転(イベント)
-    bool DDD=true;
     float speed;
     Vector3 relativePos;
     Quaternion rotation;
@@ -114,10 +117,11 @@ public class PlayerMove:MonoBehaviour
 
         se = GameObject.FindGameObjectWithTag("Event");
         sound_Event1 = se.GetComponent<Event>();
-      
 
-		//髙山作boolたち
-		have_key = false;   //鍵
+        new_ui = new_ui.GetComponent<new_UI>();
+
+        //髙山作boolたち
+        have_key = false;   //鍵
         have_map = false;   //マップ
         books_move = false; //本棚
     }
@@ -510,12 +514,16 @@ public class PlayerMove:MonoBehaviour
     
     void Event1()
     {
-        if (hitTag == "Day2_Start" && ctEv == 0)
+        if (hitTag=="Day2_Start" && ctEv == 0)
         {
             sound_Event1.Event_scene = true;
             sound_Event1.start_soene = true;
+            if (new_ui.Count == 10)
+            {
+                TTEv += Time.deltaTime;
+            }    
         }
-        if (sound_Event1.Event_scene == true && sound_Event1.start_soene == true)
+        if (sound_Event1.Event_scene == true && sound_Event1.start_soene == true && TTEv>=2.0f)
         {
             // 補完スピードを決める
             speed = 0.1f;
