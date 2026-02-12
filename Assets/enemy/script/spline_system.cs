@@ -134,6 +134,7 @@ public class spline_system : MonoBehaviour
                 {
                     splines_Percentage = 0f;
                     //change_splien = true;
+                    Next_Spline("Spline_C");
                 }
             }
 
