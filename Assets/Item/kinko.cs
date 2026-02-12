@@ -27,7 +27,7 @@ public class kinko : MonoBehaviour
 
         boxCollider = Keybject.GetComponent<BoxCollider>();
 
-        boxCollider.enabled = false;
+        boxCollider.enabled = true;
 
     }
 
@@ -42,13 +42,13 @@ public class kinko : MonoBehaviour
 
     public void Open()
     {
-        if (!a)
-        {
-            animator.SetBool("New Bool", true);
+        //if (!a)
+        //{
+        //    animator.SetBool("New Bool", true);
 
-            boxCollider.enabled = true;
+        //    boxCollider.enabled = true;
 
-            a = true;
-        }
+        //    a = true;
+        //}
     } 
 }
