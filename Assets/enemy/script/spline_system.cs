@@ -153,9 +153,9 @@ public class spline_system : MonoBehaviour
             {
                 if (splines_Percentage > 1f)
                 {
-                    splines_Percentage = 0f;
-                    change_splien = true;
-                    spline_change("Spline_E");
+                    splines_Percentage = 1f;
+                    //change_splien = true;
+                    //Next_Spline("Spline_E");
                 }
             }
             else if (splineContainer.tag == "Spline_E")
@@ -220,7 +220,7 @@ public class spline_system : MonoBehaviour
 
 
             //移動速度を設定
-            float move_speed = 3 / spuline_length;
+            float move_speed = 30 / spuline_length;
 
             //splineの割合で移動
             splines_Percentage += Time.deltaTime * move_speed;
@@ -231,11 +231,35 @@ public class spline_system : MonoBehaviour
             Vector3 pos = splineContainer.EvaluatePosition(splines_Percentage);
             enemy.position = pos;
 
-            //回転を更新
-            Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
-            Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
-            enemy.rotation = Quaternion.LookRotation(tangent, up);
-            Debug.Log("スプラインにそって移動している");
+            
+
+            if((splineContainer.tag == "Spline_C"|| splineContainer.tag == "Spline_D") && (splines_Percentage >= 1 && splines_Percentage <=1.1))
+            {
+                tim += Time.deltaTime;
+                //enemy.transform.Rotate(0, 36 * Time.deltaTime, 0);
+
+                if (tim > 5)
+                {
+                    splines_Percentage = 0f;
+                    tim = 0;
+                    if (splineContainer.tag == "Spline_C")
+                    {
+                        spline_change("Spline_D");
+                    }
+                    else if(splineContainer.tag == "Spline_D")
+                    {
+                        spline_change("Spline_E");
+                    }
+                }
+            }
+            else
+            {
+                //回転を更新
+                Vector3 tangent = ((Vector3)splineContainer.EvaluateTangent(splines_Percentage)).normalized;
+                Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
+                enemy.rotation = Quaternion.LookRotation(tangent, up);
+                Debug.Log("スプラインにそって移動している");
+            }
         }
     }    
 
@@ -326,6 +350,8 @@ public class spline_system : MonoBehaviour
         //}
     }
 
+    //スプラインを切り替えるための関数だったのだが、change_splienをtrueにすると敵のアクティブがfalseになるので、
+    //次のスプラインを設定しつつ、一度敵を消滅させるという意図のときに使ってください。
     public void Next_Spline(string spli)
     {
         spline_change(spli);

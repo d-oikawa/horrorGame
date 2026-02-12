@@ -82,6 +82,15 @@ public class PlayerMove:MonoBehaviour
     //本棚を動かす判定(髙山)
     public bool books_move;
 
+    //金庫を上げる判定(髙山)
+    public bool kinko;
+
+    //金庫のCSファイル内の変数を使うため(髙山)
+    public kinko Kinko;
+
+    public GameObject kk;
+
+
 	public GameObject dotPrefab; // 先ほど作ったSphereのプレハブ
 	private GameObject _dotInstance;
 
@@ -103,6 +112,9 @@ public class PlayerMove:MonoBehaviour
 
     public GameObject targetObject; // 注視したいオブジェクトをInspectorから入れておく
 
+    //敵出現のため一度だけ使用(髙山)
+    private bool C; 
+
     void Start()
     {
         SensitivtiR = 200;
@@ -120,10 +132,15 @@ public class PlayerMove:MonoBehaviour
 
         new_ui = new_ui.GetComponent<new_UI>();
 
+        kk = GameObject.FindWithTag("cashcase");
+        Kinko = kk.GetComponent<kinko>();
+
         //髙山作boolたち
         have_key = false;   //鍵
         have_map = false;   //マップ
         books_move = false; //本棚
+        kinko = false;      //金庫
+        C = false;
     }
 
     void Update()
@@ -288,6 +305,19 @@ public class PlayerMove:MonoBehaviour
                                 }
                         }
                         break;
+
+                        //金庫を開ける(髙山)
+                        case "cashcase":
+                        {
+                   　　        if (books_move　&& !kinko)
+             　　               {
+              　　                 kinko = true;
+                                   Kinko.Open(); 
+                            }
+                   　   }
+                        break;
+
+
 
                         //チェックポイント
                         case "None":
@@ -494,6 +524,11 @@ public class PlayerMove:MonoBehaviour
         }
         else
         {
+            if (!C)
+            {
+                C = true;
+                targetObject.SetActive(true);
+            }
             uI.DontKey();
         }
     }

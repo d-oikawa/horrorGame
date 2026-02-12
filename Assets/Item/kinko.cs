@@ -34,12 +34,15 @@ public class kinko : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if(Input.GetKeyDown(KeyCode.Alpha2) && !a)
         {
-            open = true;
+            Open(); 
         }
+    }
 
-        if (open && !a)
+    public void Open()
+    {
+        if (!a)
         {
             animator.SetBool("New Bool", true);
 
@@ -47,5 +50,5 @@ public class kinko : MonoBehaviour
 
             a = true;
         }
-    }
+    } 
 }
