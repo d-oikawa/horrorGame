@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -38,6 +39,7 @@ public class spline_system : MonoBehaviour
 
     public float tim;
 
+    public enemy_move em;
 
     //sound_Evect.cs
     public Event eVent;
@@ -63,6 +65,8 @@ public class spline_system : MonoBehaviour
 
         se = GameObject.FindGameObjectWithTag("Event");
         eVent = se.GetComponent<Event>();
+
+        em = GetComponent<enemy_move>();
 
     }
 
@@ -415,9 +419,15 @@ public class spline_system : MonoBehaviour
                 Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
                 enemy.rotation = Quaternion.LookRotation(tangent, up);
                 Debug.Log("イベントのスプラインにそって移動している");
+
+                if (!em.AudioSource.isPlaying)
+                {
+                    em.AudioSource.PlayOneShot(em.sound1);
+                }
+
             }
 
-            if(tim > stopd_time)
+            if (tim > stopd_time)
             {
                 //splineの割合で移動
                 splines_Percentage -= Time.deltaTime * move_speed;
@@ -433,6 +443,10 @@ public class spline_system : MonoBehaviour
                 //Vector3 up = ((Vector3)splineContainer.EvaluateUpVector(splines_Percentage));
                 //enemy.rotation = Quaternion.LookRotation(tangent, up);
                 Debug.Log("イベントのスプラインにそって移動している");
+                if (!em.AudioSource.isPlaying)
+                {
+                    em.AudioSource.PlayOneShot(em.sound1);
+                }
             }
 
 

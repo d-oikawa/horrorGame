@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class enemy_move : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class enemy_move : MonoBehaviour
     public AudioClip sound2;
 
 
-    AudioSource AudioSource;
+    public AudioSource AudioSource;
 
     private Renderer[] rnd;
 
@@ -218,6 +219,18 @@ public class enemy_move : MonoBehaviour
             }
             Debug.Log(eVent.enemy_sound);           
         }
+        //else
+        //{
+        //    if (spline_System.tim < spline_System.stopd_time && spline_System.splines_Percentage < 1)
+        //    {
+        //        AudioSource.PlayOneShot(sound1);
+        //    }
+
+        //    if (tim > stopd_time)
+        //    {
+
+        //    }
+        //}
         distance_visible();
     }
 

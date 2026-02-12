@@ -461,13 +461,16 @@ public class PlayerMove:MonoBehaviour
 
         //ドアをガチャする音
         if (Input.GetKey("joystick button 1"))
-        {
+        {           
             timer3 += Time.deltaTime;
             if ((hitTag == "Day2_Start" || hitTag == "Exit") && timer3>=0.1f)
             {
-                audioSource.PlayOneShot(sound3);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(sound3);
+                }
                 timer3 = 0.0f;
-               
+                hitTag = null;               
             }
         }
         
