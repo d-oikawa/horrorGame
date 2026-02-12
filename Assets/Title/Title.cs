@@ -33,7 +33,7 @@ public class Title : MonoBehaviour
         };
 
         fd = fade_out.GetComponent<fade>();
-        fd.FadeIn(5.0f, on_completede);
+        fd.FadeIn(1.0f, on_completede);
     }
 
     public void Update()
@@ -42,7 +42,7 @@ public class Title : MonoBehaviour
         {
             if (Input.GetKeyDown("joystick button 1"))
             {
-                fd.FadeOut(5.0f, on_completed);
+                fd.FadeOut(1.0f, on_completed);
                 dontketdown = true;
             }
         }

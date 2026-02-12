@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using static Unity.Burst.Intrinsics.X86.Avx;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -45,19 +46,25 @@ public class Event : MonoBehaviour
         }
         TheSound?.Invoke();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
 
-            //現在がイベントsceneかどうか
-            Event_scene = true;
+        //    //現在がイベントsceneかどうか
+        //    Event_scene = true;
 
-            //最初のイベントsceneのフラグ(これをつかってイベントsceneの処理をしてください。)
-            start_soene = true;
-        }
+        //    //最初のイベントsceneのフラグ(これをつかってイベントsceneの処理をしてください。)
+        //    start_soene = true;
+        //}
 
         if (start_soene)
         {
             enemy_ob.gameObject.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneManager.LoadScene("Title");
+
         }
 
         //Debug.Log("Event_scene" + Event_scene);

@@ -1647,7 +1647,7 @@ MonoBehaviour:
   Timer4: 0
   ui5: {fileID: 1777508917}
   Timer5: 0
-  ui6: {fileID: 0}
+  ui6: {fileID: 331521987}
   Timer6: 0
   ui7: {fileID: 0}
   Timer7: 0
@@ -1655,6 +1655,7 @@ MonoBehaviour:
   se: {fileID: 1424991821}
   checkTag: {fileID: 482521105}
   playermove: {fileID: 1141432783}
+  events: {fileID: 1658836432}
 --- !u!1 &215369676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1827,7 @@ MonoBehaviour:
   se: {fileID: 1147475779}
   checkTag: {fileID: 482521105}
   playermove: {fileID: 1141432783}
+  events: {fileID: 0}
 --- !u!1 &236580819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8070239087884942914, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
@@ -2982,15 +2984,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.9
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.38
+      value: 8.71
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.2
+      value: 34.2
       objectReference: {fileID: 0}
     - target: {fileID: 2170057204992864472, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3023,7 +3025,7 @@ PrefabInstance:
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: map
       value: 
-      objectReference: {fileID: 113271568}
+      objectReference: {fileID: 2036764982}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: Camera
       value: 
@@ -5752,6 +5754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dotPrefab: {fileID: 1778173370}
+  obj: {fileID: 0}
+  eee: {fileID: 1658836432}
   Camera: {fileID: 482521103}
 --- !u!114 &1141432783 stripped
 MonoBehaviour:
@@ -6791,7 +6795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65794674634f27746881e01e3c066987, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.223
+      value: 12.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65794674634f27746881e01e3c066987, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6914,7 +6918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 372d9b220e790d1458c21a438db5a8fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.4
+      value: 66.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 372d9b220e790d1458c21a438db5a8fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6922,7 +6926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 372d9b220e790d1458c21a438db5a8fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.7
+      value: -27.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 372d9b220e790d1458c21a438db5a8fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7450,7 +7454,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 36.52
+  MaxDistance: 55.1
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -7943,7 +7947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65794674634f27746881e01e3c066987, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.223
+      value: 12.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65794674634f27746881e01e3c066987, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9204,7 +9208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86d4e8a541fc225448cf6dcc5dfa808b, type: 3}
       propertyPath: m_TagString
-      value: Spline_A
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1968915521314395719, guid: 86d4e8a541fc225448cf6dcc5dfa808b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -12781,7 +12785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1503372571403589329, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1469629983011981525, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -12841,7 +12845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 39265832000283695, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 69139894955242396, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
