@@ -3063,6 +3063,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 482521107}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 1355620308}
+    - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: checkpointtag
       value: 
       objectReference: {fileID: 482521105}

@@ -506,6 +506,7 @@ public class PlayerMove:MonoBehaviour
         {
             sound_Event1.Event_scene = true;
             sound_Event1.start_soene = true;
+            ctEv = 1;
         }
         if(sound_Event1.Event_scene==true && sound_Event1.start_soene==true)
         {
@@ -517,7 +518,6 @@ public class PlayerMove:MonoBehaviour
           Quaternion rotation = Quaternion.LookRotation(relativePos);
           // 現在の回転情報と、ターゲット方向の回転情報を補完する
           transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, speed);
-
         }
     }
 }
