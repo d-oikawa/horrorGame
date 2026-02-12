@@ -22264,6 +22264,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1654426675}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 639684525}
+    - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: checkpointtag
       value: 
       objectReference: {fileID: 1654426673}
@@ -23782,6 +23786,7 @@ MonoBehaviour:
   Event: {fileID: 0}
   ev: {fileID: 0}
   time: 0
+  si: 0
 --- !u!65 &1738929622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25102,6 +25107,7 @@ MonoBehaviour:
   Event: {fileID: 0}
   ev: {fileID: 0}
   time: 0
+  si: 0
 --- !u!65 &1880969920
 BoxCollider:
   m_ObjectHideFlags: 0
