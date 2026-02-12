@@ -517,15 +517,15 @@ public class PlayerMove:MonoBehaviour
         }
         if (sound_Event1.Event_scene == true && sound_Event1.start_soene == true)
         {
-           
-              // 補完スピードを決める
-                 speed = 0.1f;
-                // ターゲット方向のベクトルを取得
-                relativePos = targetObject.transform.position - this.transform.position;
-                // 方向を、回転情報に変換
-                 rotation = Quaternion.LookRotation(relativePos);
-                // 現在の回転情報と、ターゲット方向の回転情報を補完する
-                transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, speed);
+            // 補完スピードを決める
+            speed = 0.1f;
+            // ターゲット方向のベクトルを取得
+            relativePos = targetObject.transform.position - this.transform.position;
+            // 方向を、回転情報に変換
+            rotation = Quaternion.LookRotation(relativePos);
+            // 現在の回転情報と、ターゲット方向の回転情報を補完する
+            transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, speed);
+           cam.transform.Rotate(0, 0, 0);
             ctEv = 1;
         } 
     }

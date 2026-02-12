@@ -34,6 +34,12 @@ public class new_UI : MonoBehaviour
     public GameObject ui7;
     public float Timer7;
 
+    //Up //Down
+    public GameObject Up;
+    public float Timer8;
+    public GameObject Down;
+    public float Timer9;
+
     //吹き出しをどこでも使うために必要な数字
     public int Count;
 
@@ -56,6 +62,8 @@ public class new_UI : MonoBehaviour
         ui3.SetActive(false);
         ui4.SetActive(false);
         ui5.SetActive(false);
+        Up.SetActive(false);
+        Down.SetActive(false);  
 
         se.SetActive(false);
     }
@@ -109,9 +117,15 @@ public class new_UI : MonoBehaviour
             Timer4 += Time.deltaTime;
             Count = 4;
         }
+
+        //Up,Down
+        if(events.Event_scene== true)
+        {
+            Up.SetActive(true);
+            Down.SetActive(true);
+        }
        
     }
-
     void WordDelete()
     {
          //セリフ5
@@ -145,7 +159,14 @@ public class new_UI : MonoBehaviour
             ui4.SetActive(false);
             se.SetActive(false);
         }
-       
+
+        //Up,Down
+        if (events.Event_scene == false)
+        {
+            Up.SetActive(false);
+            Down.SetActive(false);
+        }
+
     }
 }
    
