@@ -235,7 +235,8 @@ public class PlayerMove:MonoBehaviour
     void GetItem()
     {
         //Eを押したら　コントローラーならB
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
+        //マップを見ている最中は押せない様に変更(髙山)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1")) && count == 0)
         {
             //レイを使っての選択
             Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
@@ -245,7 +246,7 @@ public class PlayerMove:MonoBehaviour
             if (!itembase.GetIsPlayerHaveItem())
             {
                 //レイの感知する範囲
-                if (Physics.Raycast(ray, out hit, 5.0f))
+                if (Physics.Raycast(ray, out hit, 5.0f) )
                 {
 
 					//違うスクリプトの変数を使えるように
