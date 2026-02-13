@@ -102,7 +102,7 @@ public class PlayerMove:MonoBehaviour
     public float TTEv;
 
     //UIマネージャ
-    public new_UI new_ui;
+    public NEW_UI1 new_ui;
 
 
     //カメラ回転(イベント)
@@ -130,10 +130,10 @@ public class PlayerMove:MonoBehaviour
         se = GameObject.FindGameObjectWithTag("Event");
         sound_Event1 = se.GetComponent<Event>();
 
-        new_ui = new_ui.GetComponent<new_UI>();
+        new_ui = new_ui.GetComponent<NEW_UI1>();
 
         kk = GameObject.FindWithTag("cashcase");
-        Kinko = kk.GetComponent<kinko>();
+        //Kinko = kk.GetComponent<kinko>();
 
         //髙山作boolたち
         have_key = false;   //鍵
@@ -557,7 +557,7 @@ public class PlayerMove:MonoBehaviour
         {
             sound_Event1.Event_scene = true;
             sound_Event1.start_soene = true;
-            if (new_ui.Count == 10)
+            if (new_ui.Word == 2)
             {
                 TTEv += Time.deltaTime;
             }    
