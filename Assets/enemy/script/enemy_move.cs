@@ -217,7 +217,8 @@ public class enemy_move : MonoBehaviour
             {
                 AudioSource.PlayOneShot(sound2);
             }
-            Debug.Log(eVent.enemy_sound);           
+            Debug.Log(eVent.enemy_sound);
+
         }
         //else
         //{

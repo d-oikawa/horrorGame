@@ -72,7 +72,7 @@ public class enemy_modechange: MonoBehaviour
             mode33 = true;
         }
 
-        if (CKT.fetchedCheckpointTag == "Day2_Start" && (mode1))
+        if ((CKT.fetchedCheckpointTag == "Day2_Start" && (mode1)) || Pm.have_key)
         {
             enemy_ob.SetActive(true);
         }

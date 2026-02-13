@@ -104,6 +104,7 @@ public class spline_system : MonoBehaviour
         }
         //割合表示のデバッグ         
         //Debug.Log(splines_Percentage);
+
     }
 
     //スプイランに沿って移動する処理(ごり押し)

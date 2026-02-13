@@ -12,7 +12,7 @@ public class kinko : MonoBehaviour
 
     public GameObject Keybject;
 
-    public BoxCollider boxCollider;
+    public BoxCollider boxCollider;    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
