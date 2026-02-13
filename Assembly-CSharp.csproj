@@ -124,7 +124,6 @@
     <Compile Include="Assets\enemy\script\kari_player.cs" />
     <Compile Include="Assets\Player\StartCollision.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Player\fff.cs" />
     <Compile Include="Assets\enemy\script\enemy_move.cs" />
   </ItemGroup>
   <ItemGroup>
