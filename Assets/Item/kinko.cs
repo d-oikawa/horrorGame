@@ -42,13 +42,15 @@ public class kinko : MonoBehaviour
 
     public void Open()
     {
-        //if (!a)
-        //{
-        //    animator.SetBool("New Bool", true);
+        Debug.Log("éhêg");
+        if (!a)
+        {
+            animator.SetBool("New Bool", true);
 
-        //    boxCollider.enabled = true;
+            boxCollider.enabled = true;
 
-        //    a = true;
-        //}
-    } 
+            a = true;
+            Debug.Log("ómÇ™");
+        }
+    }
 }

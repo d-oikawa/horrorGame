@@ -176,8 +176,8 @@ public class spline_system : MonoBehaviour
                 if (splines_Percentage > 1f)
                 {
                     splines_Percentage = 0f;
-                    change_splien = true;
-                    spline_change("Spline_G");
+                    //change_splien = true;
+                    //spline_change("Spline_G");
                 }
             }
             else if (splineContainer.tag == "Spline_G")
@@ -224,7 +224,7 @@ public class spline_system : MonoBehaviour
 
 
             //ˆÚ“®‘¬“x‚ğİ’è
-            float move_speed = 3 / spuline_length;
+            float move_speed = 30 / spuline_length;
 
             //spline‚ÌŠ„‡‚ÅˆÚ“®
             splines_Percentage += Time.deltaTime * move_speed;
