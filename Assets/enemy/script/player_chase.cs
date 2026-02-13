@@ -63,7 +63,10 @@ public class player_chase : MonoBehaviour
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
         itm = GameObject.FindGameObjectWithTag("Testitem");
-        item = itm.GetComponent<ItemBase>();
+        if (itm != null)
+        {
+            item = itm.GetComponent<ItemBase>();
+        }
 
         //í«ê’Ç∑ÇÈÇ∑Ç“Å[Ç«
         agent.speed = 10.0f;

@@ -133,7 +133,7 @@ public class PlayerMove:MonoBehaviour
         new_ui = new_ui.GetComponent<NEW_UI1>();
 
         kk = GameObject.FindWithTag("cashcase");
-        //Kinko = kk.GetComponent<kinko>();
+        Kinko = kk.GetComponent<kinko>();
 
         //髙山作boolたち
         have_key = false;   //鍵

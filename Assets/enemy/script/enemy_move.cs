@@ -102,7 +102,10 @@ public class enemy_move : MonoBehaviour
         PlayerMove = pl.GetComponent<PlayerMove>();
 
         itm = GameObject.FindGameObjectWithTag("Testitem");
-        ItemBase = itm.GetComponent<ItemBase>();
+        if (itm != null)
+        {
+            ItemBase = itm.GetComponent<ItemBase>();
+        }
 
         //GameObject tesit = GameObject.FindGameObjectWithTag("Testitem");
         //testItem_Drop = tesit.GetComponent<testItem_drop>();
