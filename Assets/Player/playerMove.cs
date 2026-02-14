@@ -226,10 +226,14 @@ public class PlayerMove:MonoBehaviour
                 transform.position = woldPos;
             }
 
-            MoveCamera();   //カメラの上下左右の動き(視点)
-            GetItem();      //Eを押したらアイテムを取得、投擲する処理
-
+            if(count!=1)
+            {
+                MoveCamera();   //カメラの上下左右の動き(視点)
+            }
+            GetItem();      //Eを押したらアイテムを取得、投擲す 
+            
             onSaund();      //音の処理
+            
             if (have_map)
             {
                 LookMap();
@@ -446,7 +450,7 @@ public class PlayerMove:MonoBehaviour
     {
         //タイマーは発動する時の時間temer秒たったら発動
 
-        if (!Ishide)
+        if (!Ishide && count!=1)
         {
             if (moveVertical != 0 || moveHorizontal != 0)
             {
