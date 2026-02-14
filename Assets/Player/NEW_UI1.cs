@@ -55,23 +55,25 @@ public class NEW_UI1 : MonoBehaviour
         if (playermove.ct == 1 || playermove.timer4 > 1.0f && Word == 0)
         {
             // テキストの表示を入れ替える
-            score_text.text = "何の音だ...ドアの方から聞こえたぞ...?";
+            score_text.text = "             何の音だ...ドアの方から聞こえたぞ...?";
             Timer5 = 0;
             Count = 5;
             playermove.ct = 2;
             Word = 1;
+            playermove.hitTag = null;
         }
         //セリフ１
-        if (playermove.hitTag == "Day2_Start" && Word == 1)
+        if (playermove.hitTag == "Day2_Start" )
         {
             // テキストの表示を入れ替える
-            score_text.text = "あかなくなってしまった。ど、どうしよう";
+            score_text.text = "             あかなくなってしまった。ど、どうしよう";
             Timer5 = 0;
             Count = 5;
             Word = 2;
+            playermove.hitTag = null;
         }
         //セリフ２
-        if (checkTag.fetchedCheckpointTag == "Map" && Word == 2)
+        if (playermove.hitTag == "Map" )
         {
             // テキストの表示を入れ替える
             score_text.text = "ん？この地図、一部屋切り取られてるな気になるし向かって見るか";
@@ -79,26 +81,29 @@ public class NEW_UI1 : MonoBehaviour
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 3;
+            playermove.hitTag = null;
         }
         //セリフ３
-        if (playermove.hitTag == "bookstand" && Word == 3)
+        if (playermove.hitTag == "bookstand" )
         {
             // テキストの表示を入れ替える
-            score_text.text = "うわ扉が出てきた...";
+            score_text.text = "                                 うわ扉が出てきた...";
 
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 4;
+            playermove.hitTag = null;
         }
         //セリフ4
-        if (playermove.hitTag == "Exit" && Word == 4)
+        if (playermove.hitTag == "Exit")
         {
             // テキストの表示を入れ替える
-            score_text.text = "うーん開かないな、鍵が必要なのかな？";
+            score_text.text = "                    うーん開かないな、鍵が必要なのかな？";
 
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 5;
+            playermove.hitTag = null;
         }
 
     }

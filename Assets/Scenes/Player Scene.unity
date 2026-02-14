@@ -1626,6 +1626,7 @@ MonoBehaviour:
   sound2: {fileID: 0}
   AudioSource: {fileID: 0}
   distance: 0
+  on: 0
 --- !u!114 &197620676 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4806965850195527050, guid: 349751f5f193b3749abe68655848ee6c, type: 3}
@@ -2957,7 +2958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -527}
+  m_AnchoredPosition: {x: -1, y: -593}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308028593
@@ -6203,6 +6204,7 @@ MonoBehaviour:
   eVent: {fileID: 0}
   se: {fileID: 0}
   event_chane_splien: 0
+  k: 0
 --- !u!195 &463263343
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6256,6 +6258,7 @@ MonoBehaviour:
   sound2: {fileID: 8300000, guid: 29476bdd040d51842974674bdf753c71, type: 3}
   AudioSource: {fileID: 0}
   distance: 0
+  on: 0
 --- !u!114 &463263345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6539,6 +6542,7 @@ MonoBehaviour:
   eVent: {fileID: 0}
   se: {fileID: 0}
   event_chane_splien: 0
+  k: 0
 --- !u!195 &509855912
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6592,6 +6596,7 @@ MonoBehaviour:
   sound2: {fileID: 8300000, guid: 29476bdd040d51842974674bdf753c71, type: 3}
   AudioSource: {fileID: 0}
   distance: 0
+  on: 0
 --- !u!114 &509855914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7700,6 +7705,7 @@ MonoBehaviour:
   sound2: {fileID: 0}
   AudioSource: {fileID: 0}
   distance: 0
+  on: 0
 --- !u!1 &637890788 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6792475751553166407, guid: 00da0c2f53bf51a4f8f954e723a56b7d, type: 3}
@@ -8114,6 +8120,7 @@ MonoBehaviour:
   eVent: {fileID: 0}
   se: {fileID: 0}
   event_chane_splien: 0
+  k: 0
 --- !u!114 &639684532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8145,6 +8152,7 @@ MonoBehaviour:
   sound2: {fileID: 8300000, guid: 29476bdd040d51842974674bdf753c71, type: 3}
   AudioSource: {fileID: 0}
   distance: 0
+  on: 0
 --- !u!195 &639684533
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10375,7 +10383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: 466}
+  m_AnchoredPosition: {x: -1, y: 548}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791411382
