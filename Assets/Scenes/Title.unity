@@ -1051,9 +1051,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press the B Button
-
-'
+  m_Text: "B\u30DC\u30BF\u30F3\u3092\u62BC\u3059\n"
 --- !u!222 &2000715831
 CanvasRenderer:
   m_ObjectHideFlags: 0
