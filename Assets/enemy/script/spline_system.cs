@@ -231,10 +231,10 @@ public class spline_system : MonoBehaviour
             //移動速度を設定
             float move_speed = 3 / spuline_length;
 
-            //超絶デバッグ大魔神
+            ////超絶デバッグ大魔神
             //if (Input.GetKey(KeyCode.Alpha9))
             //{
-            //    move_speed = 30 / spuline_length;
+            //    move_speed = 300 / spuline_length;
             //}
 
 
