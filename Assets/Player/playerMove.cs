@@ -540,7 +540,7 @@ public class PlayerMove:MonoBehaviour
     //出口へ到達した時の処理
     void Exit()
     {
-        UI uI = canvas.GetComponent<UI>();
+        //UI uI = canvas.GetComponent<UI>();
                 
         if (have_key)
         {
@@ -553,7 +553,7 @@ public class PlayerMove:MonoBehaviour
                 C = true;
                 targetObject.SetActive(true);
             }
-            uI.DontKey();
+            //uI.DontKey();
         }
     }
     //マップをゲットした時の処理
