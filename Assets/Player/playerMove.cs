@@ -573,7 +573,7 @@ public class PlayerMove:MonoBehaviour
     
     void Event1()
     {
-        if (hitTag=="Day2_Start" && ctEv == 0)
+        if (new_ui.Word == 2 && ctEv == 0)
         {
             sound_Event1.Event_scene = true;
             sound_Event1.start_soene = true;
