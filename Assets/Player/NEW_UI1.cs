@@ -16,53 +16,81 @@ public class NEW_UI1 : MonoBehaviour
     public Event events;
     public float Timer5;
     public int Count;
+    public int CCC;
     //吹き出しの画像を入れる       
     public GameObject se;
+
+    public GameObject Controra;
+    public GameObject Hand;
+    public GameObject purasu;
+    public GameObject maru;
 
     // 初期化
     void Start()
     {
         score_text = score_object.GetComponent<Text>();
+        events = events.GetComponent<Event>();
         checkTag = checkTag.GetComponent<CheckpointTag>();
         playermove = checkTag.GetComponent<PlayerMove>();
         se.SetActive(false);
+        Controra.SetActive(false);
+        Hand.SetActive(false);
+        purasu.SetActive(false);
+        maru.SetActive(false);
     }
 
     // 更新
     void Update()
     {
-        WordUp();       //セリフ表示
+        WordUp();       //セリフを更新
 
+        //セリフを表示
         if (Count == 5 && Timer5 <= 3.0f)
         {
             Timer5 += Time.deltaTime;
             score_object.SetActive(true);
             se.SetActive(true);
         }
-        if (Timer5 >= 3.0f && Count == 5)
+        //セリフを非表示
+        if (Timer5 >= 3.0f && Count == 5 )
         {
             score_object.SetActive(false);
             se.SetActive(false);
+           
+
             Timer5 = 0;
             Count = 0;
+        }
+        if(Word==2)
+        {
+            Controra.SetActive(false);
+            Hand.SetActive(false);
+            purasu.SetActive(false);
+            maru.SetActive(false);
         }
     }
 
     //セリフ表示
     void WordUp()
     {
-        //セリフ5
+        //セリフ1
         if (playermove.ct == 1 || playermove.timer4 > 1.0f && Word == 0)
         {
             // テキストの表示を入れ替える
-            score_text.text = "             何の音だ...ドアの方から聞こえたぞ...?";
+            score_text.text = "            何の音だ...ドアの方から聞こえたぞ...?";
+
+            Controra.SetActive(true);
+            Hand.SetActive(true);
+            purasu.SetActive(true);
+            maru.SetActive(true);
+
             Timer5 = 0;
             Count = 5;
             playermove.ct = 2;
             Word = 1;
             playermove.hitTag = null;
         }
-        //セリフ１
+        //セリフ2
         if (playermove.hitTag == "Day2_Start" )
         {
             // テキストの表示を入れ替える
@@ -72,7 +100,17 @@ public class NEW_UI1 : MonoBehaviour
             Word = 2;
             playermove.hitTag = null;
         }
-        //セリフ２
+        //セリフ3
+        if(events.start_soene==false && playermove.ctEv==1 && Word == 2)
+        {
+            score_text.text = "    あ、あれが噂の…？本当に目が見えてないみたいだ…\n静かに歩けば近くでも大丈夫かも…";
+            Timer5 = 0;
+            Count = 5;
+            Word = 3;
+           
+            //playermove.hitTag = null;
+        }
+        //セリフ4
         if (playermove.hitTag == "Map" )
         {
             // テキストの表示を入れ替える
@@ -80,21 +118,32 @@ public class NEW_UI1 : MonoBehaviour
 
             Timer5 += Time.deltaTime;
             Count = 5;
-            Word = 3;
-            playermove.hitTag = null;
-        }
-        //セリフ３
-        if (playermove.hitTag == "bookstand" )
-        {
-            // テキストの表示を入れ替える
-            score_text.text = "                                 うわ扉が出てきた...";
-
-            Timer5 += Time.deltaTime;
-            Count = 5;
             Word = 4;
             playermove.hitTag = null;
         }
-        //セリフ4
+        //セリフ5
+        if (playermove.hitTag == "bookstand" )
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "                      うわ扉が出てきた...";
+
+            Timer5 += Time.deltaTime;
+            Count = 5;
+            Word = 5;
+            playermove.hitTag = null;
+        }
+        //セリフ７
+        if (playermove.WopCount==1)
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "タンスの中で拾ったけどなんだろう…？";
+
+            Timer5 += Time.deltaTime;
+            Count = 5;
+            Word = 5;
+           // playermove.hitTag = null;
+        }
+        //セリフ８
         if (playermove.hitTag == "Exit")
         {
             // テキストの表示を入れ替える
@@ -102,7 +151,7 @@ public class NEW_UI1 : MonoBehaviour
 
             Timer5 += Time.deltaTime;
             Count = 5;
-            Word = 5;
+            Word = 6;
             playermove.hitTag = null;
         }
 
