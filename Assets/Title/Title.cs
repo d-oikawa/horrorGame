@@ -51,7 +51,7 @@ public class Title : MonoBehaviour
     private IEnumerator Wait3SecondsAndFadeOut()
     {
         yield return new WaitForSeconds(0f);
-        SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
+        SceneManager.LoadScene("fast");//次に行きたいシーン名を書く
     }
 
     private IEnumerator Wait3SecondsAndFadeInt()
