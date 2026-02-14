@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
         //Bボタン押したら進む場所
         if ( Input.GetKeyDown("joystick button 1"))
         {
-            SceneManager.LoadScene("Title");//次に行きたいシーン名を書く
+            SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
         }
         
     }
