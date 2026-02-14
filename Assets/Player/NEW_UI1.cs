@@ -25,6 +25,8 @@ public class NEW_UI1 : MonoBehaviour
     public GameObject purasu;
     public GameObject maru;
 
+    public int clct;
+
     // 初期化
     void Start()
     {
@@ -37,6 +39,7 @@ public class NEW_UI1 : MonoBehaviour
         Hand.SetActive(false);
         purasu.SetActive(false);
         maru.SetActive(false);
+        clct = 0;
     }
 
     // 更新
@@ -133,7 +136,7 @@ public class NEW_UI1 : MonoBehaviour
             playermove.hitTag = null;
         }
         //セリフ７
-        if (playermove.WopCount==1)
+        if (playermove.WopCount==1 && clct == 0)
         {
             // テキストの表示を入れ替える
             score_text.text = "タンスの中で拾ったけどなんだろう…？";
@@ -141,7 +144,8 @@ public class NEW_UI1 : MonoBehaviour
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 5;
-           // playermove.hitTag = null;
+            clct = 1;
+            playermove.hitTag = null;
         }
         //セリフ８
         if (playermove.hitTag == "Exit")

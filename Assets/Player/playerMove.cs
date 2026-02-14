@@ -241,7 +241,8 @@ public class PlayerMove:MonoBehaviour
             }
         }
         Event1();
-       
+
+        this.transform.position = new Vector3(this.transform.position.x, 10.36444f, this.transform.position.z);
     }
 
     //Eを押したらアイテムを取得、投擲する処理
