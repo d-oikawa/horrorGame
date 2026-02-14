@@ -49,6 +49,7 @@ public class PlayerMove:MonoBehaviour
     //隠れているかいないか
     public bool Ishide=false;
     Vector3 woldPos;
+    public int WopCount;
 
     //サウンドで使う変数
     public AudioSource audioSource;
@@ -420,6 +421,7 @@ public class PlayerMove:MonoBehaviour
     {
         Ishide = false;
         transform.position = Ppos;
+        ++WopCount;
         characterController.enabled = true;
         Debug.Log("WarpEnd");
     }
