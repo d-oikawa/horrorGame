@@ -48,6 +48,8 @@ public class spline_system : MonoBehaviour
 
     public bool event_chane_splien;
 
+    public bool k;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -67,6 +69,8 @@ public class spline_system : MonoBehaviour
         eVent = se.GetComponent<Event>();
 
         em = GetComponent<enemy_move>();
+
+        k = false;
 
     }
 
@@ -236,6 +240,13 @@ public class spline_system : MonoBehaviour
 
             //spline‚ÌŠ„‡‚ÅˆÚ“®
             splines_Percentage += Time.deltaTime * move_speed;
+
+            if(em.on && !k)
+            {
+                Debug.Log("‚´‚é‚»‚Î");
+                splines_Percentage = 0.7f;
+                k = true;
+            }
 
             //Debug.Log("spline‚Ì’·‚³" + spuline_length);
 
@@ -408,7 +419,7 @@ public class spline_system : MonoBehaviour
 
                 Debug.Log("ƒXƒvƒ‰ƒCƒ“‚Ì’·‚³" + spuline_length);
 
-            float move_speed = 3 / spuline_length;
+                float move_speed = 3 / spuline_length;
 
 
 

@@ -315,7 +315,7 @@ public class PlayerMove:MonoBehaviour
                         break;
                         //本棚をどかす
                         case "bookstand":
-                        {
+                            {
                                 if (!books_move && have_map)
                                 {
                                     bookstand_move();

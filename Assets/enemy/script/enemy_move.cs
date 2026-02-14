@@ -79,6 +79,7 @@ public class enemy_move : MonoBehaviour
 
     private Vector3 v;
 
+    public bool on; 
 
     //testItem_drop.cs(デバッグ)
     //public testItem_drop testItem_Drop;
@@ -136,6 +137,8 @@ public class enemy_move : MonoBehaviour
         }
 
         distance = 20;
+
+        on = false;
     }
 
     // Update is called once per frame
@@ -221,6 +224,8 @@ public class enemy_move : MonoBehaviour
                 AudioSource.PlayOneShot(sound2);
             }
             Debug.Log(eVent.enemy_sound);
+
+            on = PlayerMove.Ishide;
 
         }
         //else
