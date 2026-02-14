@@ -32,8 +32,8 @@ public class senter : MonoBehaviour
            
             // 当たったオブジェクトの情報を取得
             Debug.Log("当たったオブジェクト: " + hit.collider.name);
-            Debug.Log("当たった位置: " + hit.point);
-            Debug.Log("当たった距離: " + hit.distance);
+            //Debug.Log("当たった位置: " + hit.point);
+            //Debug.Log("当たった距離: " + hit.distance);
         }
         else
         {

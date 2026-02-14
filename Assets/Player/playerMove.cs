@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -119,6 +120,7 @@ public class PlayerMove:MonoBehaviour
     //タンスから脱出を制限(髙山)
     public bool closet_Exit;
 
+    public Collider Collider;
     void Start()
     {
         SensitivtiR = 200;
@@ -147,6 +149,8 @@ public class PlayerMove:MonoBehaviour
         C = false;
 
         closet_Exit = false;
+
+        Collider = this.GetComponent<Collider>();
     }
 
     void Update()
@@ -214,6 +218,15 @@ public class PlayerMove:MonoBehaviour
                     Debug.Log("ttt");
                 }
             }
+
+            //if (Ishide)
+            //{
+            //    Collider.enabled = false;
+            //}
+            //else
+            //{
+            //    //Collider.enabled = true;
+            //}
 
             //移動する処理
             movement = transform.rotation * movement * orgspeed1;
@@ -597,7 +610,7 @@ public class PlayerMove:MonoBehaviour
             relativePos = targetObject.transform.position - this.transform.position;
             // 方向を、回転情報に変換
             rotation = Quaternion.LookRotation(relativePos);
-            // 現在の回転情報と、ターゲット方向の回転情報を補完する
+            // 現在の回転情報と、ターゲット方向の回転情報を補完する            
             transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, speed);
            cam.transform.Rotate(0, 0, 0);
             ctEv = 1;
