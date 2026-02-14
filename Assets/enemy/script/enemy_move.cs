@@ -313,7 +313,7 @@ public class enemy_move : MonoBehaviour
                     if (collider != null)
                     {
                         player_Chase.target = collider.transform.position;
-                        collider.gameObject.SetActive(false);
+                        //collider.gameObject.SetActive(false);
                     }
 
                     //’ÇÕ‚ğŠJn

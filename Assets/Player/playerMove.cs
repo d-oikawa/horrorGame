@@ -113,7 +113,10 @@ public class PlayerMove:MonoBehaviour
     public GameObject targetObject; // 注視したいオブジェクトをInspectorから入れておく
 
     //敵出現のため一度だけ使用(髙山)
-    private bool C; 
+    private bool C;
+
+    //タンスから脱出を制限(髙山)
+    public bool closet_Exit;
 
     void Start()
     {
@@ -141,6 +144,8 @@ public class PlayerMove:MonoBehaviour
         books_move = false; //本棚
         kinko = false;      //金庫
         C = false;
+
+        closet_Exit = false;
     }
 
     void Update()
@@ -190,20 +195,23 @@ public class PlayerMove:MonoBehaviour
             }
 
             //歩く音の処理
-            if (Input.GetKey("joystick button 5"))
+            if (!Ishide)//(高山)
             {
-                PlayerSound = true;
-                Debug.Log("ttt");
-            }
-            else if (moveVertical == 0 && moveHorizontal == 0 || Input.GetKey("joystick button 4"))
-            {
-                PlayerSound = false;
-                Debug.Log("fff");
-            }
-            else
-            {
-                PlayerSound = true;
-                Debug.Log("ttt");
+                if (Input.GetKey("joystick button 5"))
+                {
+                    PlayerSound = true;
+                    Debug.Log("ttt");
+                }
+                else if (moveVertical == 0 && moveHorizontal == 0 || Input.GetKey("joystick button 4"))
+                {
+                    PlayerSound = false;
+                    Debug.Log("fff");
+                }
+                else
+                {
+                    PlayerSound = true;
+                    Debug.Log("ttt");
+                }
             }
 
             //移動する処理
@@ -269,12 +277,20 @@ public class PlayerMove:MonoBehaviour
                         break;
                         case "warp":
                         {
-                                warp(hitTag);
+                                //本を動かすまでclosetに入れない(髙山)
+                                if (books_move)
+                                {
+                                    warp(hitTag);
+                                }
                         }
                         break;
                         case "door":
                         {
-                                Endwarp(woldPos);
+                                //敵が消えるまで黒－ゼットから出れない(髙山)
+                                if (closet_Exit)
+                                {
+                                    Endwarp(woldPos);
+                                }
                         }
                         break;
                         //進行に必要なアイテムｚ
@@ -300,7 +316,7 @@ public class PlayerMove:MonoBehaviour
                         //本棚をどかす
                         case "bookstand":
                         {
-                                if (!books_move)
+                                if (!books_move && have_map)
                                 {
                                     bookstand_move();
                                 }
@@ -390,7 +406,8 @@ public class PlayerMove:MonoBehaviour
 			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
             transform.position = haidpos.transform.position;
             Debug.Log("warp!");
-           
+            //音が消滅(高山)
+            PlayerSound = false;
         }
     }
 
@@ -426,35 +443,38 @@ public class PlayerMove:MonoBehaviour
 
     //SEを鳴らす処理(歩く、走る)
     void onSaund()
-    { 
+    {
         //タイマーは発動する時の時間temer秒たったら発動
 
-        if (moveVertical != 0 || moveHorizontal != 0)
+        if (!Ishide)
         {
-            //走る時の
-            if (Input.GetKey("joystick button 5"))
+            if (moveVertical != 0 || moveHorizontal != 0)
             {
-                timer2 += Time.deltaTime;
-                if (timer2 > 1.2f)
+                //走る時の
+                if (Input.GetKey("joystick button 5"))
                 {
-                    audioSource.PlayOneShot(sound2);
-                    timer2 = 0.0f;
-                }
+                    timer2 += Time.deltaTime;
+                    if (timer2 > 1.2f)
+                    {
+                        audioSource.PlayOneShot(sound2);
+                        timer2 = 0.0f;
+                    }
 
-            }
-            //ゆっくり歩く時の
-            else if (Input.GetKey("joystick button 4"))
-            {
-                audioSource.mute = false;
-            }
-            //歩く時の
-            else
-            { 
-                timer1 += Time.deltaTime;
-                if(timer1>1.5f)
+                }
+                //ゆっくり歩く時の
+                else if (Input.GetKey("joystick button 4"))
                 {
-                    audioSource.PlayOneShot(sound1);
-                    timer1 = 0.0f;
+                    audioSource.mute = false;
+                }
+                //歩く時の
+                else
+                {
+                    timer1 += Time.deltaTime;
+                    if (timer1 > 1.5f)
+                    {
+                        audioSource.PlayOneShot(sound1);
+                        timer1 = 0.0f;
+                    }
                 }
             }
         }

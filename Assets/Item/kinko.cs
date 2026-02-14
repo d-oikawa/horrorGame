@@ -27,7 +27,7 @@ public class kinko : MonoBehaviour
 
         boxCollider = Keybject.GetComponent<BoxCollider>();
 
-        boxCollider.enabled = true;
+        boxCollider.enabled = false;
 
     }
 
