@@ -423,7 +423,8 @@ public class PlayerMove:MonoBehaviour
 			//隠れている
 			Ishide = true;
 			GameObject haidpos = GameObject.FindGameObjectWithTag(Tag);
-            transform.position = haidpos.transform.position;
+            transform.position = new Vector3(-41.96f, 10.39f, 22.74f);
+            //transform.position = haidpos.transform.position;
             Debug.Log("warp!");
             //音が消滅(高山)
             PlayerSound = false;
