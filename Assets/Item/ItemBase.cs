@@ -208,9 +208,10 @@ public class ItemBase : MonoBehaviour
     // ゲームオブジェクト同士が接触したタイミングで実行
     void OnCollisionStay(Collision collision)
     {
-        timer += Time.deltaTime;
         if((collision.gameObject.tag=="Wall" || collision.gameObject.tag == "Ground") && desutoroizyunnbi)
         { // enemyに判定を渡してこのオブジェクトの役目を終える            
+
+            timer += Time.deltaTime;
 
             ItemRb.linearVelocity = Vector3.zero;
 
@@ -220,6 +221,7 @@ public class ItemBase : MonoBehaviour
 
             if (timer > 2)
             {
+                Debug.Log("do");
                 timer = 0f;
                 m_IsActive = false;
             }

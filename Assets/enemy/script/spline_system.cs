@@ -225,7 +225,14 @@ public class spline_system : MonoBehaviour
 
 
             //移動速度を設定
-            float move_speed = 30 / spuline_length;
+            float move_speed = 3 / spuline_length;
+
+            //超絶デバッグ大魔神
+            if (Input.GetKey(KeyCode.Alpha9))
+            {
+                move_speed = 30 / spuline_length;
+            }
+
 
             //splineの割合で移動
             splines_Percentage += Time.deltaTime * move_speed;
@@ -401,8 +408,12 @@ public class spline_system : MonoBehaviour
 
                 Debug.Log("スプラインの長さ" + spuline_length);
 
-                //移動速度を設定
-                float move_speed = 3 / spuline_length;
+            float move_speed = 3 / spuline_length;
+
+
+
+
+            //移動速度を設定
 
             if (tim < stopd_time && splines_Percentage < 1)
             {
