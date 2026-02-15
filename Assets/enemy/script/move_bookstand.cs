@@ -46,7 +46,8 @@ public class move_bookstand : MonoBehaviour
         if (pm.books_move && vec.z < 5.73f && !si)
         {
             Event.Event_scene = false;
-            //mv.SetActive(true);
+
+            mv.SetActive(true);
             si = true;
         }
     }
