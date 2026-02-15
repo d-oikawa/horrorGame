@@ -95,17 +95,11 @@ public class enemy_modechange: MonoBehaviour
             break;
 
             case "Enemy_mode2":
-                if (Pm.have_map)
-                {
                     mode1 = modecen;
-                }
             break;
 
             case "Enemy_mode3":
-                if (Pm.have_map)
-                {
                     spline.Next_Spline("Spline_C");
-                }
 
                 //mode1 = modecen;
                 break;
@@ -116,11 +110,7 @@ public class enemy_modechange: MonoBehaviour
 
         if (mode.gameObject.tag == "Enemy_mode2" || mode.gameObject.tag == "Enemy_mode3")
         {
-            if (Pm.have_map)
-            {
                 mode.gameObject.SetActive(false);
-            }
-            return;
         }
         else
         {

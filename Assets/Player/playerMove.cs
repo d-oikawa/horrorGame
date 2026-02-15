@@ -305,11 +305,7 @@ public class PlayerMove:MonoBehaviour
                         break;
                         case "door":
                         {
-                                //敵が消えるまで黒－ゼットから出れない(髙山)
-                                if (closet_Exit)
-                                {
                                     Endwarp(woldPos);
-                                }
                         }
                         break;
                         //進行に必要なアイテムｚ
@@ -335,7 +331,7 @@ public class PlayerMove:MonoBehaviour
                         //本棚をどかす
                         case "bookstand":
                             {
-                                if (!books_move && have_map)
+                                if (!books_move)
                                 {
                                     bookstand_move();
                                 }
@@ -569,11 +565,10 @@ public class PlayerMove:MonoBehaviour
         }
         else
         {
-            if (!C)
-            {
-                C = true;
-                targetObject.SetActive(true);
-            }
+            //if (!C)
+            //{
+            //    C = true;
+            //}
             //uI.DontKey();
         }
     }

@@ -96,7 +96,7 @@ public class ItemBase : MonoBehaviour
             {               
 
                 // —Í‚ð‰Á‚¦‚é
-                ItemRb.AddForce(transform.forward * 600, ForceMode.Acceleration);
+                ItemRb.AddForce(transform.forward * 1000, ForceMode.Acceleration);
 				ItemRb.AddForce(transform.up * 150, ForceMode.Acceleration);
                 ItemRb.transform.Rotate(Vector3.up, 45f * Time.deltaTime);
 
