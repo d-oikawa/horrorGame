@@ -53,7 +53,7 @@ public class NEW_UI1 : MonoBehaviour
         WordUp();       //セリフを更新
 
         //セリフを表示
-        if (Count == 5 && Timer5 <= 3.0f)
+        if (Count == 5 && Timer5 <= 4.0f)
         {
             Timer5 += Time.deltaTime;
             score_object.SetActive(true);
@@ -156,7 +156,16 @@ public class NEW_UI1 : MonoBehaviour
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 5;
-            //playermove.hitTag = null;
+            Timer = 3.0f;
+            playermove.hitTag = null;
+        }
+        if(Word==5 && Timer==3.0f && Count==0)
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "化け物が来てる…！！。クローゼットに隠れよう…！！";
+            Timer = 4.0f;
+            Timer5 += Time.deltaTime;
+            Count = 5;
         }
         //セリフ７
         if (playermove.WopCount==1 && clct == 0)
