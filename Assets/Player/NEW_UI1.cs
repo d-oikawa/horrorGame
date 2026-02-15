@@ -14,6 +14,7 @@ public class NEW_UI1 : MonoBehaviour
     public CheckpointTag checkTag;
     public PlayerMove playermove;
     public Event events;
+    public float Timer;
     public float Timer5;
     public int Count;
     public int CCC;
@@ -24,6 +25,8 @@ public class NEW_UI1 : MonoBehaviour
     public GameObject Hand;
     public GameObject purasu;
     public GameObject maru;
+    public GameObject maru1;
+    public GameObject maru2;
 
     public int clct;
 
@@ -39,6 +42,8 @@ public class NEW_UI1 : MonoBehaviour
         Hand.SetActive(false);
         purasu.SetActive(false);
         maru.SetActive(false);
+        maru1.SetActive(false);
+        maru2.SetActive(false);
         clct = 0;
     }
 
@@ -70,6 +75,12 @@ public class NEW_UI1 : MonoBehaviour
             Hand.SetActive(false);
             purasu.SetActive(false);
             maru.SetActive(false);
+        }
+        if(Word==3 && Input.GetKey("joystick button 4"))
+        {
+            Controra.SetActive(false);
+            maru1.SetActive(false);
+            maru2.SetActive(false);
         }
     }
 
@@ -110,8 +121,20 @@ public class NEW_UI1 : MonoBehaviour
             Timer5 = 0;
             Count = 5;
             Word = 3;
+            Timer=1.0f;
            
             //playermove.hitTag = null;
+        }
+         if(Word==3 && Timer==1.0f && Count==0)
+        {
+            score_text.text = "    LB + スティックで静かに歩るく";
+            Controra.SetActive(true);
+            maru1.SetActive(true);
+            maru2.SetActive(true);
+            Timer5 = 0;
+            Count = 5;
+            Timer = 2.0f;
+           
         }
         //セリフ4
         if (playermove.hitTag == "Map" )
@@ -133,7 +156,7 @@ public class NEW_UI1 : MonoBehaviour
             Timer5 += Time.deltaTime;
             Count = 5;
             Word = 5;
-            playermove.hitTag = null;
+            //playermove.hitTag = null;
         }
         //セリフ７
         if (playermove.WopCount==1 && clct == 0)
