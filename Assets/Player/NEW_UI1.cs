@@ -151,7 +151,7 @@ public class NEW_UI1 : MonoBehaviour
         if (playermove.hitTag == "bookstand" )
         {
             // テキストの表示を入れ替える
-            score_text.text = "                      うわ扉が出てきた…";
+            score_text.text = "            うわ扉が出てきた…鍵がかかってるみたい";
 
             Timer5 += Time.deltaTime;
             Count = 5;
@@ -171,7 +171,7 @@ public class NEW_UI1 : MonoBehaviour
         if (playermove.WopCount==1 && clct == 0)
         {
             // テキストの表示を入れ替える
-            score_text.text = "タンスの中でメモみたいなのを拾ったけど…\nこれはパスワード…？";
+            score_text.text = "タンスの中でメモみたいなのを拾ったけど…\nこれは金庫のパスワード…？";
 
             Timer5 += Time.deltaTime;
             Count = 5;

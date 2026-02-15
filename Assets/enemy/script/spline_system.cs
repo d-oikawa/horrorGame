@@ -232,10 +232,10 @@ public class spline_system : MonoBehaviour
             float move_speed = 3 / spuline_length;
 
             //超絶デバッグ大魔神
-            if (Input.GetKey(KeyCode.Alpha9))
-            {
-                move_speed = 300 / spuline_length;
-            }
+            //if (Input.GetKey(KeyCode.Alpha9))
+            //{
+            //    move_speed = 300 / spuline_length;
+            //}
 
 
             //splineの割合で移動
