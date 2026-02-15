@@ -66,6 +66,11 @@ public class Event : MonoBehaviour
             enemy_ob.gameObject.SetActive(true);
         }
 
+        //if(Input.GetKeyDown(KeyCode.JoystickButton3) && start_soene) 
+        //{
+        //    Event_scene = false;
+        //}
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene("Title");

@@ -11897,7 +11897,7 @@ PrefabInstance:
       objectReference: {fileID: 1055513174}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: runSpeed
-      value: 30
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4196882889299104751, guid: d0e2120d33a0e0b4dbc04466351d6185, type: 3}
       propertyPath: walkSpeed
@@ -32488,8 +32488,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5747705, y: 0.6415645, z: 0.6671422}
-  m_Center: {x: -0.08177863, y: -0.0040755356, z: 0.10604916}
+  m_Size: {x: 0.34753886, y: 0.6415645, z: 0.42567757}
+  m_Center: {x: -0.012431924, y: -0.004075542, z: -0.014682417}
 --- !u!114 &1355620319
 MonoBehaviour:
   m_ObjectHideFlags: 0
