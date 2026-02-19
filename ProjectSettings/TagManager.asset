@@ -44,6 +44,7 @@ TagManager:
   - fadeout
   - StarEvent_Spline
   - cashcase
+  - intermediary
   layers:
   - Default
   - TransparentFX

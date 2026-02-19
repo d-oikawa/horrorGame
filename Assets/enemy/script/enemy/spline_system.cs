@@ -46,6 +46,10 @@ public class spline_system : MonoBehaviour
 
     public GameObject se;
 
+    //仲介
+    private intermediary inter;
+    private GameObject ter;
+
     public bool event_chane_splien;
 
     public bool k;
@@ -53,17 +57,26 @@ public class spline_system : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
-        //初期化
+        //splineに沿って移動しているかどうかのflagを初期化
         spline_flg = true;
+        //スプラインパーセンテージを初期化
         splines_Percentage = 0;
+        //スプラインを変更しているかどうかの初期化
         change_splien = false;
+        //次のスプラインに移動するflagの初期化
         next_spuline = false;
+        //一つ前のスプラインを初期化
         before_spline = null;
+        //タイマーを初期化
         tim = 0;
         //最初のスプラインを設定
         spline_change("Spline_A");
 
+        //イベントのスプラインに切り替わるかどうかの初期化
         event_chane_splien = false;
+
+        ter = GameObject.FindWithTag("intermediary");
+        inter = ter.GetComponent<intermediary>();
 
         se = GameObject.FindGameObjectWithTag("Event");
         eVent = se.GetComponent<Event>();
@@ -77,7 +90,6 @@ public class spline_system : MonoBehaviour
 
     // Update is called once per frame
     void Update()    {
-
 
         //splineのタグを取得
         if (splineContainer != null)
@@ -114,7 +126,7 @@ public class spline_system : MonoBehaviour
     //スプイランに沿って移動する処理(ごり押し)
     void spline_move()
     {
-        if (!eVent.Event_scene)
+        if (!inter.isevent_Scene)
         {
             //splineの長さ
             float spuline_length = 0f;
@@ -232,16 +244,16 @@ public class spline_system : MonoBehaviour
             float move_speed = 3 / spuline_length;
 
             //超絶デバッグ大魔神
-            //if (Input.GetKey(KeyCode.Alpha9))
-            //{
-            //    move_speed = 300 / spuline_length;
-            //}
+            if (Input.GetKey(KeyCode.Alpha9))
+            {
+                move_speed = 300 / spuline_length;
+            }
 
 
             //splineの割合で移動
             splines_Percentage += Time.deltaTime * move_speed;
 
-            if(em.on && !k)
+            if(em.player_ishade && !k)
             {
                 Debug.Log("ざるそば");
                 splines_Percentage = 0.7f;
@@ -385,7 +397,7 @@ public class spline_system : MonoBehaviour
 
     public void Event_Spline(int stopd_time, string spli, bool eve)
     {
-        if (eVent.Event_scene)
+        if (inter.isevent_Scene)
         {
             //splineの長さ
             float spuline_length;
