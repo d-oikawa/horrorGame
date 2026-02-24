@@ -67,9 +67,9 @@ public class enemy_move : MonoBehaviour
     //public GameObject itm;
 
     ////sound_Evect.cs
-    //public Event eVent;
+    public Event eVent;
 
-    //public GameObject se;
+    public GameObject se;
 
     //つうじょう時鳴らす音
     [SerializeField]
@@ -134,8 +134,8 @@ public class enemy_move : MonoBehaviour
 
         //item_drop = false;
 
-        //se = GameObject.FindGameObjectWithTag("Event");
-        //eVent = se.GetComponent<Event>();
+        se = GameObject.FindGameObjectWithTag("Event");
+        eVent = se.GetComponent<Event>();
 
         //if (Sound_Event != null)
         //{
@@ -162,7 +162,7 @@ public class enemy_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             //interからプレイヤーの音が鳴ったかどうかを受け取る
             player_sound = inter.player_sound;
@@ -265,7 +265,7 @@ public class enemy_move : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             if ((collider.tag == "Player" || collider.tag == "Testitem"))
             {
@@ -294,7 +294,7 @@ public class enemy_move : MonoBehaviour
     //プレイヤーもしくはアイテムが出す音を感知したらその音をターゲットにする
     public void OnTriggerStay(Collider collider)
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             chase(collider);
         }
@@ -302,7 +302,7 @@ public class enemy_move : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             if (collision.gameObject.tag == "Player")
             {
@@ -354,7 +354,7 @@ public class enemy_move : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             if (other.gameObject.tag == "Testitem")
             {

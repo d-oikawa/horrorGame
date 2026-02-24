@@ -7,8 +7,9 @@ public class intermediary : MonoBehaviour
     private GameObject PM;
 
     //enemy_move.cs
+    [SerializeField]
     private enemy_move enemy_Move;
-    private GameObject em;
+    //private GameObject em;
 
     //ItemBase.cs
     private ItemBase Item_Base;
@@ -45,8 +46,8 @@ public class intermediary : MonoBehaviour
             PM = GameObject.FindWithTag("Player");
             Player_Move = PM.GetComponent<PlayerMove>();
 
-            em = GameObject.FindWithTag("enemy");
-            enemy_Move = em.GetComponent<enemy_move>();
+            //em = GameObject.FindWithTag("enemy");
+            enemy_Move = GetComponent<enemy_move>();
 
             ib = GameObject.FindWithTag("Testitem");
             Item_Base = ib.GetComponent<ItemBase>();
@@ -159,7 +160,7 @@ public class intermediary : MonoBehaviour
     private void Event_interm()
     {
         //イベントシーン管理のオブジェクトが存在していたら
-        if(ev != null)
+        if (ev != null)
         {
             Debug.Log("イベントシーンに遷移可能");
             isevent_Scene = Event.Event_scene;
@@ -169,7 +170,7 @@ public class intermediary : MonoBehaviour
             Debug.Log("イベントシーンに遷移不可能");
             isevent_Scene = false;
         }
-       
-    }
 
-}
+        }
+
+    }

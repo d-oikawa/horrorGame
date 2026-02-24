@@ -126,7 +126,7 @@ public class spline_system : MonoBehaviour
     //スプイランに沿って移動する処理(ごり押し)
     void spline_move()
     {
-        if (!inter.isevent_Scene)
+        if (!eVent.Event_scene)
         {
             //splineの長さ
             float spuline_length = 0f;
@@ -397,7 +397,7 @@ public class spline_system : MonoBehaviour
 
     public void Event_Spline(int stopd_time, string spli, bool eve)
     {
-        if (inter.isevent_Scene)
+        if (eVent.start_soene)
         {
             //splineの長さ
             float spuline_length;
@@ -429,7 +429,7 @@ public class spline_system : MonoBehaviour
                 //splineの長さを取得
                 spuline_length = splineContainer.CalculateLength();
 
-                Debug.Log("スプラインの長さ" + spuline_length);
+                Debug.Log("イベントのスプライン");
 
                 float move_speed = 3 / spuline_length;
 
