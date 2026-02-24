@@ -18,6 +18,7 @@ public class NEW_UI1 : MonoBehaviour
     public float Timer5;
     public int Count;
     public int CCC;
+    public int Wword;
     //吹き出しの画像を入れる       
     public GameObject se;
 
@@ -27,6 +28,7 @@ public class NEW_UI1 : MonoBehaviour
     public GameObject maru;
     public GameObject maru1;
     public GameObject maru2;
+   
 
     public int clct;
 
@@ -44,6 +46,7 @@ public class NEW_UI1 : MonoBehaviour
         maru.SetActive(false);
         maru1.SetActive(false);
         maru2.SetActive(false);
+       
         clct = 0;
     }
 
@@ -82,6 +85,7 @@ public class NEW_UI1 : MonoBehaviour
             maru1.SetActive(false);
             maru2.SetActive(false);
         }
+      
     }
 
     //セリフ表示
@@ -117,7 +121,7 @@ public class NEW_UI1 : MonoBehaviour
         //セリフ3
         if(events.start_soene==false && playermove.ctEv==1 && Word == 2)
         {
-            score_text.text = "    あ、あれが噂の…？本当に目が見えてないみたいだ…\n静かに歩けば近くでも大丈夫かも…";
+            score_text.text = "    あ、あれが噂の…？本当に目が見えてないみたいだ…\n   静かに歩けば近くでも大丈夫かも…";
             Timer5 = 0;
             Count = 5;
             Word = 3;

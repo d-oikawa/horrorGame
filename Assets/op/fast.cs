@@ -12,6 +12,7 @@ public class fast : MonoBehaviour
     public GameObject notoOpen;
     public GameObject UP;
     public GameObject Down;
+    public GameObject Skipe;
     public float Timer;
     public float Timer2;
 
@@ -33,6 +34,7 @@ public class fast : MonoBehaviour
         notoOpen.SetActive(false);
         UP.SetActive(true);
         Down.SetActive(true);
+        Skipe.SetActive(true);
 
         //Componentを取得(サウンド)
         audioSource = GetComponent<AudioSource>();
@@ -82,7 +84,7 @@ public class fast : MonoBehaviour
                 "僕は静岡の洋館へ向かった。";
         }
         //Bボタン押したら進む場所
-        if (Timer >= 23.0f)
+        if (Timer >= 23.0f || Input.GetKeyDown("joystick button 7"))
         {
             SceneManager.LoadScene("Enemy_Scene");//次に行きたいシーン名を書く
         }
