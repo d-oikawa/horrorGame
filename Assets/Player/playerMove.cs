@@ -610,6 +610,13 @@ public class PlayerMove:MonoBehaviour
             transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, speed);
            cam.transform.Rotate(0, 0, 0);
             ctEv = 1;
+
+            if(Input.GetKeyDown("joystick button 7"))
+            {
+                sound_Event1.Event_scene = false;
+                sound_Event1.start_soene = false;
+                ctEv = 1;
+            }
         } 
     }
 }

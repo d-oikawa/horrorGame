@@ -13,6 +13,7 @@ public class new_UI : MonoBehaviour
     //Up //Down
     public GameObject Up;
     public GameObject Down;
+    public GameObject maru3;
 
     //プレイヤーのタグチェック機能を参照するために必要な変数
     public CheckpointTag checkTag;
@@ -27,6 +28,7 @@ public class new_UI : MonoBehaviour
 
         Up.SetActive(false);
         Down.SetActive(false);
+        maru3.SetActive(false);
     }
 
     void Update()
@@ -42,6 +44,10 @@ public class new_UI : MonoBehaviour
         {
             Up.SetActive(true);
             Down.SetActive(true);
+            if(events.start_soene == true)
+            {
+                maru3.SetActive(true);
+            }
         }
 
     }
@@ -52,6 +58,7 @@ public class new_UI : MonoBehaviour
         {
             Up.SetActive(false);
             Down.SetActive(false);
+            maru3.SetActive(false);
         }
 
     }
