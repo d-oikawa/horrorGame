@@ -45,6 +45,7 @@ TagManager:
   - StarEvent_Spline
   - cashcase
   - intermediary
+  - Door1
   layers:
   - Default
   - TransparentFX

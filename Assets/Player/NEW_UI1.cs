@@ -190,6 +190,34 @@ public class NEW_UI1 : MonoBehaviour
             Word = 6;
             playermove.hitTag = null;
         }
+        //セリフ2
+        if (playermove.hitTag == "Door1")
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "             かたく閉ざされている";
+            Timer5 = 0;
+            Count = 5;
+            Word = 7;
+            playermove.hitTag = null;
+        }
+        if (playermove.hitTag == "cashcase"　&& playermove.books_move==false)
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "           パスワードが必要だ";
+            Timer5 = 0;
+            Count = 5;
+            Word = 8;
+            playermove.hitTag = null;
+        }
+        if (playermove.hitTag == "cashcase" && playermove.books_move == true)
+        {
+            // テキストの表示を入れ替える
+            score_text.text = "          鍵がある！これで出れるぞ！";
+            Timer5 = 0;
+            Count = 5;
+            Word = 9;
+            playermove.hitTag = null;
+        }
 
     }
 }
